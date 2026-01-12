@@ -27,7 +27,7 @@ const Home = () => {
 
   const stats = [
     { value: '500+', label: 'Завершенных проектов' },
-    { value: '3000+ м²', label: 'Производственных площадей' },
+    { value: '3000+\u00A0м²', label: 'Производственных площадей' },
     { value: '60+', label: 'Сотрудников' },
     { value: '13', label: 'Лет на рынке' }
   ];
@@ -36,11 +36,11 @@ const Home = () => {
     <div className="min-h-screen bg-white">
       <Header />
 
-      <section className="pt-32 pb-20 bg-gradient-to-br from-primary via-primary/95 to-primary/90">
+      <section className="pt-36 pb-20 bg-gradient-to-br from-primary via-primary/95 to-primary/90">
         <div className="container mx-auto px-4">
           <div className="grid md:grid-cols-2 gap-12 items-center">
             <div className="text-white space-y-6 animate-fade-in">
-              <Badge className="bg-secondary text-secondary-foreground border-0 text-base px-4 py-2">
+              <Badge className="bg-secondary text-secondary-foreground border-0 text-base px-4 py-2 hover:bg-secondary/90">
                 Надежный партнер с 2013 года
               </Badge>
               <h1 className="text-5xl md:text-6xl font-bold leading-tight">
