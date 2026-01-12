@@ -50,9 +50,6 @@ const ServiceDetail = () => {
               <Icon name="ArrowLeft" size={20} className="mr-2" />
               Назад к услугам
             </Link>
-            <Badge className="mb-4 bg-secondary text-secondary-foreground border-0">
-              Закладные детали
-            </Badge>
             <h1 className="text-4xl md:text-5xl font-bold text-white mb-6">
               Закладные детали для железобетонных конструкций
             </h1>

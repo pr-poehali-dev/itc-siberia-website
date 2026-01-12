@@ -68,9 +68,6 @@ const HangarsService = () => {
                 Назад к услугам
               </Link>
             </Button>
-            <Badge className="mb-4 bg-secondary text-secondary-foreground border-0">
-              Услуги
-            </Badge>
             <h1 className="text-4xl md:text-5xl font-bold mb-6">
               Авиационные ангары – надежная защита и современные решения для авиатехники
             </h1>
