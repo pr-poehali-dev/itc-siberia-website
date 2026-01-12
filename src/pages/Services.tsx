@@ -137,9 +137,6 @@ const Services = () => {
       <section className="pt-32 pb-12 bg-gradient-to-br from-primary via-primary/95 to-primary/90">
         <div className="container mx-auto px-4">
           <div className="max-w-4xl mx-auto text-center text-white">
-            <Badge className="mb-4 bg-secondary text-secondary-foreground border-0">
-              Услуги
-            </Badge>
             <h1 className="text-5xl md:text-6xl font-bold mb-6">
               Комплексные решения для вашего бизнеса
             </h1>
@@ -155,14 +152,14 @@ const Services = () => {
         <div className="container mx-auto px-4">
           <div className="grid md:grid-cols-2 gap-8">
             {services.map((service, index) => (
-              <Card key={index} className="hover-scale">
-                <CardContent className="p-8">
+              <Card key={index} className="hover-scale flex flex-col">
+                <CardContent className="p-8 flex flex-col flex-grow">
                   <div className="w-16 h-16 bg-primary rounded-xl flex items-center justify-center mb-6">
                     <Icon name={service.icon as any} size={32} className="text-white" />
                   </div>
                   <h3 className="text-2xl font-bold mb-3">{service.title}</h3>
                   <p className="text-muted-foreground mb-6">{service.description}</p>
-                  <div className="space-y-2 mb-6">
+                  <div className="space-y-2 mb-6 flex-grow">
                     {service.details.map((detail, idx) => (
                       <div key={idx} className="flex items-start gap-2">
                         <Icon name="Check" size={18} className="text-secondary mt-0.5 flex-shrink-0" />
@@ -172,7 +169,7 @@ const Services = () => {
                   </div>
                   <Button 
                     asChild 
-                    className="w-full bg-primary hover:bg-primary/90"
+                    className="w-full bg-primary hover:bg-primary/90 mt-auto"
                   >
                     <Link to={
                       index === 0 ? "/services/zakladnye-zbi" : 
@@ -213,7 +210,7 @@ const Services = () => {
                 { num: '03', title: 'Производство', desc: 'Изготовление и контроль качества' },
                 { num: '04', title: 'Монтаж', desc: 'Доставка и монтаж на объекте' }
               ].map((step, index) => (
-                <div key={index} className="bg-white/10 backdrop-blur-sm rounded-xl p-6">
+                <div key={index} className="bg-white/10 backdrop-blur-sm rounded-xl p-6 text-center">
                   <div className="text-5xl font-bold text-secondary mb-4">{step.num}</div>
                   <h4 className="text-xl font-bold mb-2">{step.title}</h4>
                   <p className="text-white/80 text-sm">{step.desc}</p>
