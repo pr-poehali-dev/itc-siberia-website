@@ -400,14 +400,7 @@ const Index = () => {
 
       <footer className="bg-foreground text-white py-8">
         <div className="container mx-auto px-4">
-          <div className="flex flex-col md:flex-row justify-between items-center gap-4">
-            <div className="flex items-center gap-3">
-              <img 
-                src="https://cdn.poehali.dev/files/2(без фона).png" 
-                alt="ИТЦ Инженерно-технологический центр Сибири"
-                className="h-14 w-auto object-contain"
-              />
-            </div>
+          <div className="text-center">
             <p className="text-white/70 text-sm">© 2024 ИТЦ-Сибири. Все права защищены.</p>
           </div>
         </div>
