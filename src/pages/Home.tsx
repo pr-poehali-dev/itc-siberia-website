@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent } from '@/components/ui/card';
@@ -26,6 +26,14 @@ const Home = () => {
   const prevImage = () => {
     setCurrentImage((prev) => (prev - 1 + images.length) % images.length);
   };
+
+  useEffect(() => {
+    const interval = setInterval(() => {
+      nextImage();
+    }, 4000);
+
+    return () => clearInterval(interval);
+  }, [currentImage]);
 
   const services = [
     {
@@ -90,13 +98,13 @@ const Home = () => {
                 ))}
               </div>
             </div>
-            <div className="relative animate-fade-in group">
+            <div className="relative animate-fade-in group max-w-lg mx-auto">
               <div className="absolute inset-0 bg-secondary/20 rounded-2xl blur-3xl"></div>
               <div className="relative rounded-2xl shadow-2xl overflow-hidden">
                 <img 
                   src={images[currentImage].url}
                   alt={images[currentImage].alt}
-                  className="w-full h-[500px] object-cover transition-all duration-500"
+                  className="w-full h-[400px] object-cover transition-all duration-500"
                 />
                 <button
                   onClick={prevImage}
