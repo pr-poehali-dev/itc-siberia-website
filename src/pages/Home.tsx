@@ -1,3 +1,4 @@
+import { useState } from 'react';
 import { Link } from 'react-router-dom';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent } from '@/components/ui/card';
@@ -7,6 +8,25 @@ import Header from '@/components/Header';
 import Footer from '@/components/Footer';
 
 const Home = () => {
+  const [currentImage, setCurrentImage] = useState(0);
+
+  const images = [
+    { url: 'https://cdn.poehali.dev/files/57.jpg', alt: 'Технологические металлоконструкции' },
+    { url: 'https://cdn.poehali.dev/files/58.jpg', alt: 'Сварные металлоконструкции' },
+    { url: 'https://cdn.poehali.dev/files/59.jpg', alt: 'Фрезерные работы' },
+    { url: 'https://cdn.poehali.dev/files/110.jpg', alt: 'Токарные работы' },
+    { url: 'https://cdn.poehali.dev/files/67.jpg', alt: 'Технологические площадки' },
+    { url: 'https://cdn.poehali.dev/files/68.jpg', alt: 'Сварные профили' }
+  ];
+
+  const nextImage = () => {
+    setCurrentImage((prev) => (prev + 1) % images.length);
+  };
+
+  const prevImage = () => {
+    setCurrentImage((prev) => (prev - 1 + images.length) % images.length);
+  };
+
   const services = [
     {
       icon: 'Factory',
@@ -61,7 +81,7 @@ const Home = () => {
                   </Link>
                 </Button>
               </div>
-              <div className="flex flex-nowrap justify-start items-start gap-x-6 md:gap-x-10 pt-8 overflow-x-auto">
+              <div className="flex flex-nowrap justify-start items-start gap-x-6 md:gap-x-10 pt-8">
                 {stats.map((stat, index) => (
                   <div key={index} className="flex flex-col items-center min-w-[100px] flex-shrink-0">
                     <div className="text-3xl md:text-4xl font-bold text-secondary whitespace-nowrap">{stat.value}</div>
@@ -70,13 +90,41 @@ const Home = () => {
                 ))}
               </div>
             </div>
-            <div className="relative animate-fade-in">
+            <div className="relative animate-fade-in group">
               <div className="absolute inset-0 bg-secondary/20 rounded-2xl blur-3xl"></div>
-              <img 
-                src="https://cdn.poehali.dev/files/57.jpg"
-                alt="Производство металлоконструкций"
-                className="relative rounded-2xl shadow-2xl w-full h-[500px] object-cover"
-              />
+              <div className="relative rounded-2xl shadow-2xl overflow-hidden">
+                <img 
+                  src={images[currentImage].url}
+                  alt={images[currentImage].alt}
+                  className="w-full h-[500px] object-cover transition-all duration-500"
+                />
+                <button
+                  onClick={prevImage}
+                  className="absolute left-4 top-1/2 -translate-y-1/2 w-12 h-12 bg-white/90 hover:bg-white rounded-full flex items-center justify-center shadow-lg opacity-0 group-hover:opacity-100 transition-opacity"
+                  aria-label="Предыдущее изображение"
+                >
+                  <Icon name="ChevronLeft" size={24} className="text-primary" />
+                </button>
+                <button
+                  onClick={nextImage}
+                  className="absolute right-4 top-1/2 -translate-y-1/2 w-12 h-12 bg-white/90 hover:bg-white rounded-full flex items-center justify-center shadow-lg opacity-0 group-hover:opacity-100 transition-opacity"
+                  aria-label="Следующее изображение"
+                >
+                  <Icon name="ChevronRight" size={24} className="text-primary" />
+                </button>
+                <div className="absolute bottom-4 left-1/2 -translate-x-1/2 flex gap-2">
+                  {images.map((_, index) => (
+                    <button
+                      key={index}
+                      onClick={() => setCurrentImage(index)}
+                      className={`w-2 h-2 rounded-full transition-all ${
+                        index === currentImage ? 'bg-white w-8' : 'bg-white/50'
+                      }`}
+                      aria-label={`Перейти к изображению ${index + 1}`}
+                    />
+                  ))}
+                </div>
+              </div>
             </div>
           </div>
         </div>
