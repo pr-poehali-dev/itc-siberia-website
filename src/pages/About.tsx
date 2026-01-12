@@ -79,9 +79,6 @@ const About = () => {
       <section className="pt-32 pb-12 bg-gradient-to-br from-primary via-primary/95 to-primary/90">
         <div className="container mx-auto px-4">
           <div className="max-w-4xl mx-auto text-center text-white">
-            <Badge className="mb-4 bg-secondary text-secondary-foreground border-0">
-              О компании
-            </Badge>
             <h1 className="text-5xl md:text-6xl font-bold mb-6">
               Профессионализм и опыт
             </h1>
