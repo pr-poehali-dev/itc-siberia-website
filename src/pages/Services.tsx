@@ -228,15 +228,12 @@ const Services = () => {
             <p className="text-muted-foreground text-lg mb-8">
               Наши специалисты помогут подобрать оптимальное решение для вашего проекта
             </p>
-            <div className="flex flex-col sm:flex-row gap-4 justify-center">
+            <div className="flex justify-center">
               <Button asChild size="lg" className="bg-secondary hover:bg-secondary/90 text-secondary-foreground">
                 <Link to="/contacts">
                   <Icon name="Phone" size={20} className="mr-2" />
                   Связаться с нами
                 </Link>
-              </Button>
-              <Button asChild size="lg" variant="outline">
-                <Link to="/portfolio">Посмотреть проекты</Link>
               </Button>
             </div>
           </div>

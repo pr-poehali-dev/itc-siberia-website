@@ -163,7 +163,7 @@ const LightingService = () => {
                   Свяжитесь с нами для консультации. Наши специалисты помогут подобрать 
                   оптимальное решение и рассчитают стоимость работ
                 </p>
-                <div className="flex flex-col sm:flex-row gap-4 justify-center">
+                <div className="flex justify-center">
                   <Button 
                     asChild 
                     size="lg" 
@@ -173,14 +173,6 @@ const LightingService = () => {
                       <Icon name="Phone" size={20} className="mr-2" />
                       Связаться с нами
                     </Link>
-                  </Button>
-                  <Button 
-                    asChild 
-                    size="lg" 
-                    variant="outline"
-                    className="border-white text-white hover:bg-white/10"
-                  >
-                    <Link to="/portfolio">Посмотреть портфолио</Link>
                   </Button>
                 </div>
               </CardContent>
