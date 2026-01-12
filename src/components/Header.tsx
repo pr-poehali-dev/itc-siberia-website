@@ -1,0 +1,96 @@
+import { useState } from 'react';
+import { Link, useLocation } from 'react-router-dom';
+import { Button } from '@/components/ui/button';
+import Icon from '@/components/ui/icon';
+
+const Header = () => {
+  const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+  const location = useLocation();
+
+  const isActive = (path: string) => location.pathname === path;
+
+  const menuItems = [
+    { path: '/', label: 'Главная' },
+    { path: '/about', label: 'О компании' },
+    { path: '/services', label: 'Услуги' },
+    { path: '/portfolio', label: 'Портфолио' },
+    { path: '/contacts', label: 'Контакты' }
+  ];
+
+  return (
+    <header className="fixed top-0 w-full bg-white/95 backdrop-blur-sm shadow-sm z-50">
+      <div className="container mx-auto px-4 py-4">
+        <div className="flex items-center justify-between">
+          <Link to="/" className="flex items-center gap-3">
+            <img 
+              src="https://cdn.poehali.dev/files/2(без фона).png" 
+              alt="ИТЦ Инженерно-технологический центр Сибири"
+              className="h-16 w-auto object-contain"
+            />
+          </Link>
+
+          <nav className="hidden md:flex gap-6">
+            {menuItems.map((item) => (
+              <Link
+                key={item.path}
+                to={item.path}
+                className={`text-sm font-medium transition-colors hover:text-primary ${
+                  isActive(item.path) ? 'text-primary' : 'text-foreground/70'
+                }`}
+              >
+                {item.label}
+              </Link>
+            ))}
+          </nav>
+
+          <Button asChild className="hidden md:inline-flex bg-secondary hover:bg-secondary/90 text-secondary-foreground">
+            <Link to="/contacts">
+              <Icon name="Phone" size={16} className="mr-2" />
+              Связаться
+            </Link>
+          </Button>
+
+          <button
+            className="md:hidden p-2 text-primary"
+            onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
+            aria-label="Toggle menu"
+          >
+            <Icon name={mobileMenuOpen ? 'X' : 'Menu'} size={28} />
+          </button>
+        </div>
+      </div>
+
+      {mobileMenuOpen && (
+        <div className="md:hidden bg-white border-t border-border animate-fade-in">
+          <nav className="container mx-auto px-4 py-4 flex flex-col gap-3">
+            {menuItems.map((item) => (
+              <Link
+                key={item.path}
+                to={item.path}
+                onClick={() => setMobileMenuOpen(false)}
+                className={`text-left py-2 px-4 rounded-lg font-medium transition-colors ${
+                  isActive(item.path)
+                    ? 'bg-primary text-white' 
+                    : 'text-foreground hover:bg-muted'
+                }`}
+              >
+                {item.label}
+              </Link>
+            ))}
+            <Button 
+              asChild
+              className="bg-secondary hover:bg-secondary/90 text-secondary-foreground w-full mt-2"
+            >
+              <Link to="/contacts" onClick={() => setMobileMenuOpen(false)}>
+                <Icon name="Phone" size={16} className="mr-2" />
+                Связаться
+              </Link>
+            </Button>
+          </nav>
+        </div>
+      )}
+    </header>
+  );
+};
+
+export default Header;
