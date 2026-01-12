@@ -27,7 +27,7 @@ const Home = () => {
 
   const stats = [
     { value: '500+', label: 'Завершенных проектов' },
-    { value: '3000+\u00A0м²', label: 'Производственных площадей' },
+    { value: '3000+м²', label: 'Производственных площадей' },
     { value: '60+', label: 'Сотрудников' },
     { value: '13', label: 'Лет на рынке' }
   ];
@@ -61,7 +61,7 @@ const Home = () => {
                   </Link>
                 </Button>
               </div>
-              <div className="grid grid-cols-2 md:grid-cols-4 gap-6 pt-8">
+              <div className="grid grid-cols-2 md:grid-cols-4 gap-8 pt-8">
                 {stats.map((stat, index) => (
                   <div key={index} className="text-center md:text-left">
                     <div className="text-3xl md:text-4xl font-bold text-secondary whitespace-nowrap">{stat.value}</div>
