@@ -15,24 +15,19 @@ const Home = () => {
     },
     {
       icon: 'Cog',
-      title: 'Инженерное проектирование',
-      description: 'Разработка технической документации и проектирование промышленных объектов'
+      title: 'Решение инжиниринговых задач',
+      description: 'Разработка и подбор оборудования для решения ваших технологических задач производства'
     },
     {
       icon: 'Wrench',
       title: 'Монтажные работы',
       description: 'Профессиональный монтаж конструкций на объекте заказчика'
-    },
-    {
-      icon: 'Shield',
-      title: 'Техническая экспертиза',
-      description: 'Консультации и технический надзор на всех этапах реализации проекта'
     }
   ];
 
   const stats = [
     { value: '500+', label: 'Завершенных проектов' },
-    { value: '15', label: 'Лет на рынке' },
+    { value: '13', label: 'Лет на рынке' },
     { value: '95%', label: 'Довольных клиентов' }
   ];
 
@@ -51,7 +46,7 @@ const Home = () => {
                 Инженерные решения для промышленности
               </h1>
               <p className="text-xl text-white/90">
-                Полный цикл проектирования и производства металлоконструкций. 
+                Полный цикл проектирования, производства металлоконструкций и решение инженерных технологический задач. 
                 От идеи до реализации под ключ.
               </p>
               <div className="flex gap-4 pt-4">
@@ -98,14 +93,13 @@ const Home = () => {
       <section className="py-20">
         <div className="container mx-auto px-4">
           <div className="max-w-3xl mx-auto text-center mb-16">
-            <Badge className="mb-4">Наши услуги</Badge>
             <h2 className="text-4xl font-bold mb-4">Комплексные решения для бизнеса</h2>
             <p className="text-muted-foreground text-lg">
               Предоставляем полный спектр услуг от проектирования до монтажа
             </p>
           </div>
 
-          <div className="grid md:grid-cols-2 gap-8">
+          <div className="grid md:grid-cols-3 gap-8">
             {services.map((service, index) => (
               <Card key={index} className="hover-scale">
                 <CardContent className="p-8">
@@ -123,15 +117,6 @@ const Home = () => {
                 </CardContent>
               </Card>
             ))}
-          </div>
-
-          <div className="text-center mt-12">
-            <Button asChild size="lg" className="bg-primary hover:bg-primary/90">
-              <Link to="/services">
-                Все услуги
-                <Icon name="ArrowRight" size={20} className="ml-2" />
-              </Link>
-            </Button>
           </div>
         </div>
       </section>
