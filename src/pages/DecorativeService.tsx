@@ -43,9 +43,12 @@ const DecorativeService = () => {
   ];
 
   const images = [
-    { url: 'https://cdn.poehali.dev/files/2.jpg', alt: 'Декоративные металлические ограждения с орнаментом' },
-    { url: 'https://cdn.poehali.dev/files/5.jpg', alt: 'Закладные детали' },
-    { url: 'https://cdn.poehali.dev/files/6.jpg', alt: 'Металлическая закладная деталь' }
+    { url: 'https://cdn.poehali.dev/files/1.jpg', alt: 'Декоративные металлические ограждения' },
+    { url: 'https://cdn.poehali.dev/files/2.jpg', alt: 'Декоративные металлические панели с орнаментом' },
+    { url: 'https://cdn.poehali.dev/files/32.jpg', alt: 'Фасадный декор из металла' },
+    { url: 'https://cdn.poehali.dev/files/42.jpg', alt: 'Декоративный мостик с коваными элементами' },
+    { url: 'https://cdn.poehali.dev/files/52.jpg', alt: 'Металлическая конструкция для ландшафта' },
+    { url: 'https://cdn.poehali.dev/files/62.jpg', alt: 'Декоративные беседки из металла' }
   ];
 
   return (
@@ -84,7 +87,7 @@ const DecorativeService = () => {
                   <img 
                     src={image.url} 
                     alt={image.alt}
-                    className="w-full h-64 object-cover"
+                    className="w-full h-72 object-cover"
                   />
                 </div>
               ))}
