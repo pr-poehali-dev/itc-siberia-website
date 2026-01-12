@@ -61,11 +61,11 @@ const Home = () => {
                   </Link>
                 </Button>
               </div>
-              <div className="flex flex-wrap justify-start items-start gap-x-8 md:gap-x-12 gap-y-6 pt-8">
+              <div className="flex flex-nowrap justify-start items-start gap-x-6 md:gap-x-10 pt-8 overflow-x-auto">
                 {stats.map((stat, index) => (
-                  <div key={index} className="flex flex-col items-center min-w-[120px]">
+                  <div key={index} className="flex flex-col items-center min-w-[100px] flex-shrink-0">
                     <div className="text-3xl md:text-4xl font-bold text-secondary whitespace-nowrap">{stat.value}</div>
-                    <div className="text-white/80 text-sm mt-1 text-center leading-tight">{stat.label}</div>
+                    <div className="text-white/80 text-xs md:text-sm mt-1 text-center leading-tight">{stat.label}</div>
                   </div>
                 ))}
               </div>
