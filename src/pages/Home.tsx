@@ -63,7 +63,7 @@ const Home = () => {
               <Badge className="bg-secondary text-secondary-foreground border-0 text-base px-4 py-2 hover:bg-secondary/90">
                 Надежный партнер с 2013 года
               </Badge>
-              <h1 className="text-5xl md:text-6xl font-bold leading-tight">
+              <h1 className="text-4xl md:text-5xl font-bold leading-tight">
                 Инженерные решения для промышленности
               </h1>
               <p className="text-xl text-white/90">
