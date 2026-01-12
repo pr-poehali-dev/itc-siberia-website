@@ -8,9 +8,11 @@ import { Badge } from '@/components/ui/badge';
 
 const Index = () => {
   const [activeSection, setActiveSection] = useState('home');
+  const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
 
   const scrollToSection = (sectionId: string) => {
     setActiveSection(sectionId);
+    setMobileMenuOpen(false);
     const element = document.getElementById(sectionId);
     element?.scrollIntoView({ behavior: 'smooth' });
   };
@@ -119,8 +121,46 @@ const Index = () => {
               <Icon name="Phone" size={16} className="mr-2" />
               Связаться
             </Button>
+            <button
+              className="md:hidden p-2 text-primary"
+              onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
+              aria-label="Toggle menu"
+            >
+              <Icon name={mobileMenuOpen ? 'X' : 'Menu'} size={28} />
+            </button>
           </div>
         </div>
+
+        {mobileMenuOpen && (
+          <div className="md:hidden bg-white border-t border-border animate-fade-in">
+            <nav className="container mx-auto px-4 py-4 flex flex-col gap-3">
+              {['home', 'about', 'services', 'portfolio', 'contacts'].map((section) => (
+                <button
+                  key={section}
+                  onClick={() => scrollToSection(section)}
+                  className={`text-left py-2 px-4 rounded-lg font-medium transition-colors ${
+                    activeSection === section 
+                      ? 'bg-primary text-white' 
+                      : 'text-foreground hover:bg-muted'
+                  }`}
+                >
+                  {section === 'home' && 'Главная'}
+                  {section === 'about' && 'О компании'}
+                  {section === 'services' && 'Услуги'}
+                  {section === 'portfolio' && 'Портфолио'}
+                  {section === 'contacts' && 'Контакты'}
+                </button>
+              ))}
+              <Button 
+                className="bg-secondary hover:bg-secondary/90 text-secondary-foreground w-full mt-2"
+                onClick={() => scrollToSection('contacts')}
+              >
+                <Icon name="Phone" size={16} className="mr-2" />
+                Связаться
+              </Button>
+            </nav>
+          </div>
+        )}
       </header>
 
       <section id="home" className="pt-32 pb-20 bg-gradient-to-br from-primary via-primary/95 to-primary/90">
