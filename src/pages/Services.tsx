@@ -170,9 +170,12 @@ const Services = () => {
                       </div>
                     ))}
                   </div>
-                  <Button asChild className="w-full bg-primary hover:bg-primary/90">
-                    <Link to="/contacts">
-                      Заказать услугу
+                  <Button 
+                    asChild 
+                    className="w-full bg-primary hover:bg-primary/90"
+                  >
+                    <Link to={index === 0 ? "/services/zakladnye-zbi" : "/contacts"}>
+                      {index === 0 ? 'Подробнее' : 'Заказать услугу'}
                       <Icon name="ArrowRight" size={16} className="ml-2" />
                     </Link>
                   </Button>
