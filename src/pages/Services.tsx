@@ -210,10 +210,10 @@ const Services = () => {
                 { num: '03', title: 'Производство', desc: 'Изготовление и контроль качества' },
                 { num: '04', title: 'Монтаж', desc: 'Доставка и монтаж на объекте' }
               ].map((step, index) => (
-                <div key={index} className="bg-white/10 backdrop-blur-sm rounded-xl p-6 text-center">
+                <div key={index} className="bg-white/10 backdrop-blur-sm rounded-xl p-6 flex flex-col items-center">
                   <div className="text-5xl font-bold text-secondary mb-4">{step.num}</div>
                   <h4 className="text-xl font-bold mb-2">{step.title}</h4>
-                  <p className="text-white/80 text-sm">{step.desc}</p>
+                  <p className="text-white/80 text-sm text-center">{step.desc}</p>
                 </div>
               ))}
             </div>
