@@ -92,13 +92,11 @@ const Index = () => {
         <div className="container mx-auto px-4 py-4">
           <div className="flex items-center justify-between">
             <div className="flex items-center gap-3">
-              <div className="w-12 h-12 bg-primary rounded-lg flex items-center justify-center">
-                <Icon name="Building2" className="text-white" size={28} />
-              </div>
-              <div>
-                <h1 className="text-xl font-bold text-primary">ИТЦ-Сибири</h1>
-                <p className="text-xs text-muted-foreground">Инженерно-технологический центр</p>
-              </div>
+              <img 
+                src="https://cdn.poehali.dev/files/123.jpg" 
+                alt="ИТЦ-Сибири логотип"
+                className="h-14 w-auto object-contain"
+              />
             </div>
             <nav className="hidden md:flex gap-6">
               {['home', 'about', 'services', 'portfolio', 'contacts'].map((section) => (
@@ -404,13 +402,11 @@ const Index = () => {
         <div className="container mx-auto px-4">
           <div className="flex flex-col md:flex-row justify-between items-center gap-4">
             <div className="flex items-center gap-3">
-              <div className="w-10 h-10 bg-primary rounded-lg flex items-center justify-center">
-                <Icon name="Building2" className="text-white" size={24} />
-              </div>
-              <div>
-                <p className="font-bold">ИТЦ-Сибири</p>
-                <p className="text-sm text-white/70">Инженерно-технологический центр</p>
-              </div>
+              <img 
+                src="https://cdn.poehali.dev/files/123.jpg" 
+                alt="ИТЦ-Сибири логотип"
+                className="h-12 w-auto object-contain bg-white rounded-lg p-1"
+              />
             </div>
             <p className="text-white/70 text-sm">© 2024 ИТЦ-Сибири. Все права защищены.</p>
           </div>
