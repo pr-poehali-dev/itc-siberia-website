@@ -101,11 +101,16 @@ const Home = () => {
             <div className="relative animate-fade-in group max-w-lg mx-auto">
               <div className="absolute inset-0 bg-secondary/20 rounded-2xl blur-3xl"></div>
               <div className="relative rounded-2xl shadow-2xl overflow-hidden">
-                <img 
-                  src={images[currentImage].url}
-                  alt={images[currentImage].alt}
-                  className="w-full h-[400px] object-cover transition-all duration-500"
-                />
+                {images.map((image, index) => (
+                  <img 
+                    key={index}
+                    src={image.url}
+                    alt={image.alt}
+                    className={`w-full h-[400px] object-cover absolute top-0 left-0 transition-opacity duration-1000 ${
+                      index === currentImage ? 'opacity-100' : 'opacity-0'
+                    }`}
+                  />
+                ))}
                 <button
                   onClick={prevImage}
                   className="absolute left-4 top-1/2 -translate-y-1/2 w-12 h-12 bg-white/90 hover:bg-white rounded-full flex items-center justify-center shadow-lg opacity-0 group-hover:opacity-100 transition-opacity"
