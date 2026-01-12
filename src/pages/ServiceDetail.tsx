@@ -53,10 +53,10 @@ const ServiceDetail = () => {
                 Назад к услугам
               </Link>
             </Button>
-            <h1 className="text-4xl md:text-5xl font-bold mb-6">
+            <h1 className="text-3xl md:text-5xl font-bold mb-6">
               Закладные детали для железобетонных конструкций
             </h1>
-            <p className="text-xl text-white/90">
+            <p className="text-base md:text-xl text-white/90">
               Надежное крепление и долговечность конструкций
             </p>
           </div>

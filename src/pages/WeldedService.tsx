@@ -72,7 +72,7 @@ const WeldedService = () => {
                 Назад к услугам
               </Link>
             </Button>
-            <h1 className="text-4xl md:text-5xl font-bold mb-6">
+            <h1 className="text-3xl md:text-5xl font-bold mb-6">
               Сварные металлоконструкции – прочность, точность и универсальность для любых проектов
             </h1>
           </div>
@@ -88,7 +88,7 @@ const WeldedService = () => {
                   <img 
                     src={image.url} 
                     alt={image.alt}
-                    className="w-full h-72 object-cover"
+                    className="w-full h-[250px] md:h-72 object-cover"
                   />
                 </div>
               ))}

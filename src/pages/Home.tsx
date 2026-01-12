@@ -71,10 +71,10 @@ const Home = () => {
               <Badge className="bg-secondary text-secondary-foreground border-0 text-base px-4 py-2 hover:bg-secondary/90">
                 Надежный партнер с 2013 года
               </Badge>
-              <h1 className="text-4xl md:text-5xl font-bold leading-tight">
+              <h1 className="text-3xl md:text-5xl font-bold leading-tight">
                 Инженерные решения для промышленности
               </h1>
-              <p className="text-xl text-white/90">
+              <p className="text-base md:text-xl text-white/90">
                 Полный цикл проектирования, производства металлоконструкций и решение инженерных технологический задач. 
                 От идеи до реализации под ключ.
               </p>
@@ -89,10 +89,10 @@ const Home = () => {
                   </Link>
                 </Button>
               </div>
-              <div className="flex flex-nowrap justify-start items-start gap-x-6 md:gap-x-10 pt-8">
+              <div className="flex flex-nowrap justify-start items-start gap-x-4 md:gap-x-10 pt-8 overflow-x-auto">
                 {stats.map((stat, index) => (
-                  <div key={index} className="flex flex-col items-center min-w-[100px] flex-shrink-0">
-                    <div className="text-3xl md:text-4xl font-bold text-secondary whitespace-nowrap">{stat.value}</div>
+                  <div key={index} className="flex flex-col items-center min-w-[70px] md:min-w-[100px] flex-shrink-0">
+                    <div className="text-2xl md:text-4xl font-bold text-secondary whitespace-nowrap">{stat.value}</div>
                     <div className="text-white/80 text-xs md:text-sm mt-1 text-center leading-tight">{stat.label}</div>
                   </div>
                 ))}
@@ -104,7 +104,7 @@ const Home = () => {
                 <img 
                   src={images[currentImage].url}
                   alt={images[currentImage].alt}
-                  className="w-full h-[400px] object-cover transition-all duration-500"
+                  className="w-full h-[250px] md:h-[400px] object-cover transition-all duration-500"
                 />
                 <button
                   onClick={prevImage}

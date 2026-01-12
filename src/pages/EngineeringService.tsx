@@ -104,13 +104,13 @@ const EngineeringService = () => {
     <div className="min-h-screen bg-white">
       <Header />
 
-      <section className="pt-32 pb-12 bg-gradient-to-br from-primary via-primary/95 to-primary/90 flex items-center min-h-[400px]">
+      <section className="pt-32 pb-12 bg-gradient-to-br from-primary via-primary/95 to-primary/90 flex items-center min-h-[300px] md:min-h-[400px]">
         <div className="container mx-auto px-4">
           <div className="max-w-4xl mx-auto text-center text-white">
-            <h1 className="text-5xl md:text-6xl font-bold mb-6">
+            <h1 className="text-3xl md:text-6xl font-bold mb-6">
               Решение инжиниринговых задач
             </h1>
-            <p className="text-xl text-white/90">
+            <p className="text-base md:text-xl text-white/90">
               Комплексный подход к решению технологических задач вашего производства. 
               От анализа и проектирования до внедрения и запуска
             </p>

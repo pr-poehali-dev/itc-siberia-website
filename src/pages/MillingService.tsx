@@ -72,7 +72,7 @@ const MillingService = () => {
                 Назад к услугам
               </Link>
             </Button>
-            <h1 className="text-4xl md:text-5xl font-bold mb-6">
+            <h1 className="text-3xl md:text-5xl font-bold mb-6">
               Фрезерные работы – высокая точность и сложные формы для ваших деталей
             </h1>
           </div>
@@ -88,7 +88,7 @@ const MillingService = () => {
                   <img 
                     src={image.url} 
                     alt={image.alt}
-                    className="w-full h-72 object-cover"
+                    className="w-full h-[250px] md:h-72 object-cover"
                   />
                 </div>
               ))}

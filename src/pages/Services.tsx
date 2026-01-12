@@ -134,13 +134,13 @@ const Services = () => {
     <div className="min-h-screen bg-white">
       <Header />
 
-      <section className="pt-32 pb-12 bg-gradient-to-br from-primary via-primary/95 to-primary/90 flex items-center min-h-[400px]">
+      <section className="pt-32 pb-12 bg-gradient-to-br from-primary via-primary/95 to-primary/90 flex items-center min-h-[300px] md:min-h-[400px]">
         <div className="container mx-auto px-4">
           <div className="max-w-4xl mx-auto text-center text-white">
-            <h1 className="text-5xl md:text-6xl font-bold mb-6">
+            <h1 className="text-3xl md:text-6xl font-bold mb-6">
               Комплексные решения для вашего бизнеса
             </h1>
-            <p className="text-xl text-white/90">
+            <p className="text-base md:text-xl text-white/90">
               Предоставляем полный спектр услуг от проектирования до монтажа. 
               Работаем с объектами любой сложности
             </p>
