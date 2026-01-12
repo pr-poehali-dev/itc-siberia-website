@@ -74,7 +74,7 @@ const Home = () => {
               <h1 className="text-3xl md:text-5xl font-bold leading-tight">
                 Инженерные решения для промышленности
               </h1>
-              <p className="text-base md:text-xl text-white/90">
+              <p className="text-base md:text-xl text-white/90 text-justify">
                 Полный цикл проектирования, производства металлоконструкций и решение инженерных технологический задач. 
                 От идеи до реализации под ключ.
               </p>
@@ -89,7 +89,7 @@ const Home = () => {
                   </Link>
                 </Button>
               </div>
-              <div className="flex flex-nowrap justify-start items-start gap-x-4 md:gap-x-10 pt-8 overflow-x-auto">
+              <div className="flex flex-nowrap justify-start items-start gap-x-4 md:gap-x-10 pt-8 overflow-x-auto scrollbar-hide">
                 {stats.map((stat, index) => (
                   <div key={index} className="flex flex-col items-center min-w-[70px] md:min-w-[100px] flex-shrink-0">
                     <div className="text-2xl md:text-4xl font-bold text-secondary whitespace-nowrap">{stat.value}</div>
