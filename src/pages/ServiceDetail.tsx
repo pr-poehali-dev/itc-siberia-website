@@ -42,15 +42,18 @@ const ServiceDetail = () => {
 
       <section className="pt-32 pb-12 bg-gradient-to-br from-primary via-primary/95 to-primary/90">
         <div className="container mx-auto px-4">
-          <div className="max-w-4xl mx-auto">
-            <Link 
-              to="/services" 
-              className="inline-flex items-center text-white/80 hover:text-white mb-6 transition-colors"
+          <div className="max-w-4xl mx-auto text-center text-white">
+            <Button 
+              asChild 
+              variant="ghost" 
+              className="mb-6 text-white hover:bg-white/10 hover:text-white"
             >
-              <Icon name="ArrowLeft" size={20} className="mr-2" />
-              Назад к услугам
-            </Link>
-            <h1 className="text-4xl md:text-5xl font-bold text-white mb-6">
+              <Link to="/services">
+                <Icon name="ArrowLeft" size={20} className="mr-2" />
+                Назад к услугам
+              </Link>
+            </Button>
+            <h1 className="text-4xl md:text-5xl font-bold mb-6">
               Закладные детали для железобетонных конструкций
             </h1>
             <p className="text-xl text-white/90">
