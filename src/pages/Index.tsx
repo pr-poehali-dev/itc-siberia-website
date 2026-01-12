@@ -93,9 +93,9 @@ const Index = () => {
           <div className="flex items-center justify-between">
             <div className="flex items-center gap-3">
               <img 
-                src="https://cdn.poehali.dev/files/123.jpg" 
-                alt="ИТЦ-Сибири логотип"
-                className="h-14 w-auto object-contain"
+                src="https://cdn.poehali.dev/files/2(без фона).png" 
+                alt="ИТЦ Инженерно-технологический центр Сибири"
+                className="h-16 w-auto object-contain"
               />
             </div>
             <nav className="hidden md:flex gap-6">
@@ -403,9 +403,9 @@ const Index = () => {
           <div className="flex flex-col md:flex-row justify-between items-center gap-4">
             <div className="flex items-center gap-3">
               <img 
-                src="https://cdn.poehali.dev/files/123.jpg" 
-                alt="ИТЦ-Сибири логотип"
-                className="h-12 w-auto object-contain bg-white rounded-lg p-1"
+                src="https://cdn.poehali.dev/files/2(без фона).png" 
+                alt="ИТЦ Инженерно-технологический центр Сибири"
+                className="h-14 w-auto object-contain"
               />
             </div>
             <p className="text-white/70 text-sm">© 2024 ИТЦ-Сибири. Все права защищены.</p>
