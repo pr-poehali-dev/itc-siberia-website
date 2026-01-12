@@ -86,8 +86,8 @@ const About = () => {
               Профессионализм и опыт
             </h1>
             <p className="text-xl text-white/90">
-              Инженерно-технологический центр Сибири – ведущая компания региона 
-              в области инженерных решений и производства металлоконструкций
+              Ведущая компания в Красноярском крае в области инженерных решений 
+              и производства металлоконструкций
             </p>
           </div>
         </div>
@@ -100,14 +100,14 @@ const About = () => {
               <h2 className="text-4xl font-bold mb-6">Наша история</h2>
               <div className="space-y-4 text-muted-foreground">
                 <p>
-                  Компания ИТЦ-Сибири была основана в 2008 году группой профессиональных инженеров 
-                  с целью предоставления качественных услуг в области промышленного строительства 
-                  и металлообработки.
+                  Компания ИТЦ-Сибири была изначально основана в 2013 году и только в 2024 году сформировала 
+                  отдельное имя с целью предоставления качественных услуг в области промышленного 
+                  строительства и металлообработки.
                 </p>
                 <p>
-                  За 15 лет работы мы выросли от небольшой производственной мастерской до крупного 
+                  За 13 лет работы мы выросли от небольшой производственной мастерской до крупного 
                   инженерно-технологического центра с полным циклом производства и собственной 
-                  производственной базой площадью более 5000 кв.м.
+                  производственной базой площадью более 3000 кв.м.
                 </p>
                 <p>
                   Сегодня мы гордимся тем, что реализовали более 500 проектов для крупнейших 
@@ -141,53 +141,7 @@ const About = () => {
         </div>
       </section>
 
-      <section className="py-20 bg-muted/50">
-        <div className="container mx-auto px-4">
-          <div className="max-w-3xl mx-auto text-center mb-16">
-            <h2 className="text-4xl font-bold mb-4">Наша команда</h2>
-            <p className="text-muted-foreground text-lg">
-              Профессиональные специалисты с большим опытом работы в промышленном строительстве
-            </p>
-          </div>
 
-          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
-            {team.map((member, index) => (
-              <Card key={index} className="hover-scale">
-                <CardContent className="p-6 text-center">
-                  <div className="w-20 h-20 bg-primary/10 rounded-full flex items-center justify-center mx-auto mb-4">
-                    <Icon name="User" size={40} className="text-primary" />
-                  </div>
-                  <h3 className="font-bold text-xl mb-2">{member.name}</h3>
-                  <p className="text-primary font-medium mb-2">{member.position}</p>
-                  <p className="text-sm text-muted-foreground">{member.experience}</p>
-                </CardContent>
-              </Card>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      <section className="py-20">
-        <div className="container mx-auto px-4">
-          <div className="bg-muted rounded-2xl p-8 md:p-12">
-            <h3 className="text-3xl font-bold mb-8 text-center">Сертификаты и лицензии</h3>
-            <p className="text-center text-muted-foreground mb-8 max-w-2xl mx-auto">
-              Наша компания имеет все необходимые лицензии и сертификаты для выполнения 
-              полного цикла работ в области промышленного строительства
-            </p>
-            <div className="grid md:grid-cols-4 gap-4">
-              {certificates.map((cert, index) => (
-                <Card key={index}>
-                  <CardContent className="p-6 text-center">
-                    <Icon name="Award" size={40} className="text-secondary mx-auto mb-3" />
-                    <p className="font-medium">{cert}</p>
-                  </CardContent>
-                </Card>
-              ))}
-            </div>
-          </div>
-        </div>
-      </section>
 
       <Footer />
     </div>
