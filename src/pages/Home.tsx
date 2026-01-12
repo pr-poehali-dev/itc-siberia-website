@@ -21,14 +21,15 @@ const Home = () => {
     {
       icon: 'Wrench',
       title: 'Монтажные работы',
-      description: 'Профессиональный монтаж конструкций на объекте заказчика'
+      description: 'Профессиональный монтаж конструкций на объекте заказчика с соблюдением всех требований безопасности'
     }
   ];
 
   const stats = [
     { value: '500+', label: 'Завершенных проектов' },
-    { value: '13', label: 'Лет на рынке' },
-    { value: '95%', label: 'Довольных клиентов' }
+    { value: '3000+ м²', label: 'Производственных площадей' },
+    { value: '60+', label: 'Сотрудников' },
+    { value: '13', label: 'Лет на рынке' }
   ];
 
   return (
@@ -49,27 +50,18 @@ const Home = () => {
                 Полный цикл проектирования, производства металлоконструкций и решение инженерных технологический задач. 
                 От идеи до реализации под ключ.
               </p>
-              <div className="flex gap-4 pt-4">
+              <div className="flex justify-center md:justify-start pt-4">
                 <Button 
                   asChild
                   size="lg" 
-                  className="bg-secondary hover:bg-secondary/90 text-secondary-foreground"
+                  className="bg-secondary hover:bg-secondary/90 text-secondary-foreground px-12"
                 >
                   <Link to="/services">
                     Наши услуги
-                    <Icon name="ArrowRight" size={20} className="ml-2" />
                   </Link>
                 </Button>
-                <Button 
-                  asChild
-                  size="lg" 
-                  variant="outline" 
-                  className="border-white text-white hover:bg-white/10"
-                >
-                  <Link to="/portfolio">Портфолио</Link>
-                </Button>
               </div>
-              <div className="grid grid-cols-3 gap-6 pt-8">
+              <div className="grid grid-cols-2 md:grid-cols-4 gap-6 pt-8">
                 {stats.map((stat, index) => (
                   <div key={index}>
                     <div className="text-4xl font-bold text-secondary">{stat.value}</div>
