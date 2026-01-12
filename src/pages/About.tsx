@@ -116,11 +116,11 @@ const About = () => {
                 </p>
               </div>
             </div>
-            <div className="relative">
+            <div className="relative max-w-md mx-auto">
               <img 
                 src="https://cdn.poehali.dev/projects/e90cd5e8-153a-4589-b532-06e737a47d0d/files/45022743-ed20-49de-9af3-bcb967fb5e39.jpg"
                 alt="Команда ИТЦ-Сибири"
-                className="rounded-2xl shadow-xl w-full object-cover"
+                className="rounded-2xl shadow-xl w-full h-[400px] object-cover"
               />
             </div>
           </div>
