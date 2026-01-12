@@ -21,7 +21,7 @@ const Home = () => {
     {
       icon: 'Wrench',
       title: 'Монтажные работы',
-      description: 'Профессиональный монтаж конструкций на объекте заказчика с соблюдением всех требований безопасности'
+      description: 'Профессиональный монтаж конструкций на объекте заказчика с соблюдением стандартов качества'
     }
   ];
 
@@ -63,9 +63,9 @@ const Home = () => {
               </div>
               <div className="grid grid-cols-2 md:grid-cols-4 gap-6 pt-8">
                 {stats.map((stat, index) => (
-                  <div key={index}>
-                    <div className="text-4xl font-bold text-secondary">{stat.value}</div>
-                    <div className="text-white/80 text-sm">{stat.label}</div>
+                  <div key={index} className="text-center md:text-left">
+                    <div className="text-3xl md:text-4xl font-bold text-secondary whitespace-nowrap">{stat.value}</div>
+                    <div className="text-white/80 text-sm mt-1">{stat.label}</div>
                   </div>
                 ))}
               </div>
@@ -73,9 +73,9 @@ const Home = () => {
             <div className="relative animate-fade-in">
               <div className="absolute inset-0 bg-secondary/20 rounded-2xl blur-3xl"></div>
               <img 
-                src="https://cdn.poehali.dev/projects/e90cd5e8-153a-4589-b532-06e737a47d0d/files/799132a0-a086-466a-9c31-d66a17d47c94.jpg"
-                alt="Производство"
-                className="relative rounded-2xl shadow-2xl w-full object-cover"
+                src="https://cdn.poehali.dev/files/57.jpg"
+                alt="Производство металлоконструкций"
+                className="relative rounded-2xl shadow-2xl w-full h-[500px] object-cover"
               />
             </div>
           </div>
