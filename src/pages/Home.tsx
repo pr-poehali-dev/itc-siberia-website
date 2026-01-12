@@ -44,8 +44,8 @@ const Home = () => {
         <div className="container mx-auto px-4">
           <div className="grid md:grid-cols-2 gap-12 items-center">
             <div className="text-white space-y-6 animate-fade-in">
-              <Badge className="bg-secondary text-secondary-foreground border-0">
-                Надежный партнер с 2008 года
+              <Badge className="bg-secondary text-secondary-foreground border-0 text-base px-4 py-2">
+                Надежный партнер с 2013 года
               </Badge>
               <h1 className="text-5xl md:text-6xl font-bold leading-tight">
                 Инженерные решения для промышленности
