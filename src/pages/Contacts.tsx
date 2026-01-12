@@ -11,49 +11,44 @@ const Contacts = () => {
   const contactInfo = [
     {
       icon: 'MapPin',
-      title: 'Адрес офиса',
-      details: ['г. Новосибирск, ул. Промышленная, 15', 'Пн-Пт: 9:00 - 18:00']
+      title: 'Адрес',
+      details: ['660020, Красноярский край, г. Красноярск,', 'ул. Дудинская, д. 5']
     },
     {
       icon: 'Phone',
       title: 'Телефон',
-      details: ['+7 (383) 123-45-67', '+7 (383) 123-45-68']
+      details: ['8 (391) 2-555-888', '8-905-975-58-88']
     },
     {
       icon: 'Mail',
       title: 'Email',
-      details: ['info@itc-siberia.ru', 'sales@itc-siberia.ru']
+      details: ['itc2555888@mail.ru']
     }
   ];
 
-  const departments = [
-    {
-      name: 'Отдел продаж',
-      phone: '+7 (383) 123-45-67',
-      email: 'sales@itc-siberia.ru'
-    },
-    {
-      name: 'Технический отдел',
-      phone: '+7 (383) 123-45-68',
-      email: 'tech@itc-siberia.ru'
-    },
-    {
-      name: 'Бухгалтерия',
-      phone: '+7 (383) 123-45-69',
-      email: 'accounting@itc-siberia.ru'
-    }
+  const companyInfo = [
+    { label: 'Полное наименование', value: 'Общество с ограниченной ответственностью «Инженерно-технологический центр Сибири»' },
+    { label: 'Сокращенное наименование', value: 'ООО «ИТЦ Сибири»' },
+    { label: 'ИНН / КПП', value: '2465360948 / 246501001' },
+    { label: 'ОГРН', value: '1242400009378' },
+    { label: 'Юридический адрес', value: '660020, Красноярский край, г. Красноярск, ул. Дудинская, д. 5' },
+    { label: 'Генеральный директор', value: 'Тарасова Ольга Кирилловна' }
+  ];
+
+  const bankInfo = [
+    { label: 'Наименование банка', value: 'ФИЛИАЛ «НОВОСИБИРСКИЙ» АО «АЛЬФА-БАНК»' },
+    { label: 'БИК', value: '045004774' },
+    { label: 'Расчетный счет', value: '40702810223270005573' },
+    { label: 'Корреспондентский счет', value: '30101810600000000774' }
   ];
 
   return (
     <div className="min-h-screen bg-white">
       <Header />
 
-      <section className="pt-32 pb-12 bg-gradient-to-br from-primary via-primary/95 to-primary/90">
+      <section className="pt-32 pb-12 bg-gradient-to-br from-primary via-primary/95 to-primary/90 flex items-center min-h-[400px]">
         <div className="container mx-auto px-4">
           <div className="max-w-4xl mx-auto text-center text-white">
-            <Badge className="mb-4 bg-secondary text-secondary-foreground border-0">
-              Контакты
-            </Badge>
             <h1 className="text-5xl md:text-6xl font-bold mb-6">
               Свяжитесь с нами
             </h1>
@@ -132,26 +127,35 @@ const Contacts = () => {
 
             <div className="space-y-8">
               <div>
-                <h3 className="text-2xl font-bold mb-6">Наши отделы</h3>
-                <div className="space-y-4">
-                  {departments.map((dept, index) => (
-                    <Card key={index}>
-                      <CardContent className="p-6">
-                        <h4 className="font-bold text-lg mb-3">{dept.name}</h4>
-                        <div className="space-y-2">
-                          <div className="flex items-center gap-2 text-sm">
-                            <Icon name="Phone" size={16} className="text-primary" />
-                            <span>{dept.phone}</span>
-                          </div>
-                          <div className="flex items-center gap-2 text-sm">
-                            <Icon name="Mail" size={16} className="text-primary" />
-                            <span>{dept.email}</span>
-                          </div>
+                <h3 className="text-2xl font-bold mb-6">Реквизиты компании</h3>
+                <Card>
+                  <CardContent className="p-6">
+                    <div className="space-y-3">
+                      {companyInfo.map((item, index) => (
+                        <div key={index} className="grid grid-cols-1 md:grid-cols-3 gap-2">
+                          <span className="text-sm text-muted-foreground">{item.label}:</span>
+                          <span className="text-sm font-medium md:col-span-2">{item.value}</span>
                         </div>
-                      </CardContent>
-                    </Card>
-                  ))}
-                </div>
+                      ))}
+                    </div>
+                  </CardContent>
+                </Card>
+              </div>
+
+              <div>
+                <h3 className="text-2xl font-bold mb-6">Банковские реквизиты</h3>
+                <Card>
+                  <CardContent className="p-6">
+                    <div className="space-y-3">
+                      {bankInfo.map((item, index) => (
+                        <div key={index} className="grid grid-cols-1 md:grid-cols-3 gap-2">
+                          <span className="text-sm text-muted-foreground">{item.label}:</span>
+                          <span className="text-sm font-medium md:col-span-2">{item.value}</span>
+                        </div>
+                      ))}
+                    </div>
+                  </CardContent>
+                </Card>
               </div>
 
               <Card className="bg-muted/50">
@@ -163,26 +167,8 @@ const Contacts = () => {
                       <span className="font-medium">9:00 - 18:00</span>
                     </div>
                     <div className="flex justify-between">
-                      <span className="text-muted-foreground">Суббота:</span>
-                      <span className="font-medium">10:00 - 15:00</span>
-                    </div>
-                    <div className="flex justify-between">
-                      <span className="text-muted-foreground">Воскресенье:</span>
+                      <span className="text-muted-foreground">Суббота - Воскресенье:</span>
                       <span className="font-medium">Выходной</span>
-                    </div>
-                  </div>
-                </CardContent>
-              </Card>
-
-              <Card className="bg-gradient-to-br from-primary to-primary/90 text-white">
-                <CardContent className="p-8">
-                  <div className="flex items-start gap-4">
-                    <Icon name="Clock" size={32} className="text-secondary flex-shrink-0" />
-                    <div>
-                      <h4 className="font-bold text-lg mb-2">Быстрый ответ</h4>
-                      <p className="text-white/90 text-sm">
-                        Мы отвечаем на заявки в течение 1 часа в рабочее время
-                      </p>
                     </div>
                   </div>
                 </CardContent>
