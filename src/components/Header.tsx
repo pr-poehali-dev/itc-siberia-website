@@ -29,13 +29,15 @@ const Header = () => {
             />
           </Link>
 
-          <nav className="hidden md:flex gap-6">
+          <nav className="hidden md:flex gap-2">
             {menuItems.map((item) => (
               <Link
                 key={item.path}
                 to={item.path}
-                className={`text-sm font-medium transition-colors hover:text-primary ${
-                  isActive(item.path) ? 'text-primary' : 'text-foreground/70'
+                className={`px-4 py-2 text-sm font-semibold rounded-lg transition-all ${
+                  isActive(item.path) 
+                    ? 'bg-primary text-white shadow-md' 
+                    : 'text-foreground hover:bg-primary/10 hover:text-primary'
                 }`}
               >
                 {item.label}
