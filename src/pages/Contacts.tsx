@@ -180,11 +180,17 @@ const Contacts = () => {
 
       <section className="py-16 bg-muted/30">
         <div className="container mx-auto px-4">
-          <div className="aspect-video w-full bg-muted rounded-2xl flex items-center justify-center">
-            <div className="text-center">
-              <Icon name="MapPin" size={48} className="text-primary mx-auto mb-4" />
-              <p className="text-muted-foreground">Карта будет здесь</p>
-            </div>
+          <h2 className="text-3xl font-bold text-center mb-8">Как нас найти</h2>
+          <div className="rounded-2xl overflow-hidden shadow-xl">
+            <iframe
+              src="https://yandex.ru/map-widget/v1/?ll=92.873107%2C56.010563&mode=search&oid=1165172044&ol=biz&z=17"
+              width="100%"
+              height="600"
+              frameBorder="0"
+              allowFullScreen
+              style={{ position: 'relative' }}
+              title="Карта офиса ИТЦ Сибири"
+            />
           </div>
         </div>
       </section>
