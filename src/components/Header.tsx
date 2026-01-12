@@ -13,7 +13,7 @@ const Header = () => {
     { path: '/', label: 'Главная' },
     { path: '/about', label: 'О компании' },
     { path: '/services', label: 'Услуги' },
-    { path: '/portfolio', label: 'Портфолио' },
+    { path: '/services/inzhiniring', label: 'Инжиниринг' },
     { path: '/contacts', label: 'Контакты' }
   ];
 
