@@ -21,11 +21,11 @@ const Header = () => {
     <header className="fixed top-0 w-full bg-white/95 backdrop-blur-sm shadow-sm z-50">
       <div className="container mx-auto px-4 py-4">
         <div className="flex items-center justify-between">
-          <Link to="/" className="flex items-center gap-3">
+          <Link to="/" className="flex items-center gap-3 hover:opacity-90 transition-opacity">
             <img 
               src="https://cdn.poehali.dev/files/2(без фона).png" 
               alt="ИТЦ Инженерно-технологический центр Сибири"
-              className="h-16 w-auto object-contain"
+              className="h-20 md:h-24 w-auto object-contain drop-shadow-md"
             />
           </Link>
 
