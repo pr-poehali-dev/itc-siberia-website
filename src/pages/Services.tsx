@@ -184,9 +184,10 @@ const Services = () => {
                       index === 6 ? "/services/tehnologicheskie" :
                       index === 7 ? "/services/svarnye" :
                       index === 8 ? "/services/frezernye" :
+                      index === 9 ? "/services/tokarnye" :
                       "/contacts"
                     }>
-                      {(index >= 0 && index <= 8) ? 'Подробнее' : 'Заказать услугу'}
+                      {(index >= 0 && index <= 9) ? 'Подробнее' : 'Заказать услугу'}
                       <Icon name="ArrowRight" size={16} className="ml-2" />
                     </Link>
                   </Button>
