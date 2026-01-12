@@ -54,10 +54,10 @@ const Home = () => {
   ];
 
   const stats = [
-    { value: '500+', label: 'Завершенных проектов' },
-    { value: '3000+м²', label: 'Производственных площадей' },
+    { value: '500+', label: 'Завершенных\nпроектов' },
+    { value: '3000+м²', label: 'Производственных\nплощадей' },
     { value: '60+', label: 'Сотрудников' },
-    { value: '13', label: 'Лет на рынке' }
+    { value: '13', label: 'Лет на\nрынке' }
   ];
 
   return (
@@ -91,9 +91,9 @@ const Home = () => {
               </div>
               <div className="flex flex-nowrap justify-start items-start gap-x-4 md:gap-x-10 pt-8 overflow-x-auto scrollbar-hide">
                 {stats.map((stat, index) => (
-                  <div key={index} className="flex flex-col items-center min-w-[70px] md:min-w-[100px] flex-shrink-0">
+                  <div key={index} className="flex flex-col items-center min-w-[80px] md:min-w-[100px] flex-shrink-0">
                     <div className="text-2xl md:text-4xl font-bold text-secondary whitespace-nowrap">{stat.value}</div>
-                    <div className="text-white/80 text-xs md:text-sm mt-1 text-center leading-tight">{stat.label}</div>
+                    <div className="text-white/80 text-[10px] md:text-sm mt-1 text-center leading-tight whitespace-pre-line">{stat.label}</div>
                   </div>
                 ))}
               </div>
