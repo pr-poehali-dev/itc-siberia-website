@@ -64,36 +64,36 @@ const Home = () => {
     <div className="min-h-screen bg-white">
       <Header />
 
-      <section className="pt-36 pb-20 bg-gradient-to-br from-primary via-primary/95 to-primary/90">
+      <section className="pt-28 pb-12 md:pt-36 md:pb-20 bg-gradient-to-br from-primary via-primary/95 to-primary/90">
         <div className="container mx-auto px-4">
-          <div className="grid md:grid-cols-2 gap-12 items-center">
-            <div className="text-white space-y-6 animate-fade-in">
-              <Badge className="bg-secondary text-secondary-foreground border-0 text-base px-4 py-2 hover:bg-secondary/90">
+          <div className="grid md:grid-cols-2 gap-8 md:gap-12 items-center">
+            <div className="text-white space-y-4 md:space-y-6 animate-fade-in">
+              <Badge className="bg-secondary text-secondary-foreground border-0 text-sm md:text-base px-3 py-1.5 md:px-4 md:py-2 hover:bg-secondary/90">
                 Надежный партнер с 2013 года
               </Badge>
-              <h1 className="text-3xl md:text-5xl font-bold leading-tight">
+              <h1 className="text-2xl md:text-5xl font-bold leading-snug md:leading-tight">
                 Инженерные решения для промышленности
               </h1>
-              <p className="text-base md:text-xl text-white/90 text-justify">
+              <p className="text-sm md:text-xl text-white/90 leading-relaxed">
                 Полный цикл проектирования, производства металлоконструкций и решение инженерных технологический задач. 
                 От идеи до реализации под ключ.
               </p>
-              <div className="flex justify-center md:justify-start pt-4">
+              <div className="flex justify-start pt-2 md:pt-4">
                 <Button 
                   asChild
                   size="lg" 
-                  className="bg-secondary hover:bg-secondary/90 text-secondary-foreground px-12"
+                  className="bg-secondary hover:bg-secondary/90 text-secondary-foreground px-8 md:px-12 text-sm md:text-base"
                 >
                   <Link to="/services">
                     Наши услуги
                   </Link>
                 </Button>
               </div>
-              <div className="flex flex-nowrap justify-start items-start gap-x-4 md:gap-x-10 pt-8 overflow-x-auto scrollbar-hide">
+              <div className="grid grid-cols-2 gap-4 md:flex md:flex-nowrap md:justify-start md:items-start md:gap-x-10 pt-6 md:pt-8">
                 {stats.map((stat, index) => (
-                  <div key={index} className="flex flex-col items-center min-w-[80px] md:min-w-[100px] flex-shrink-0">
-                    <div className="text-2xl md:text-4xl font-bold text-secondary whitespace-nowrap">{stat.value}</div>
-                    <div className="text-white/80 text-[10px] md:text-sm mt-1 text-center leading-tight whitespace-pre-line">{stat.label}</div>
+                  <div key={index} className="flex flex-col items-center md:items-start">
+                    <div className="text-xl md:text-4xl font-bold text-secondary whitespace-nowrap">{stat.value}</div>
+                    <div className="text-white/80 text-[9px] md:text-sm mt-1 text-center md:text-left leading-tight">{stat.label.replace('\n', ' ')}</div>
                   </div>
                 ))}
               </div>
