@@ -267,7 +267,7 @@ const Contacts = () => {
           <h2 className="text-3xl font-bold text-center mb-8">Как нас найти</h2>
           <div className="rounded-2xl overflow-hidden shadow-xl">
             <iframe
-              src="https://yandex.ru/map-widget/v1/?ll=92.894586%2C56.024737&z=17&pt=92.894586,56.024737,pm2rdm"
+              src="https://yandex.ru/map-widget/v1/?ll=92.894586%2C56.024737&z=17&pt=92.894586,56.024737,pm2rdm&mode=search&text=Красноярск, Дудинская улица, 5"
               width="100%"
               height="600"
               frameBorder="0"
