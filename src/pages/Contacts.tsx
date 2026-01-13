@@ -1,3 +1,4 @@
+import { useState } from 'react';
 import { Card, CardContent } from '@/components/ui/card';
 import { Input } from '@/components/ui/input';
 import { Textarea } from '@/components/ui/textarea';
@@ -8,6 +9,47 @@ import Header from '@/components/Header';
 import Footer from '@/components/Footer';
 
 const Contacts = () => {
+  const [formData, setFormData] = useState({
+    name: '',
+    phone: '',
+    email: '',
+    company: '',
+    message: ''
+  });
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  const [submitStatus, setSubmitStatus] = useState<'idle' | 'success' | 'error'>('idle');
+  const [errorMessage, setErrorMessage] = useState('');
+
+  const handleSubmit = async (e: React.FormEvent) => {
+    e.preventDefault();
+    setIsSubmitting(true);
+    setSubmitStatus('idle');
+    setErrorMessage('');
+
+    try {
+      const response = await fetch('https://functions.poehali.dev/58ece2a5-7d0d-4aaa-a83c-465654d09373', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(formData)
+      });
+
+      const result = await response.json();
+
+      if (response.ok) {
+        setSubmitStatus('success');
+        setFormData({ name: '', phone: '', email: '', company: '', message: '' });
+      } else {
+        setSubmitStatus('error');
+        setErrorMessage(result.error || 'Ошибка отправки заявки');
+      }
+    } catch (error) {
+      setSubmitStatus('error');
+      setErrorMessage('Не удалось отправить заявку. Проверьте подключение к интернету.');
+    } finally {
+      setIsSubmitting(false);
+    }
+  };
+
   const contactInfo = [
     {
       icon: 'MapPin',
@@ -87,22 +129,58 @@ const Contacts = () => {
               
               <Card>
                 <CardContent className="p-8">
-                  <form className="space-y-4">
+                  <form onSubmit={handleSubmit} className="space-y-4">
+                    {submitStatus === 'success' && (
+                      <div className="p-4 bg-green-50 border border-green-200 rounded-lg text-green-800 text-sm">
+                        <Icon name="CheckCircle" size={16} className="inline mr-2" />
+                        Заявка успешно отправлена! Мы свяжемся с вами в ближайшее время.
+                      </div>
+                    )}
+                    {submitStatus === 'error' && (
+                      <div className="p-4 bg-red-50 border border-red-200 rounded-lg text-red-800 text-sm">
+                        <Icon name="AlertCircle" size={16} className="inline mr-2" />
+                        {errorMessage}
+                      </div>
+                    )}
                     <div>
                       <label className="text-sm font-medium mb-2 block">Ваше имя *</label>
-                      <Input placeholder="Иван Иванов" className="w-full" />
+                      <Input 
+                        placeholder="Иван Иванов" 
+                        className="w-full" 
+                        value={formData.name}
+                        onChange={(e) => setFormData({...formData, name: e.target.value})}
+                        required
+                      />
                     </div>
                     <div>
                       <label className="text-sm font-medium mb-2 block">Телефон *</label>
-                      <Input type="tel" placeholder="+7 (___) ___-__-__" className="w-full" />
+                      <Input 
+                        type="tel" 
+                        placeholder="+7 (___) ___-__-__" 
+                        className="w-full" 
+                        value={formData.phone}
+                        onChange={(e) => setFormData({...formData, phone: e.target.value})}
+                        required
+                      />
                     </div>
                     <div>
                       <label className="text-sm font-medium mb-2 block">Email</label>
-                      <Input type="email" placeholder="example@mail.ru" className="w-full" />
+                      <Input 
+                        type="email" 
+                        placeholder="example@mail.ru" 
+                        className="w-full" 
+                        value={formData.email}
+                        onChange={(e) => setFormData({...formData, email: e.target.value})}
+                      />
                     </div>
                     <div>
                       <label className="text-sm font-medium mb-2 block">Компания</label>
-                      <Input placeholder="Название компании" className="w-full" />
+                      <Input 
+                        placeholder="Название компании" 
+                        className="w-full" 
+                        value={formData.company}
+                        onChange={(e) => setFormData({...formData, company: e.target.value})}
+                      />
                     </div>
                     <div>
                       <label className="text-sm font-medium mb-2 block">Сообщение *</label>
@@ -110,10 +188,17 @@ const Contacts = () => {
                         placeholder="Опишите ваш проект или задайте вопрос" 
                         rows={5} 
                         className="w-full" 
+                        value={formData.message}
+                        onChange={(e) => setFormData({...formData, message: e.target.value})}
+                        required
                       />
                     </div>
-                    <Button className="w-full bg-primary hover:bg-primary/90">
-                      Отправить заявку
+                    <Button 
+                      type="submit" 
+                      className="w-full bg-primary hover:bg-primary/90"
+                      disabled={isSubmitting}
+                    >
+                      {isSubmitting ? 'Отправка...' : 'Отправить заявку'}
                       <Icon name="Send" size={16} className="ml-2" />
                     </Button>
                     <p className="text-xs text-muted-foreground text-center">
