@@ -9,6 +9,7 @@ import Footer from '@/components/Footer';
 
 const Home = () => {
   const [currentImage, setCurrentImage] = useState(0);
+  const [isTransitioning, setIsTransitioning] = useState(false);
 
   const images = [
     { url: 'https://cdn.poehali.dev/files/57.jpg', alt: 'Технологические металлоконструкции' },
@@ -16,15 +17,29 @@ const Home = () => {
     { url: 'https://cdn.poehali.dev/files/59.jpg', alt: 'Фрезерные работы' },
     { url: 'https://cdn.poehali.dev/files/110.jpg', alt: 'Токарные работы' },
     { url: 'https://cdn.poehali.dev/files/67.jpg', alt: 'Технологические площадки' },
-    { url: 'https://cdn.poehali.dev/files/68.jpg', alt: 'Сварные профили' }
+    { url: 'https://cdn.poehali.dev/files/68.jpg', alt: 'Сварные профили' },
+    { url: 'https://cdn.poehali.dev/files/60.jpg', alt: 'Промышленное оборудование' },
+    { url: 'https://cdn.poehali.dev/files/61.jpg', alt: 'Металлообработка' },
+    { url: 'https://cdn.poehali.dev/files/62.jpg', alt: 'Производственный процесс' },
+    { url: 'https://cdn.poehali.dev/files/63.jpg', alt: 'Сварочные работы' },
+    { url: 'https://cdn.poehali.dev/files/64.jpg', alt: 'Станочное оборудование' },
+    { url: 'https://cdn.poehali.dev/files/65.jpg', alt: 'Готовые изделия' }
   ];
 
   const nextImage = () => {
-    setCurrentImage((prev) => (prev + 1) % images.length);
+    setIsTransitioning(true);
+    setTimeout(() => {
+      setCurrentImage((prev) => (prev + 1) % images.length);
+      setIsTransitioning(false);
+    }, 300);
   };
 
   const prevImage = () => {
-    setCurrentImage((prev) => (prev - 1 + images.length) % images.length);
+    setIsTransitioning(true);
+    setTimeout(() => {
+      setCurrentImage((prev) => (prev - 1 + images.length) % images.length);
+      setIsTransitioning(false);
+    }, 300);
   };
 
   useEffect(() => {
@@ -104,7 +119,7 @@ const Home = () => {
                 <img 
                   src={images[currentImage].url}
                   alt={images[currentImage].alt}
-                  className="w-full h-full object-cover transition-all duration-500"
+                  className={`w-full h-full object-cover transition-opacity duration-500 ${isTransitioning ? 'opacity-0' : 'opacity-100'}`}
                 />
                 <button
                   onClick={prevImage}
