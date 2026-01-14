@@ -100,11 +100,11 @@ const Home = () => {
             </div>
             <div className="relative animate-fade-in group max-w-lg mx-auto">
               <div className="absolute inset-0 bg-secondary/20 rounded-2xl blur-3xl"></div>
-              <div className="relative rounded-2xl shadow-2xl overflow-hidden">
+              <div className="relative rounded-2xl shadow-2xl overflow-hidden h-[350px] md:h-[500px]">
                 <img 
                   src={images[currentImage].url}
                   alt={images[currentImage].alt}
-                  className="w-full h-[250px] md:h-[400px] object-cover transition-all duration-500"
+                  className="w-full h-full object-cover transition-all duration-500"
                 />
                 <button
                   onClick={prevImage}
