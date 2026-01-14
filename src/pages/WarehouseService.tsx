@@ -159,7 +159,7 @@ const WarehouseService = () => {
                   Свяжитесь с нами для консультации. Наши специалисты помогут подобрать 
                   оптимальное решение и рассчитают стоимость работ
                 </p>
-                <div className="flex justify-center">
+                <div className="flex flex-col sm:flex-row gap-4 justify-center">
                   <Button 
                     asChild 
                     size="lg" 
@@ -169,6 +169,13 @@ const WarehouseService = () => {
                       <Icon name="Phone" size={20} className="mr-2" />
                       Связаться с нами
                     </Link>
+                  </Button>
+                  <Button 
+                    asChild 
+                    size="lg" 
+                    className="bg-secondary hover:bg-secondary/90 text-secondary-foreground"
+                  >
+                    <Link to="/services">Все услуги</Link>
                   </Button>
                 </div>
               </CardContent>
