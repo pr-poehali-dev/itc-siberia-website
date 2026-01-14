@@ -169,7 +169,7 @@ const ServiceDetail = () => {
                   Связаться с нами
                 </Link>
               </Button>
-              <Button asChild size="lg" variant="outline" className="border-white text-white hover:bg-white/10">
+              <Button asChild size="lg" className="bg-secondary hover:bg-secondary/90 text-secondary-foreground">
                 <Link to="/services">Все услуги</Link>
               </Button>
             </div>

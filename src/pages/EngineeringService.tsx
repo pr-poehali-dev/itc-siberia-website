@@ -205,7 +205,7 @@ const EngineeringService = () => {
                     Связаться с нами
                   </Link>
                 </Button>
-                <Button asChild size="lg" variant="outline" className="bg-white hover:bg-white/90 text-primary border-0">
+                <Button asChild size="lg" className="bg-secondary hover:bg-secondary/90 text-secondary-foreground">
                   <Link to="/services">
                     <Icon name="ArrowLeft" size={20} className="mr-2" />
                     Все услуги
