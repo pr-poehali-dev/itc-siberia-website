@@ -16,10 +16,6 @@ const Contacts = () => {
     company: '',
     message: ''
   });
-  const [isSubmitting, setIsSubmitting] = useState(false);
-  const [submitStatus, setSubmitStatus] = useState<'idle' | 'success' | 'error'>('idle');
-  const [errorMessage, setErrorMessage] = useState('');
-
   const handleMailtoFallback = () => {
     const subject = encodeURIComponent(`Заявка с сайта от ${formData.name}`);
     const body = encodeURIComponent(
@@ -30,36 +26,6 @@ const Contacts = () => {
       `Сообщение:\n${formData.message}`
     );
     window.location.href = `mailto:itc2555888@mail.ru?subject=${subject}&body=${body}`;
-  };
-
-  const handleSubmit = async (e: React.FormEvent) => {
-    e.preventDefault();
-    setIsSubmitting(true);
-    setSubmitStatus('idle');
-    setErrorMessage('');
-
-    try {
-      const response = await fetch('/send-contact-form.php', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify(formData)
-      });
-
-      const result = await response.json();
-
-      if (response.ok) {
-        setSubmitStatus('success');
-        setFormData({ name: '', phone: '', email: '', company: '', message: '' });
-      } else {
-        setSubmitStatus('error');
-        setErrorMessage(result.error || 'Ошибка отправки заявки');
-      }
-    } catch (error) {
-      setSubmitStatus('error');
-      setErrorMessage('PHP-скрипт недоступен. Используйте кнопку "Отправить через почту".');
-    } finally {
-      setIsSubmitting(false);
-    }
   };
 
   const contactInfo = [
@@ -141,19 +107,7 @@ const Contacts = () => {
               
               <Card>
                 <CardContent className="p-8">
-                  <form onSubmit={handleSubmit} className="space-y-4">
-                    {submitStatus === 'success' && (
-                      <div className="p-4 bg-green-50 border border-green-200 rounded-lg text-green-800 text-sm">
-                        <Icon name="CheckCircle" size={16} className="inline mr-2" />
-                        Заявка успешно отправлена! Мы свяжемся с вами в ближайшее время.
-                      </div>
-                    )}
-                    {submitStatus === 'error' && (
-                      <div className="p-4 bg-red-50 border border-red-200 rounded-lg text-red-800 text-sm">
-                        <Icon name="AlertCircle" size={16} className="inline mr-2" />
-                        {errorMessage}
-                      </div>
-                    )}
+                  <div className="space-y-4">
                     <div>
                       <label className="text-sm font-medium mb-2 block">Ваше имя *</label>
                       <Input 
@@ -205,32 +159,18 @@ const Contacts = () => {
                         required
                       />
                     </div>
-                    <div className="space-y-3">
-                      <Button 
-                        type="submit" 
-                        className="w-full bg-primary hover:bg-primary/90"
-                        disabled={isSubmitting}
-                      >
-                        {isSubmitting ? 'Отправка...' : 'Отправить заявку'}
-                        <Icon name="Send" size={16} className="ml-2" />
-                      </Button>
-                      
-                      {submitStatus === 'error' && (
-                        <Button 
-                          type="button"
-                          variant="outline"
-                          className="w-full border-primary text-primary hover:bg-primary/10"
-                          onClick={handleMailtoFallback}
-                        >
-                          Отправить через почту
-                          <Icon name="Mail" size={16} className="ml-2" />
-                        </Button>
-                      )}
-                    </div>
+                    <Button 
+                      type="button" 
+                      className="w-full bg-primary hover:bg-primary/90"
+                      onClick={handleMailtoFallback}
+                    >
+                      Отправить заявку
+                      <Icon name="Mail" size={16} className="ml-2" />
+                    </Button>
                     <p className="text-xs text-muted-foreground text-center">
                       Нажимая кнопку, вы соглашаетесь с политикой обработки персональных данных
                     </p>
-                  </form>
+                  </div>
                 </CardContent>
               </Card>
             </div>
