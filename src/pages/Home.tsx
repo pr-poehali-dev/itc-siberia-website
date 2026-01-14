@@ -17,7 +17,7 @@ const Home = () => {
     { url: 'https://cdn.poehali.dev/files/110.jpg', alt: 'Токарные работы' },
     { url: 'https://cdn.poehali.dev/files/67.jpg', alt: 'Технологические площадки' },
     { url: 'https://cdn.poehali.dev/files/68.jpg', alt: 'Сварные профили' },
-    { url: 'https://cdn.poehali.dev/files/59.jpg', alt: 'Фрезерные работы' },
+    { url: 'https://cdn.poehali.dev/files/66.jpg', alt: 'Металлический каркас на строительстве' },
     { url: 'https://cdn.poehali.dev/files/17.jpg', alt: 'Промышленные эстакады' },
     { url: 'https://cdn.poehali.dev/files/62.jpg', alt: 'Производственный процесс' },
     { url: 'https://cdn.poehali.dev/files/63.jpg', alt: 'Сварочные работы' },
