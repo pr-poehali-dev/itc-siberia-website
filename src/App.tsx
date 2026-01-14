@@ -18,6 +18,7 @@ import TechnologicalService from "./pages/TechnologicalService";
 import WeldedService from "./pages/WeldedService";
 import MillingService from "./pages/MillingService";
 import TurningService from "./pages/TurningService";
+import ContainersService from "./pages/ContainersService";
 import EngineeringService from "./pages/EngineeringService";
 import Contacts from "./pages/Contacts";
 import NotFound from "./pages/NotFound";
@@ -43,6 +44,7 @@ const App = () => (
           <Route path="/services/stroitelnye" element={<ConstructionService />} />
           <Route path="/services/tehnologicheskie" element={<TechnologicalService />} />
           <Route path="/services/svarnye" element={<WeldedService />} />
+          <Route path="/services/emkosti" element={<ContainersService />} />
           <Route path="/services/frezernye" element={<MillingService />} />
           <Route path="/services/tokarnye" element={<TurningService />} />
           <Route path="/services/inzhiniring" element={<EngineeringService />} />

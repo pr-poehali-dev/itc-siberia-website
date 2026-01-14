@@ -105,6 +105,18 @@ const Services = () => {
       ]
     },
     {
+      icon: 'Container',
+      title: 'Технологические емкости',
+      description: 'Проектирование и производство металлических емкостей для различных отраслей промышленности',
+      details: [
+        'Мусорные емкости и бункеры',
+        'Емкости для строительных материалов',
+        'Резервуары для жидкостей',
+        'Полный цикл работ от проекта до монтажа',
+        'Индивидуальное проектирование'
+      ]
+    },
+    {
       icon: 'CircuitBoard',
       title: 'Фрезерные работы',
       description: 'Фрезерная обработка металлических деталей на станках ЧПУ',
@@ -180,11 +192,12 @@ const Services = () => {
                       index === 5 ? "/services/stroitelnye" :
                       index === 6 ? "/services/tehnologicheskie" :
                       index === 7 ? "/services/svarnye" :
-                      index === 8 ? "/services/frezernye" :
-                      index === 9 ? "/services/tokarnye" :
+                      index === 8 ? "/services/emkosti" :
+                      index === 9 ? "/services/frezernye" :
+                      index === 10 ? "/services/tokarnye" :
                       "/contacts"
                     }>
-                      {(index >= 0 && index <= 9) ? 'Подробнее' : 'Заказать услугу'}
+                      {(index >= 0 && index <= 10) ? 'Подробнее' : 'Заказать услугу'}
                       <Icon name="ArrowRight" size={16} className="ml-2" />
                     </Link>
                   </Button>
