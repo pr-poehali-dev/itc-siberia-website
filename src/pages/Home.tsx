@@ -12,12 +12,12 @@ const Home = () => {
 
   const images = [
     { url: 'https://cdn.poehali.dev/files/57.jpg', alt: 'Технологические металлоконструкции' },
-    { url: 'https://cdn.poehali.dev/files/58.jpg', alt: 'Сварные металлоконструкции' },
+    { url: 'https://cdn.poehali.dev/files/56.jpg', alt: 'Строительные металлоконструкции' },
     { url: 'https://cdn.poehali.dev/projects/e90cd5e8-153a-4589-b532-06e737a47d0d/files/919d6fae-f726-4357-a8d0-36b93d621de4.jpg', alt: 'Сварочные работы' },
     { url: 'https://cdn.poehali.dev/files/110.jpg', alt: 'Токарные работы' },
     { url: 'https://cdn.poehali.dev/files/67.jpg', alt: 'Технологические площадки' },
     { url: 'https://cdn.poehali.dev/files/68.jpg', alt: 'Сварные профили' },
-    { url: 'https://cdn.poehali.dev/files/60.jpg', alt: 'Промышленное оборудование' },
+    { url: 'https://cdn.poehali.dev/files/59.jpg', alt: 'Фрезерные работы' },
     { url: 'https://cdn.poehali.dev/files/17.jpg', alt: 'Промышленные эстакады' },
     { url: 'https://cdn.poehali.dev/files/62.jpg', alt: 'Производственный процесс' },
     { url: 'https://cdn.poehali.dev/files/63.jpg', alt: 'Сварочные работы' },
