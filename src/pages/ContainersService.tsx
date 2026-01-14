@@ -35,10 +35,6 @@ const ContainersService = () => {
 
   const specs = [
     {
-      title: 'Объем',
-      value: 'от 0,5 до 100 м³'
-    },
-    {
       title: 'Материалы',
       value: 'углеродистая сталь (Ст3, 09Г2С), нержавеющая сталь (AISI 304/316)'
     },
@@ -158,12 +154,20 @@ const ContainersService = () => {
                 <p className="text-muted-foreground mb-6 max-w-2xl mx-auto">
                   Свяжитесь с нами для консультации по технологическим емкостям. Наши специалисты помогут подобрать оптимальное решение для ваших задач.
                 </p>
-                <Button asChild size="lg" className="bg-secondary hover:bg-secondary/90 text-secondary-foreground">
-                  <Link to="/contacts">
-                    <Icon name="Phone" size={20} className="mr-2" />
-                    Связаться с нами
-                  </Link>
-                </Button>
+                <div className="flex flex-col sm:flex-row gap-4 justify-center">
+                  <Button asChild size="lg" className="bg-secondary hover:bg-secondary/90 text-secondary-foreground">
+                    <Link to="/contacts">
+                      <Icon name="Phone" size={20} className="mr-2" />
+                      Связаться с нами
+                    </Link>
+                  </Button>
+                  <Button asChild size="lg" variant="outline">
+                    <Link to="/services">
+                      <Icon name="Grid" size={20} className="mr-2" />
+                      Все услуги
+                    </Link>
+                  </Button>
+                </div>
               </CardContent>
             </Card>
           </div>
