@@ -9,7 +9,6 @@ import Footer from '@/components/Footer';
 
 const Home = () => {
   const [currentImage, setCurrentImage] = useState(0);
-  const [isTransitioning, setIsTransitioning] = useState(false);
 
   const images = [
     { url: 'https://cdn.poehali.dev/files/57.jpg', alt: 'Технологические металлоконструкции' },
@@ -26,22 +25,12 @@ const Home = () => {
     { url: 'https://cdn.poehali.dev/projects/e90cd5e8-153a-4589-b532-06e737a47d0d/files/0b6129a4-8a22-40e6-b1ae-b12152184cdf.jpg', alt: 'Готовые изделия' }
   ];
 
-  const changeImage = (newIndex: number) => {
-    setIsTransitioning(true);
-    setTimeout(() => {
-      setCurrentImage(newIndex);
-      setTimeout(() => {
-        setIsTransitioning(false);
-      }, 50);
-    }, 300);
-  };
-
   const nextImage = () => {
-    changeImage((currentImage + 1) % images.length);
+    setCurrentImage((prev) => (prev + 1) % images.length);
   };
 
   const prevImage = () => {
-    changeImage((currentImage - 1 + images.length) % images.length);
+    setCurrentImage((prev) => (prev - 1 + images.length) % images.length);
   };
 
   useEffect(() => {
@@ -121,7 +110,7 @@ const Home = () => {
                 <img 
                   src={images[currentImage].url}
                   alt={images[currentImage].alt}
-                  className={`w-full h-full object-cover transition-opacity duration-500 ${isTransitioning ? 'opacity-0' : 'opacity-100'}`}
+                  className="w-full h-full object-cover"
                 />
                 <button
                   onClick={prevImage}
@@ -141,7 +130,7 @@ const Home = () => {
                   {images.map((_, index) => (
                     <button
                       key={index}
-                      onClick={() => changeImage(index)}
+                      onClick={() => setCurrentImage(index)}
                       className={`w-2 h-2 rounded-full transition-all ${
                         index === currentImage ? 'bg-white w-8' : 'bg-white/50'
                       }`}
