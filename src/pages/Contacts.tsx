@@ -20,6 +20,18 @@ const Contacts = () => {
   const [submitStatus, setSubmitStatus] = useState<'idle' | 'success' | 'error'>('idle');
   const [errorMessage, setErrorMessage] = useState('');
 
+  const handleMailtoFallback = () => {
+    const subject = encodeURIComponent(`Заявка с сайта от ${formData.name}`);
+    const body = encodeURIComponent(
+      `Имя: ${formData.name}\n` +
+      `Телефон: ${formData.phone}\n` +
+      `Email: ${formData.email}\n` +
+      `Компания: ${formData.company}\n\n` +
+      `Сообщение:\n${formData.message}`
+    );
+    window.location.href = `mailto:itc2555888@mail.ru?subject=${subject}&body=${body}`;
+  };
+
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setIsSubmitting(true);
@@ -44,7 +56,7 @@ const Contacts = () => {
       }
     } catch (error) {
       setSubmitStatus('error');
-      setErrorMessage('Не удалось отправить заявку. Проверьте подключение к интернету.');
+      setErrorMessage('PHP-скрипт недоступен. Используйте кнопку "Отправить через почту".');
     } finally {
       setIsSubmitting(false);
     }
@@ -193,14 +205,28 @@ const Contacts = () => {
                         required
                       />
                     </div>
-                    <Button 
-                      type="submit" 
-                      className="w-full bg-primary hover:bg-primary/90"
-                      disabled={isSubmitting}
-                    >
-                      {isSubmitting ? 'Отправка...' : 'Отправить заявку'}
-                      <Icon name="Send" size={16} className="ml-2" />
-                    </Button>
+                    <div className="space-y-3">
+                      <Button 
+                        type="submit" 
+                        className="w-full bg-primary hover:bg-primary/90"
+                        disabled={isSubmitting}
+                      >
+                        {isSubmitting ? 'Отправка...' : 'Отправить заявку'}
+                        <Icon name="Send" size={16} className="ml-2" />
+                      </Button>
+                      
+                      {submitStatus === 'error' && (
+                        <Button 
+                          type="button"
+                          variant="outline"
+                          className="w-full border-primary text-primary hover:bg-primary/10"
+                          onClick={handleMailtoFallback}
+                        >
+                          Отправить через почту
+                          <Icon name="Mail" size={16} className="ml-2" />
+                        </Button>
+                      )}
+                    </div>
                     <p className="text-xs text-muted-foreground text-center">
                       Нажимая кнопку, вы соглашаетесь с политикой обработки персональных данных
                     </p>
