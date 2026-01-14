@@ -27,7 +27,7 @@ const Contacts = () => {
     setErrorMessage('');
 
     try {
-      const response = await fetch('https://functions.poehali.dev/58ece2a5-7d0d-4aaa-a83c-465654d09373', {
+      const response = await fetch('/send-contact-form.php', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(formData)
