@@ -148,24 +148,32 @@ const ContainersService = () => {
               </div>
             </div>
 
-            <Card className="bg-muted/50 border-0">
-              <CardContent className="p-8 text-center">
-                <h2 className="text-2xl font-bold mb-4">Готовы обсудить ваш проект?</h2>
-                <p className="text-muted-foreground mb-6 max-w-2xl mx-auto">
-                  Свяжитесь с нами для консультации по технологическим емкостям. Наши специалисты помогут подобрать оптимальное решение для ваших задач.
+            <Card className="bg-gradient-to-br from-primary to-primary/90 border-0">
+              <CardContent className="p-12 text-center">
+                <h2 className="text-3xl font-bold text-white mb-4">
+                  Готовы обсудить ваш проект?
+                </h2>
+                <p className="text-white/90 text-lg mb-8 max-w-2xl mx-auto">
+                  Свяжитесь с нами для консультации. Наши специалисты помогут подобрать 
+                  оптимальное решение и рассчитают стоимость работ
                 </p>
                 <div className="flex flex-col sm:flex-row gap-4 justify-center">
-                  <Button asChild size="lg" className="bg-secondary hover:bg-secondary/90 text-secondary-foreground">
+                  <Button 
+                    asChild 
+                    size="lg" 
+                    className="bg-secondary hover:bg-secondary/90 text-secondary-foreground"
+                  >
                     <Link to="/contacts">
                       <Icon name="Phone" size={20} className="mr-2" />
                       Связаться с нами
                     </Link>
                   </Button>
-                  <Button asChild size="lg" variant="outline">
-                    <Link to="/services">
-                      <Icon name="Grid" size={20} className="mr-2" />
-                      Все услуги
-                    </Link>
+                  <Button 
+                    asChild 
+                    size="lg" 
+                    className="bg-secondary hover:bg-secondary/90 text-secondary-foreground"
+                  >
+                    <Link to="/services">Все услуги</Link>
                   </Button>
                 </div>
               </CardContent>
