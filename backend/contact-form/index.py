@@ -1,6 +1,9 @@
 import json
 import os
 import psycopg2
+import smtplib
+from email.mime.text import MIMEText
+from email.mime.multipart import MIMEMultipart
 from pydantic import BaseModel, Field, EmailStr, ValidationError
 
 class ContactRequest(BaseModel):
@@ -49,43 +52,103 @@ def handler(event: dict, context) -> dict:
         }
 
     database_url = os.environ.get('DATABASE_URL')
+    smtp_host = os.environ.get('SMTP_HOST', 'smtp.yandex.ru')
+    smtp_port_str = os.environ.get('SMTP_PORT', '465')
+    smtp_user = os.environ.get('SMTP_USER', '')
+    smtp_password = os.environ.get('SMTP_PASSWORD', '')
+    contact_email = os.environ.get('CONTACT_EMAIL', 'itcsibiri@yandex.ru')
     
-    if not database_url:
+    try:
+        smtp_port = int(smtp_port_str)
+    except (ValueError, TypeError):
+        smtp_port = 465
+    
+    if not smtp_user or not smtp_password:
         return {
             'statusCode': 500,
             'headers': {'Content-Type': 'application/json', 'Access-Control-Allow-Origin': '*'},
-            'body': json.dumps({'error': 'База данных не настроена'})
+            'body': json.dumps({'error': 'Настройки почты не заданы. Проверьте SMTP_USER и SMTP_PASSWORD'})
         }
 
+    conn = None
+    request_id = None
+    
     try:
-        conn = psycopg2.connect(database_url)
-        cur = conn.cursor()
+        if database_url:
+            conn = psycopg2.connect(database_url)
+            cur = conn.cursor()
+            cur.execute(
+                "INSERT INTO contact_requests (name, phone, email, company, message) VALUES (%s, %s, %s, %s, %s) RETURNING id",
+                (request.name, request.phone, request.email, request.company, request.message)
+            )
+            request_id = cur.fetchone()[0]
+            conn.commit()
+            cur.close()
+            conn.close()
+    except Exception as e:
+        if conn:
+            conn.rollback()
+            conn.close()
+
+    msg = MIMEMultipart('alternative')
+    msg['Subject'] = f'Новая заявка с сайта от {request.name}'
+    msg['From'] = smtp_user
+    msg['To'] = contact_email
+
+    html_body = f"""
+    <html>
+    <body style="font-family: Arial, sans-serif; line-height: 1.6; color: #333;">
+        <h2 style="color: #2563eb;">Новая заявка с сайта</h2>
+        <table style="border-collapse: collapse; width: 100%; max-width: 600px;">
+            <tr>
+                <td style="padding: 12px; background-color: #f3f4f6; font-weight: bold; width: 150px;">Имя:</td>
+                <td style="padding: 12px;">{request.name}</td>
+            </tr>
+            <tr>
+                <td style="padding: 12px; background-color: #f3f4f6; font-weight: bold;">Телефон:</td>
+                <td style="padding: 12px;">{request.phone}</td>
+            </tr>
+            <tr>
+                <td style="padding: 12px; background-color: #f3f4f6; font-weight: bold;">Email:</td>
+                <td style="padding: 12px;">{request.email or 'Не указан'}</td>
+            </tr>
+            <tr>
+                <td style="padding: 12px; background-color: #f3f4f6; font-weight: bold;">Компания:</td>
+                <td style="padding: 12px;">{request.company or 'Не указана'}</td>
+            </tr>
+            <tr>
+                <td style="padding: 12px; background-color: #f3f4f6; font-weight: bold; vertical-align: top;">Сообщение:</td>
+                <td style="padding: 12px;">{request.message}</td>
+            </tr>
+        </table>
+    </body>
+    </html>
+    """
+
+    msg.attach(MIMEText(html_body, 'html', 'utf-8'))
+
+    try:
+        if smtp_port == 465:
+            server = smtplib.SMTP_SSL(smtp_host, smtp_port, timeout=10)
+        else:
+            server = smtplib.SMTP(smtp_host, smtp_port, timeout=10)
+            server.starttls()
         
-        cur.execute(
-            "INSERT INTO contact_requests (name, phone, email, company, message) VALUES (%s, %s, %s, %s, %s) RETURNING id",
-            (request.name, request.phone, request.email, request.company, request.message)
-        )
-        
-        request_id = cur.fetchone()[0]
-        conn.commit()
-        cur.close()
-        conn.close()
+        server.login(smtp_user, smtp_password)
+        server.send_message(msg)
+        server.quit()
 
         return {
             'statusCode': 200,
             'headers': {'Content-Type': 'application/json', 'Access-Control-Allow-Origin': '*'},
             'body': json.dumps({
                 'success': True, 
-                'message': 'Заявка успешно принята! Мы свяжемся с вами в ближайшее время.',
-                'id': request_id
+                'message': 'Заявка успешно отправлена! Мы свяжемся с вами в ближайшее время.'
             })
         }
     except Exception as e:
-        if 'conn' in locals():
-            conn.rollback()
-            conn.close()
         return {
             'statusCode': 500,
             'headers': {'Content-Type': 'application/json', 'Access-Control-Allow-Origin': '*'},
-            'body': json.dumps({'error': f'Ошибка сохранения заявки: {str(e)}'})
+            'body': json.dumps({'error': f'Ошибка отправки письма: {str(e)}'})
         }
