@@ -1,8 +1,14 @@
-import { Link } from 'react-router-dom';
+import { Link, useLocation } from 'react-router-dom';
 import { Button } from '@/components/ui/button';
 import Icon from '@/components/ui/icon';
 
 const FloatingPhoneButton = () => {
+  const location = useLocation();
+  
+  if (location.pathname === '/contacts') {
+    return null;
+  }
+  
   return (
     <Button
       asChild
