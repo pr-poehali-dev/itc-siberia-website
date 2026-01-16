@@ -67,7 +67,7 @@ const Contacts = () => {
     {
       icon: 'Mail',
       title: 'Email',
-      details: ['itc2555888@mail.ru']
+      details: ['itcsibiri@yandex.ru', 'itc2555888@mail.ru']
     },
     {
       icon: 'Phone',
