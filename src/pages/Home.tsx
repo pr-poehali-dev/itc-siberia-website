@@ -18,11 +18,11 @@ const Home = () => {
     { url: 'https://cdn.poehali.dev/files/67.jpg', alt: 'Технологические площадки' },
     { url: 'https://cdn.poehali.dev/files/68.jpg', alt: 'Сварные профили' },
     { url: 'https://cdn.poehali.dev/files/66.jpg', alt: 'Металлический каркас на строительстве' },
-    { url: 'https://cdn.poehali.dev/projects/e90cd5e8-153a-4589-b532-06e737a47d0d/files/919d6fae-f726-4357-a8d0-36b93d621de4.jpg', alt: 'Сварочные работы' },
+    { url: 'https://cdn.poehali.dev/files/56.jpg', alt: 'Строительные металлоконструкции' },
     { url: 'https://cdn.poehali.dev/files/62.jpg', alt: 'Производственный процесс' },
     { url: 'https://cdn.poehali.dev/files/63.jpg', alt: 'Сварочные работы' },
     { url: 'https://cdn.poehali.dev/files/18.jpg', alt: 'Сварные фермы' },
-    { url: 'https://cdn.poehali.dev/files/56.jpg', alt: 'Строительные металлоконструкции' }
+    { url: 'https://cdn.poehali.dev/projects/e90cd5e8-153a-4589-b532-06e737a47d0d/files/919d6fae-f726-4357-a8d0-36b93d621de4.jpg', alt: 'Сварочные работы' }
   ];
 
   const nextImage = () => {
