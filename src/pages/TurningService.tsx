@@ -105,24 +105,6 @@ const TurningService = () => {
             </div>
 
             <div className="mb-16">
-              <h2 className="text-3xl font-bold mb-8">Преимущества наших услуг</h2>
-              <div className="grid md:grid-cols-2 gap-4">
-                {advantages.map((advantage, index) => (
-                  <Card key={index} className="border-l-4 border-l-secondary">
-                    <CardContent className="p-6">
-                      <div className="flex items-start gap-4">
-                        <div className="w-8 h-8 bg-secondary rounded-lg flex items-center justify-center flex-shrink-0 mt-1">
-                          <Icon name="Check" size={20} className="text-secondary-foreground" />
-                        </div>
-                        <p className="text-foreground leading-relaxed">{advantage}</p>
-                      </div>
-                    </CardContent>
-                  </Card>
-                ))}
-              </div>
-            </div>
-
-            <div className="mb-16">
               <h2 className="text-3xl font-bold mb-8">Область применения</h2>
               <div className="grid md:grid-cols-2 gap-6">
                 {applications.map((app, index) => (
@@ -133,6 +115,24 @@ const TurningService = () => {
                           <Icon name={app.icon as any} size={24} className="text-primary" />
                         </div>
                         <p className="text-foreground leading-relaxed pt-2">{app.text}</p>
+                      </div>
+                    </CardContent>
+                  </Card>
+                ))}
+              </div>
+            </div>
+
+            <div className="mb-16">
+              <h2 className="text-3xl font-bold mb-8">Преимущества наших услуг</h2>
+              <div className="grid md:grid-cols-2 gap-4">
+                {advantages.map((advantage, index) => (
+                  <Card key={index} className="border-l-4 border-l-secondary">
+                    <CardContent className="p-6">
+                      <div className="flex items-start gap-4">
+                        <div className="w-8 h-8 bg-secondary rounded-lg flex items-center justify-center flex-shrink-0 mt-1">
+                          <Icon name="Check" size={20} className="text-secondary-foreground" />
+                        </div>
+                        <p className="text-foreground leading-relaxed">{advantage}</p>
                       </div>
                     </CardContent>
                   </Card>
