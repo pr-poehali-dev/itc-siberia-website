@@ -271,15 +271,15 @@ const Contacts = () => {
 
               <Card className="bg-muted/50">
                 <CardContent className="p-8">
-                  <h3 className="text-xl font-bold mb-4">Режим работы</h3>
-                  <div className="space-y-2 text-sm">
-                    <div className="flex justify-between">
-                      <span className="text-muted-foreground">Понедельник - Пятница:</span>
-                      <span className="font-medium">9:00 - 18:00</span>
+                  <h3 className="text-xl font-bold mb-6">Режим работы</h3>
+                  <div className="space-y-4 text-base">
+                    <div className="flex justify-between items-center gap-8">
+                      <span className="font-medium">Понедельник - Пятница:</span>
+                      <span className="font-bold text-lg">9:00 - 18:00</span>
                     </div>
-                    <div className="flex justify-between">
-                      <span className="text-muted-foreground">Суббота - Воскресенье:</span>
-                      <span className="font-medium">Выходной</span>
+                    <div className="flex justify-between items-center gap-8">
+                      <span className="font-medium">Суббота - Воскресенье:</span>
+                      <span className="font-bold text-lg">Выходной</span>
                     </div>
                   </div>
                 </CardContent>
