@@ -111,7 +111,7 @@ const About = () => {
             </div>
             <div className="relative max-w-md mx-auto">
               <img 
-                src="https://cdn.poehali.dev/projects/e90cd5e8-153a-4589-b532-06e737a47d0d/files/45022743-ed20-49de-9af3-bcb967fb5e39.jpg"
+                src="https://cdn.poehali.dev/files/AdobeStock_725429792_34-1.jpeg"
                 alt="Команда ИТЦ-Сибири"
                 className="rounded-2xl shadow-xl w-full h-[400px] object-cover"
               />
