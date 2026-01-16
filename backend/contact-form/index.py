@@ -55,7 +55,7 @@ def handler(event: dict, context) -> dict:
     smtp_host = os.environ.get('SMTP_HOST', 'smtp.yandex.ru')
     smtp_port_str = os.environ.get('SMTP_PORT', '465')
     smtp_user = os.environ.get('SMTP_USER', '')
-    smtp_password = os.environ.get('SMTP_PASSWORD', '')
+    smtp_password = os.environ.get('SMTP_PASSWORD', 'bjajftahrbwhdasx')
     contact_email = os.environ.get('CONTACT_EMAIL', 'itcsibiri@yandex.ru')
     
     try:
