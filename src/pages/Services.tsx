@@ -149,10 +149,10 @@ const Services = () => {
       <section className="pt-32 pb-12 bg-gradient-to-br from-primary via-primary/95 to-primary/90 flex items-center min-h-[300px] md:min-h-[400px]">
         <div className="container mx-auto px-4">
           <div className="max-w-4xl mx-auto text-center text-white">
-            <p className="text-base md:text-xl text-white/90">
+            <h1 className="text-2xl md:text-5xl font-bold leading-snug md:leading-tight">
               Предоставляем полный спектр услуг от проектирования до монтажа. 
               Работаем с объектами любой сложности
-            </p>
+            </h1>
           </div>
         </div>
       </section>
