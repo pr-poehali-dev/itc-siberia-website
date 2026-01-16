@@ -12,7 +12,7 @@ const Home = () => {
 
   const images = [
     { url: 'https://cdn.poehali.dev/files/110.jpg', alt: 'Токарные работы' },
-    { url: 'https://cdn.poehali.dev/projects/e90cd5e8-153a-4589-b532-06e737a47d0d/files/0b6129a4-8a22-40e6-b1ae-b12152184cdf.jpg', alt: 'Готовые изделия' },
+    { url: 'https://cdn.poehali.dev/files/210.jpg', alt: 'Токарные изделия' },
     { url: 'https://cdn.poehali.dev/files/17.jpg', alt: 'Промышленные эстакады' },
     { url: 'https://cdn.poehali.dev/files/57.jpg', alt: 'Технологические металлоконструкции' },
     { url: 'https://cdn.poehali.dev/files/67.jpg', alt: 'Технологические площадки' },
