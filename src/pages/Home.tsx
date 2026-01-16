@@ -70,7 +70,7 @@ const Home = () => {
     <div className="min-h-screen bg-white">
       <Header />
 
-      <section className="pt-28 pb-12 md:pt-36 md:pb-20 bg-gradient-to-br from-primary via-primary/95 to-primary/90">
+      <section className="pt-36 pb-12 md:pt-36 md:pb-20 bg-gradient-to-br from-primary via-primary/95 to-primary/90">
         <div className="container mx-auto px-4">
           <div className="grid md:grid-cols-2 gap-8 md:gap-12 items-center">
             <div className="text-white space-y-4 md:space-y-6 animate-fade-in">
