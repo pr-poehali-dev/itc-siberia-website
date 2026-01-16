@@ -237,6 +237,22 @@ const Contacts = () => {
             </div>
 
             <div className="space-y-8">
+              <Card className="bg-muted/50">
+                <CardContent className="p-8">
+                  <h3 className="text-xl font-bold mb-6">Режим работы</h3>
+                  <div className="space-y-4 text-base">
+                    <div className="flex justify-between items-center gap-8">
+                      <span className="font-medium">Понедельник - Пятница:</span>
+                      <span className="font-bold text-lg">9:00 - 18:00</span>
+                    </div>
+                    <div className="flex justify-between items-center gap-8">
+                      <span className="font-medium">Суббота - Воскресенье:</span>
+                      <span className="font-bold text-lg">Выходной</span>
+                    </div>
+                  </div>
+                </CardContent>
+              </Card>
+
               <div>
                 <h3 className="text-2xl font-bold mb-6">Реквизиты компании</h3>
                 <Card>
@@ -268,22 +284,6 @@ const Contacts = () => {
                   </CardContent>
                 </Card>
               </div>
-
-              <Card className="bg-muted/50">
-                <CardContent className="p-8">
-                  <h3 className="text-xl font-bold mb-6">Режим работы</h3>
-                  <div className="space-y-4 text-base">
-                    <div className="flex justify-between items-center gap-8">
-                      <span className="font-medium">Понедельник - Пятница:</span>
-                      <span className="font-bold text-lg">9:00 - 18:00</span>
-                    </div>
-                    <div className="flex justify-between items-center gap-8">
-                      <span className="font-medium">Суббота - Воскресенье:</span>
-                      <span className="font-bold text-lg">Выходной</span>
-                    </div>
-                  </div>
-                </CardContent>
-              </Card>
             </div>
           </div>
         </div>
