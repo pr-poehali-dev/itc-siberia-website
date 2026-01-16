@@ -65,9 +65,9 @@ const Contacts = () => {
 
   const contactInfo = [
     {
-      icon: 'MapPin',
-      title: 'Адрес',
-      details: ['660020, Красноярский край, г. Красноярск,', 'ул. Дудинская, д. 5']
+      icon: 'Mail',
+      title: 'Email',
+      details: ['itc2555888@mail.ru']
     },
     {
       icon: 'Phone',
@@ -75,9 +75,9 @@ const Contacts = () => {
       details: ['8-905-975-58-88', '8-913-532-28-88', '8-391-2-555-888', '8-391-2-502-888']
     },
     {
-      icon: 'Mail',
-      title: 'Email',
-      details: ['itc2555888@mail.ru']
+      icon: 'MapPin',
+      title: 'Адрес',
+      details: ['660020, Красноярский край, г. Красноярск,', 'ул. Дудинская, д. 5']
     }
   ];
 
