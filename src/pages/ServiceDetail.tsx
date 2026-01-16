@@ -96,16 +96,14 @@ const ServiceDetail = () => {
       <section className="py-20">
         <div className="container mx-auto px-4">
           <div className="max-w-4xl mx-auto">
-            <h2 className="text-3xl font-bold mb-8">Преимущества наших закладных деталей</h2>
-            <div className="grid gap-4">
-              {advantages.map((advantage, index) => (
-                <Card key={index} className="hover-scale">
+            <h2 className="text-3xl font-bold mb-8">Область применения</h2>
+            <div className="grid md:grid-cols-2 gap-4">
+              {applications.map((app, index) => (
+                <Card key={index}>
                   <CardContent className="p-6">
-                    <div className="flex items-start gap-4">
-                      <div className="w-10 h-10 bg-secondary/10 rounded-full flex items-center justify-center flex-shrink-0">
-                        <Icon name="Check" size={24} className="text-secondary" />
-                      </div>
-                      <p className="text-lg">{advantage}</p>
+                    <div className="flex items-center gap-3">
+                      <Icon name="Building2" size={24} className="text-primary flex-shrink-0" />
+                      <p className="font-medium">{app}</p>
                     </div>
                   </CardContent>
                 </Card>
@@ -118,14 +116,16 @@ const ServiceDetail = () => {
       <section className="py-20 bg-muted/30">
         <div className="container mx-auto px-4">
           <div className="max-w-4xl mx-auto">
-            <h2 className="text-3xl font-bold mb-8">Область применения</h2>
-            <div className="grid md:grid-cols-2 gap-4">
-              {applications.map((app, index) => (
-                <Card key={index}>
+            <h2 className="text-3xl font-bold mb-8">Преимущества наших закладных деталей</h2>
+            <div className="grid gap-4">
+              {advantages.map((advantage, index) => (
+                <Card key={index} className="hover-scale">
                   <CardContent className="p-6">
-                    <div className="flex items-center gap-3">
-                      <Icon name="Building2" size={24} className="text-primary flex-shrink-0" />
-                      <p className="font-medium">{app}</p>
+                    <div className="flex items-start gap-4">
+                      <div className="w-10 h-10 bg-secondary/10 rounded-full flex items-center justify-center flex-shrink-0">
+                        <Icon name="Check" size={24} className="text-secondary" />
+                      </div>
+                      <p className="text-lg">{advantage}</p>
                     </div>
                   </CardContent>
                 </Card>
