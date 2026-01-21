@@ -44,11 +44,11 @@ def handler(event: dict, context) -> dict:
                 'body': json.dumps({'error': 'Заполните все обязательные поля'})
             }
         
-        smtp_host = os.environ.get(smtp.mail.ru)
-        smtp_port_str = os.environ.get(465)
-        smtp_user = os.environ.get(itc2555888@mail.ru)
-        smtp_password = os.environ.get(oyxy9U6tyjV0mjytH2eW)
-        contact_email = os.environ.get(itc2555888@mail.ru)
+        smtp_host = smtp.mail.ru
+        smtp_port_str = 465
+        smtp_user = itc2555888@mail.ru
+        smtp_password = oyxy9U6tyjV0mjytH2eW
+        contact_email = itc2555888@mail.ru
         
         if not all([smtp_host, smtp_port_str, smtp_user, smtp_password, contact_email]):
             return {
