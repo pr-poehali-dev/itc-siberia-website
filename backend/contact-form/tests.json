@@ -5,10 +5,7 @@
       "method": "POST",
       "body": {
         "name": "Иван Петров",
-        "phone": "+7 (999) 123-45-67",
-        "email": "test@example.com",
-        "company": "ООО Тест",
-        "message": "Тестовое сообщение с формы обратной связи"
+        "phone": "+7 999 123 45 67"
       },
       "expectedStatus": 200,
       "expectedBody": {
@@ -20,8 +17,7 @@
       "name": "Missing required name field",
       "method": "POST",
       "body": {
-        "phone": "+7 (999) 123-45-67",
-        "message": "Тестовое сообщение"
+        "phone": "+7 999 123 45 67"
       },
       "expectedStatus": 400,
       "expectedBody": {
@@ -30,13 +26,10 @@
       "bodyMatcher": "partial"
     },
     {
-      "name": "Invalid email format",
+      "name": "Missing required phone field",
       "method": "POST",
       "body": {
-        "name": "Иван Петров",
-        "phone": "+7 (999) 123-45-67",
-        "email": "invalid-email",
-        "message": "Тестовое сообщение"
+        "name": "Иван Петров"
       },
       "expectedStatus": 400,
       "expectedBody": {
