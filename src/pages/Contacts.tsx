@@ -2,7 +2,6 @@ import { useState } from 'react';
 import func2url from '../../backend/func2url.json';
 import { Card, CardContent } from '@/components/ui/card';
 import { Input } from '@/components/ui/input';
-import { Textarea } from '@/components/ui/textarea';
 import { Button } from '@/components/ui/button';
 import { Badge } from '@/components/ui/badge';
 import Icon from '@/components/ui/icon';
@@ -12,29 +11,59 @@ import Footer from '@/components/Footer';
 const Contacts = () => {
   const [formData, setFormData] = useState({
     name: '',
-    phone: '',
-    email: '',
-    company: '',
-    message: ''
+    phone: ''
   });
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [submitStatus, setSubmitStatus] = useState<'idle' | 'success' | 'error'>('idle');
   const [errorMessage, setErrorMessage] = useState('');
 
+  const formatPhoneNumber = (value: string) => {
+    const digits = value.replace(/\D/g, '');
+    
+    if (digits.length === 0) return '';
+    if (digits.length <= 1) return '+7';
+    
+    let formatted = '+7';
+    if (digits.length > 1) formatted += ' ' + digits.slice(1, 4);
+    if (digits.length > 4) formatted += ' ' + digits.slice(4, 7);
+    if (digits.length > 7) formatted += ' ' + digits.slice(7, 9);
+    if (digits.length > 9) formatted += ' ' + digits.slice(9, 11);
+    
+    return formatted;
+  };
+
+  const handlePhoneChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const input = e.target.value;
+    const digits = input.replace(/\D/g, '');
+    
+    if (digits.length <= 11) {
+      setFormData({ ...formData, phone: formatPhoneNumber(input) });
+    }
+  };
+
+  const validatePhone = () => {
+    const digits = formData.phone.replace(/\D/g, '');
+    return digits.length === 11;
+  };
+
   const handleMailtoFallback = () => {
     const subject = encodeURIComponent(`Заявка с сайта от ${formData.name}`);
     const body = encodeURIComponent(
       `Имя: ${formData.name}\n` +
-      `Телефон: ${formData.phone}\n` +
-      `Email: ${formData.email}\n` +
-      `Компания: ${formData.company}\n\n` +
-      `Сообщение:\n${formData.message}`
+      `Телефон: ${formData.phone}`
     );
     window.location.href = `mailto:itc2555888@mail.ru?subject=${subject}&body=${body}`;
   };
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
+    
+    if (!validatePhone()) {
+      setSubmitStatus('error');
+      setErrorMessage('Введите корректный номер телефона в формате +7 XXX XXX XX XX');
+      return;
+    }
+    
     setIsSubmitting(true);
     setSubmitStatus('idle');
     setErrorMessage('');
@@ -50,7 +79,7 @@ const Contacts = () => {
 
       if (response.ok) {
         setSubmitStatus('success');
-        setFormData({ name: '', phone: '', email: '', company: '', message: '' });
+        setFormData({ name: '', phone: '' });
       } else {
         setSubmitStatus('error');
         setErrorMessage(result.error || 'Ошибка отправки заявки');
@@ -136,8 +165,7 @@ const Contacts = () => {
             <div>
               <h2 className="text-3xl font-bold mb-6">Оставьте заявку</h2>
               <p className="text-muted-foreground mb-8">
-                Заполните форму, и наш специалист свяжется с вами в ближайшее время 
-                для обсуждения деталей проекта
+                Оставьте свои контакты, и наш специалист свяжется с вами в ближайшее время
               </p>
               
               <Card>
@@ -169,40 +197,10 @@ const Contacts = () => {
                       <label className="text-sm font-medium mb-2 block">Телефон *</label>
                       <Input 
                         type="tel" 
-                        placeholder="+7 (___) ___-__-__" 
+                        placeholder="+7 XXX XXX XX XX" 
                         className="w-full" 
                         value={formData.phone}
-                        onChange={(e) => setFormData({...formData, phone: e.target.value})}
-                        required
-                      />
-                    </div>
-                    <div>
-                      <label className="text-sm font-medium mb-2 block">Email</label>
-                      <Input 
-                        type="email" 
-                        placeholder="example@mail.ru" 
-                        className="w-full" 
-                        value={formData.email}
-                        onChange={(e) => setFormData({...formData, email: e.target.value})}
-                      />
-                    </div>
-                    <div>
-                      <label className="text-sm font-medium mb-2 block">Компания</label>
-                      <Input 
-                        placeholder="Название компании" 
-                        className="w-full" 
-                        value={formData.company}
-                        onChange={(e) => setFormData({...formData, company: e.target.value})}
-                      />
-                    </div>
-                    <div>
-                      <label className="text-sm font-medium mb-2 block">Сообщение *</label>
-                      <Textarea 
-                        placeholder="Опишите ваш проект или задайте вопрос" 
-                        rows={5} 
-                        className="w-full" 
-                        value={formData.message}
-                        onChange={(e) => setFormData({...formData, message: e.target.value})}
+                        onChange={handlePhoneChange}
                         required
                       />
                     </div>
