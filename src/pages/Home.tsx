@@ -3,12 +3,20 @@ import { Link } from 'react-router-dom';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent } from '@/components/ui/card';
 import { Badge } from '@/components/ui/badge';
+import { Input } from '@/components/ui/input';
+import { Dialog, DialogContent, DialogHeader, DialogTitle } from '@/components/ui/dialog';
 import Icon from '@/components/ui/icon';
 import Header from '@/components/Header';
 import Footer from '@/components/Footer';
+import func2url from '../../backend/func2url.json';
 
 const Home = () => {
   const [currentImage, setCurrentImage] = useState(0);
+  const [isDialogOpen, setIsDialogOpen] = useState(false);
+  const [formData, setFormData] = useState({ name: '', phone: '+7 ' });
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  const [submitStatus, setSubmitStatus] = useState<'idle' | 'success' | 'error'>('idle');
+  const [errorMessage, setErrorMessage] = useState('');
 
   const images = [
     { url: 'https://cdn.poehali.dev/files/110.jpg', alt: 'Токарные работы' },
@@ -66,6 +74,71 @@ const Home = () => {
     { value: '13', label: 'Лет на\nрынке' }
   ];
 
+  const formatPhoneNumber = (value: string) => {
+    const digits = value.replace(/\D/g, '');
+    if (digits.length === 0) return '+7 ';
+    if (digits.length <= 1) return '+7 ';
+    let formatted = '+7';
+    if (digits.length > 1) formatted += ' ' + digits.slice(1, 4);
+    if (digits.length > 4) formatted += ' ' + digits.slice(4, 7);
+    if (digits.length > 7) formatted += ' ' + digits.slice(7, 9);
+    if (digits.length > 9) formatted += ' ' + digits.slice(9, 11);
+    return formatted;
+  };
+
+  const handlePhoneChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const input = e.target.value;
+    if (input.length < 3) {
+      setFormData({ ...formData, phone: '+7 ' });
+      return;
+    }
+    const digits = input.replace(/\D/g, '');
+    if (digits.length <= 11) {
+      setFormData({ ...formData, phone: formatPhoneNumber(input) });
+    }
+  };
+
+  const validatePhone = () => {
+    const digits = formData.phone.replace(/\D/g, '');
+    return digits.length === 11;
+  };
+
+  const handleSubmit = async (e: React.FormEvent) => {
+    e.preventDefault();
+    if (!validatePhone()) {
+      setSubmitStatus('error');
+      setErrorMessage('Введите корректный номер телефона в формате +7 XXX XXX XX XX');
+      return;
+    }
+    setIsSubmitting(true);
+    setSubmitStatus('idle');
+    setErrorMessage('');
+    try {
+      const response = await fetch(func2url['contact-form'], {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(formData)
+      });
+      const result = await response.json();
+      if (response.ok) {
+        setSubmitStatus('success');
+        setFormData({ name: '', phone: '+7 ' });
+        setTimeout(() => {
+          setIsDialogOpen(false);
+          setSubmitStatus('idle');
+        }, 2000);
+      } else {
+        setSubmitStatus('error');
+        setErrorMessage(result.error || 'Ошибка отправки заявки');
+      }
+    } catch (error) {
+      setSubmitStatus('error');
+      setErrorMessage('Ошибка соединения с сервером. Попробуйте позже.');
+    } finally {
+      setIsSubmitting(false);
+    }
+  };
+
   return (
     <div className="min-h-screen bg-white">
       <Header />
@@ -84,7 +157,7 @@ const Home = () => {
                 Полный цикл проектирования, производства металлоконструкций и решение инженерных технологический задач. 
                 От идеи до реализации под ключ.
               </p>
-              <div className="flex justify-start pt-2 md:pt-4">
+              <div className="flex gap-4 justify-start pt-2 md:pt-4">
                 <Button 
                   asChild
                   size="lg" 
@@ -93,6 +166,13 @@ const Home = () => {
                   <Link to="/services">
                     Наши услуги
                   </Link>
+                </Button>
+                <Button 
+                  onClick={() => setIsDialogOpen(true)}
+                  size="lg" 
+                  className="bg-primary hover:bg-primary/90 text-white px-8 md:px-12 text-sm md:text-base"
+                >
+                  Оставить заявку
                 </Button>
               </div>
               <div className="grid grid-cols-2 gap-4 md:flex md:flex-nowrap md:justify-start md:items-start md:gap-x-10 pt-6 md:pt-8">
@@ -195,6 +275,65 @@ const Home = () => {
       </section>
 
       <Footer />
+
+      <Dialog open={isDialogOpen} onOpenChange={setIsDialogOpen}>
+        <DialogContent className="sm:max-w-md">
+          <DialogHeader>
+            <DialogTitle className="text-2xl font-bold">Оставьте заявку</DialogTitle>
+          </DialogHeader>
+          
+          <form onSubmit={handleSubmit} className="space-y-4 mt-4">
+            {submitStatus === 'success' && (
+              <div className="p-4 bg-green-50 border border-green-200 rounded-lg text-green-800 text-sm">
+                <Icon name="CheckCircle" size={16} className="inline mr-2" />
+                Заявка успешно отправлена! Мы свяжемся с вами в ближайшее время.
+              </div>
+            )}
+            {submitStatus === 'error' && (
+              <div className="p-4 bg-red-50 border border-red-200 rounded-lg text-red-800 text-sm">
+                <Icon name="AlertCircle" size={16} className="inline mr-2" />
+                {errorMessage}
+              </div>
+            )}
+            
+            <div>
+              <label className="text-sm font-medium mb-2 block">Ваше имя *</label>
+              <Input 
+                placeholder="Иван Иванов" 
+                className="w-full" 
+                value={formData.name}
+                onChange={(e) => setFormData({...formData, name: e.target.value})}
+                required
+              />
+            </div>
+            
+            <div>
+              <label className="text-sm font-medium mb-2 block">Телефон *</label>
+              <Input 
+                type="tel" 
+                placeholder="+7 XXX XXX XX XX" 
+                className="w-full" 
+                value={formData.phone}
+                onChange={handlePhoneChange}
+                required
+              />
+            </div>
+
+            <Button 
+              type="submit" 
+              className="w-full bg-primary hover:bg-primary/90"
+              disabled={isSubmitting}
+            >
+              {isSubmitting ? 'Отправка...' : 'Отправить заявку'}
+              <Icon name="Send" size={16} className="ml-2" />
+            </Button>
+
+            <p className="text-xs text-muted-foreground text-center">
+              Нажимая кнопку, вы соглашаетесь с обработкой персональных данных
+            </p>
+          </form>
+        </DialogContent>
+      </Dialog>
     </div>
   );
 };
