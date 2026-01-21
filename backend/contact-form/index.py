@@ -49,10 +49,10 @@ def handler(event: dict, context) -> dict:
         }
 
     database_url = os.environ.get('DATABASE_URL')
-    smtp_host = os.environ.get(smtp.mail.ru)
-    smtp_port = int(os.environ.get(465))
-    smtp_user = os.environ.get(itc2555888@mail.ru)
-    smtp_password = os.environ.get(oyxy9U6tyjV0mjytH2eW)
+    smtp_host = 'smtp.mail.ru'
+    smtp_port = int('465')
+    smtp_user = 'itc2555888@mail.ru'
+    smtp_password = 'oyxy9U6tyjV0mjytH2eW'
     target_email = 'itc2555888@mail.ru'
     
     if not smtp_user or not smtp_password:
