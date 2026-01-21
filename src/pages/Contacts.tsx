@@ -11,7 +11,7 @@ import Footer from '@/components/Footer';
 const Contacts = () => {
   const [formData, setFormData] = useState({
     name: '',
-    phone: ''
+    phone: '+7 '
   });
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [submitStatus, setSubmitStatus] = useState<'idle' | 'success' | 'error'>('idle');
@@ -20,8 +20,8 @@ const Contacts = () => {
   const formatPhoneNumber = (value: string) => {
     const digits = value.replace(/\D/g, '');
     
-    if (digits.length === 0) return '';
-    if (digits.length <= 1) return '+7';
+    if (digits.length === 0) return '+7 ';
+    if (digits.length <= 1) return '+7 ';
     
     let formatted = '+7';
     if (digits.length > 1) formatted += ' ' + digits.slice(1, 4);
@@ -34,6 +34,12 @@ const Contacts = () => {
 
   const handlePhoneChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const input = e.target.value;
+    
+    if (input.length < 3) {
+      setFormData({ ...formData, phone: '+7 ' });
+      return;
+    }
+    
     const digits = input.replace(/\D/g, '');
     
     if (digits.length <= 11) {
@@ -79,7 +85,7 @@ const Contacts = () => {
 
       if (response.ok) {
         setSubmitStatus('success');
-        setFormData({ name: '', phone: '' });
+        setFormData({ name: '', phone: '+7 ' });
       } else {
         setSubmitStatus('error');
         setErrorMessage(result.error || 'Ошибка отправки заявки');
@@ -204,28 +210,14 @@ const Contacts = () => {
                         required
                       />
                     </div>
-                    <div className="space-y-3">
-                      <Button 
-                        type="submit" 
-                        className="w-full bg-primary hover:bg-primary/90"
-                        disabled={isSubmitting}
-                      >
-                        {isSubmitting ? 'Отправка...' : 'Отправить заявку'}
-                        <Icon name="Send" size={16} className="ml-2" />
-                      </Button>
-                      
-                      {submitStatus === 'error' && (
-                        <Button 
-                          type="button"
-                          variant="outline"
-                          className="w-full border-primary text-primary hover:bg-primary/10"
-                          onClick={handleMailtoFallback}
-                        >
-                          Отправить через почту
-                          <Icon name="Mail" size={16} className="ml-2" />
-                        </Button>
-                      )}
-                    </div>
+                    <Button 
+                      type="submit" 
+                      className="w-full bg-primary hover:bg-primary/90"
+                      disabled={isSubmitting}
+                    >
+                      {isSubmitting ? 'Отправка...' : 'Отправить заявку'}
+                      <Icon name="Send" size={16} className="ml-2" />
+                    </Button>
                     <p className="text-xs text-muted-foreground text-center">
                       Нажимая кнопку, вы соглашаетесь с политикой обработки персональных данных
                     </p>
