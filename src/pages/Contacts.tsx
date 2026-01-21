@@ -67,6 +67,7 @@ const Contacts = () => {
     if (!validatePhone()) {
       setSubmitStatus('error');
       setErrorMessage('Введите корректный номер телефона в формате +7 XXX XXX XX XX');
+      window.scrollTo({ top: 0, behavior: 'smooth' });
       return;
     }
     
@@ -86,13 +87,16 @@ const Contacts = () => {
       if (response.ok) {
         setSubmitStatus('success');
         setFormData({ name: '', phone: '+7 ' });
+        window.scrollTo({ top: 0, behavior: 'smooth' });
       } else {
         setSubmitStatus('error');
         setErrorMessage(result.error || 'Ошибка отправки заявки');
+        window.scrollTo({ top: 0, behavior: 'smooth' });
       }
     } catch (error) {
       setSubmitStatus('error');
       setErrorMessage('Ошибка соединения с сервером. Попробуйте позже или используйте кнопку "Отправить через почту".');
+      window.scrollTo({ top: 0, behavior: 'smooth' });
     } finally {
       setIsSubmitting(false);
     }
