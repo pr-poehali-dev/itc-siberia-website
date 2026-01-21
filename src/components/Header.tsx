@@ -17,6 +17,13 @@ const Header = () => {
     { path: '/contacts', label: 'Контакты' }
   ];
 
+  const handleContactClick = (e: React.MouseEvent) => {
+    if (location.pathname === '/contacts') {
+      e.preventDefault();
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    }
+  };
+
   return (
     <header className="fixed top-0 w-full bg-white/95 backdrop-blur-sm shadow-sm z-50">
       <div className="container mx-auto px-4 py-4">
@@ -46,7 +53,7 @@ const Header = () => {
           </nav>
 
           <Button asChild className="hidden md:inline-flex bg-secondary hover:bg-secondary/90 text-secondary-foreground">
-            <Link to="/contacts">
+            <Link to="/contacts" onClick={handleContactClick}>
               <Icon name="Phone" size={16} className="mr-2" />
               Связаться
             </Link>
@@ -83,7 +90,7 @@ const Header = () => {
               asChild
               className="bg-secondary hover:bg-secondary/90 text-secondary-foreground w-full mt-2"
             >
-              <Link to="/contacts" onClick={() => setMobileMenuOpen(false)}>
+              <Link to="/contacts" onClick={(e) => { handleContactClick(e); setMobileMenuOpen(false); }}>
                 <Icon name="Phone" size={16} className="mr-2" />
                 Связаться
               </Link>
