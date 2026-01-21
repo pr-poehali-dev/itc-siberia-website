@@ -170,7 +170,7 @@ const Home = () => {
                 <Button 
                   onClick={() => setIsDialogOpen(true)}
                   size="lg" 
-                  className="bg-primary hover:bg-primary/90 text-white px-8 md:px-12 text-sm md:text-base"
+                  className="bg-secondary hover:bg-secondary/90 text-secondary-foreground px-8 md:px-12 text-sm md:text-base"
                 >
                   Оставить заявку
                 </Button>
