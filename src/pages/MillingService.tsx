@@ -47,12 +47,12 @@ const MillingService = () => {
   ];
 
   const images = [
-    { url: 'https://cdn.poehali.dev/files/59.jpg', alt: 'Фрезерование сложной детали на станке ЧПУ' },
-    { url: 'https://cdn.poehali.dev/files/69.jpg', alt: 'Контроль качества фрезерованной заготовки' },
-    { url: 'https://cdn.poehali.dev/files/19.jpg', alt: 'Фрезерование пластиковой детали' },
-    { url: 'https://cdn.poehali.dev/files/29.jpg', alt: 'Фрезерование алюминиевой детали' },
-    { url: 'https://cdn.poehali.dev/files/39.jpg', alt: 'Готовые фрезерованные детали из алюминия' },
-    { url: 'https://cdn.poehali.dev/files/49.jpg', alt: 'Процесс фрезеровки металлической заготовки' }
+    { url: 'https://cdn.poehali.dev/files/74fe7e8b-f9a3-4255-830a-0f9958247e6d.jpg', alt: 'Фрезерная обработка на станке ЧПУ с высокой точностью' },
+    { url: 'https://cdn.poehali.dev/files/d41b8f97-27d4-41c1-9413-b73636698be0.jpeg', alt: 'Процесс фрезерования металлической детали' },
+    { url: 'https://cdn.poehali.dev/files/492a7f88-9035-40ab-ae5a-ea4de8d889f3.jpg', alt: 'Фрезерный станок с деталью в процессе обработки' },
+    { url: 'https://cdn.poehali.dev/files/237bd106-068a-40b3-ae3d-2a2585a40762.jpg', alt: 'Готовые фрезерованные детали и фланцы из алюминия' },
+    { url: 'https://cdn.poehali.dev/files/592bfce1-6f8e-4b02-bda8-fadfe080a668.jpg', alt: 'Фрезеровка цилиндрической заготовки на ЧПУ' },
+    { url: 'https://cdn.poehali.dev/files/b9faf061-9f9e-47e6-8f81-c07227534eda.jpg', alt: 'Процесс фрезерования сложной детали с охлаждением' }
   ];
 
   return (
