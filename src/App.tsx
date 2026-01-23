@@ -21,6 +21,7 @@ import MillingService from "./pages/MillingService";
 import TurningService from "./pages/TurningService";
 import ContainersService from "./pages/ContainersService";
 import EngineeringService from "./pages/EngineeringService";
+import MetalProcessing from "./pages/MetalProcessing";
 import Contacts from "./pages/Contacts";
 import NotFound from "./pages/NotFound";
 
@@ -50,6 +51,7 @@ const App = () => (
           <Route path="/services/frezernye" element={<MillingService />} />
           <Route path="/services/tokarnye" element={<TurningService />} />
           <Route path="/services/inzhiniring" element={<EngineeringService />} />
+          <Route path="/services/metalloobrabotka" element={<MetalProcessing />} />
           <Route path="/contacts" element={<Contacts />} />
           {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
           <Route path="*" element={<NotFound />} />
