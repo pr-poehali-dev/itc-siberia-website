@@ -172,48 +172,50 @@ const Services = () => {
       <section className="py-20">
         <div className="container mx-auto px-4">
           <div className="grid md:grid-cols-2 gap-8">
-            {services.map((service, index) => (
-              <Card key={index} className="hover-scale flex flex-col">
-                <CardContent className="p-8 flex flex-col flex-grow">
-                  <div className="w-16 h-16 bg-primary rounded-xl flex items-center justify-center mb-6">
-                    <Icon name={service.icon as any} size={32} className="text-white" />
-                  </div>
-                  <h3 className="text-2xl font-bold mb-3">{service.title}</h3>
-                  <p className="text-muted-foreground mb-6">{service.description}</p>
-                  <div className="space-y-2 mb-6 flex-grow">
-                    {service.details.map((detail, idx) => (
-                      <div key={idx} className="flex items-start gap-2">
-                        <Icon name="Check" size={18} className="text-secondary mt-0.5 flex-shrink-0" />
-                        <span className="text-sm">{detail}</span>
+            {services.map((service, index) => {
+              const serviceUrl = 
+                index === 0 ? "/services/zakladnye-zbi" : 
+                index === 1 ? "/services/dekorativnye" : 
+                index === 2 ? "/services/angary" : 
+                index === 3 ? "/services/osveshchenie" :
+                index === 4 ? "/services/sklady" :
+                index === 5 ? "/services/stroitelnye" :
+                index === 6 ? "/services/tehnologicheskie" :
+                index === 7 ? "/services/svarnye" :
+                index === 8 ? "/services/emkosti" :
+                index === 9 ? "/services/frezernye" :
+                index === 10 ? "/services/tokarnye" :
+                index === 11 ? "/services/metalloobrabotka" :
+                "/contacts";
+
+              return (
+                <Link key={index} to={serviceUrl}>
+                  <Card className="hover-scale flex flex-col h-full cursor-pointer transition-shadow hover:shadow-xl">
+                    <CardContent className="p-8 flex flex-col flex-grow">
+                      <div className="w-16 h-16 bg-primary rounded-xl flex items-center justify-center mb-6">
+                        <Icon name={service.icon as any} size={32} className="text-white" />
                       </div>
-                    ))}
-                  </div>
-                  <Button 
-                    asChild 
-                    className="w-full bg-primary hover:bg-primary/90 mt-auto"
-                  >
-                    <Link to={
-                      index === 0 ? "/services/zakladnye-zbi" : 
-                      index === 1 ? "/services/dekorativnye" : 
-                      index === 2 ? "/services/angary" : 
-                      index === 3 ? "/services/osveshchenie" :
-                      index === 4 ? "/services/sklady" :
-                      index === 5 ? "/services/stroitelnye" :
-                      index === 6 ? "/services/tehnologicheskie" :
-                      index === 7 ? "/services/svarnye" :
-                      index === 8 ? "/services/emkosti" :
-                      index === 9 ? "/services/frezernye" :
-                      index === 10 ? "/services/tokarnye" :
-                      index === 11 ? "/services/metalloobrabotka" :
-                      "/contacts"
-                    }>
-                      {(index >= 0 && index <= 11) ? 'Подробнее' : 'Заказать услугу'}
-                      <Icon name="ArrowRight" size={16} className="ml-2" />
-                    </Link>
-                  </Button>
-                </CardContent>
-              </Card>
-            ))}
+                      <h3 className="text-2xl font-bold mb-3">{service.title}</h3>
+                      <p className="text-muted-foreground mb-6">{service.description}</p>
+                      <div className="space-y-2 mb-6 flex-grow">
+                        {service.details.map((detail, idx) => (
+                          <div key={idx} className="flex items-start gap-2">
+                            <Icon name="Check" size={18} className="text-secondary mt-0.5 flex-shrink-0" />
+                            <span className="text-sm">{detail}</span>
+                          </div>
+                        ))}
+                      </div>
+                      <Button 
+                        className="w-full bg-primary hover:bg-primary/90 mt-auto"
+                      >
+                        {(index >= 0 && index <= 11) ? 'Подробнее' : 'Заказать услугу'}
+                        <Icon name="ArrowRight" size={16} className="ml-2" />
+                      </Button>
+                    </CardContent>
+                  </Card>
+                </Link>
+              );
+            })}
           </div>
         </div>
       </section>
