@@ -234,23 +234,27 @@ const Home = () => {
           </div>
 
           <div className="grid md:grid-cols-3 gap-8">
-            {services.map((service, index) => (
-              <Card key={index} className="hover-scale flex flex-col">
-                <CardContent className="p-8 flex flex-col flex-grow">
-                  <div className="w-16 h-16 bg-primary rounded-xl flex items-center justify-center mb-6">
-                    <Icon name={service.icon as any} size={32} className="text-white" />
-                  </div>
-                  <h3 className="text-2xl font-bold mb-3">{service.title}</h3>
-                  <p className="text-muted-foreground mb-4 flex-grow min-h-[3rem]">{service.description}</p>
-                  <Button asChild variant="link" className="p-0 text-primary self-start">
-                    <Link to={index === 0 ? "/services/inzhiniring" : "/services"}>
-                      Подробнее
-                      <Icon name="ArrowRight" size={16} className="ml-2" />
-                    </Link>
-                  </Button>
-                </CardContent>
-              </Card>
-            ))}
+            {services.map((service, index) => {
+              const serviceUrl = index === 0 ? "/services/inzhiniring" : "/services";
+              
+              return (
+                <Link key={index} to={serviceUrl}>
+                  <Card className="hover-scale flex flex-col h-full cursor-pointer transition-shadow hover:shadow-xl">
+                    <CardContent className="p-8 flex flex-col flex-grow">
+                      <div className="w-16 h-16 bg-primary rounded-xl flex items-center justify-center mb-6">
+                        <Icon name={service.icon as any} size={32} className="text-white" />
+                      </div>
+                      <h3 className="text-2xl font-bold mb-3">{service.title}</h3>
+                      <p className="text-muted-foreground mb-4 flex-grow min-h-[3rem]">{service.description}</p>
+                      <div className="text-primary self-start flex items-center font-medium">
+                        Подробнее
+                        <Icon name="ArrowRight" size={16} className="ml-2" />
+                      </div>
+                    </CardContent>
+                  </Card>
+                </Link>
+              );
+            })}
           </div>
         </div>
       </section>
