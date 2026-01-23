@@ -30,10 +30,12 @@ const ServiceDetail = () => {
   ];
 
   const images = [
-    'https://cdn.poehali.dev/files/3.jpg',
-    'https://cdn.poehali.dev/files/4.jpg',
-    'https://cdn.poehali.dev/files/5.jpg',
-    'https://cdn.poehali.dev/files/6.jpg'
+    'https://cdn.poehali.dev/files/fe9019f5-d897-4d12-b592-671ff42bce9e.jpg',
+    'https://cdn.poehali.dev/files/cc00f12b-1066-4911-a1de-2ffa710dab9c.jpg',
+    'https://cdn.poehali.dev/files/ea71e03f-4e39-4b98-9b45-77231d18ad57.jpg',
+    'https://cdn.poehali.dev/files/4f2b11f4-d743-4a31-afc6-fa3f5a526c23.jpg',
+    'https://cdn.poehali.dev/files/b26aca73-87b4-4990-8c84-ba9d0afe2c8f.jpg',
+    'https://cdn.poehali.dev/files/22119a27-4d4e-4f6d-88ce-9422542a9452.jpg'
   ];
 
   return (
