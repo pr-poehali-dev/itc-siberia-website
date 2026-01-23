@@ -43,12 +43,12 @@ const DecorativeService = () => {
   ];
 
   const images = [
-    { url: 'https://cdn.poehali.dev/files/1.jpg', alt: 'Декоративные металлические ограждения' },
-    { url: 'https://cdn.poehali.dev/files/2.jpg', alt: 'Декоративные металлические панели с орнаментом' },
-    { url: 'https://cdn.poehali.dev/files/32.jpg', alt: 'Фасадный декор из металла' },
-    { url: 'https://cdn.poehali.dev/files/42.jpg', alt: 'Декоративный мостик с коваными элементами' },
-    { url: 'https://cdn.poehali.dev/files/52.jpg', alt: 'Металлическая конструкция для ландшафта' },
-    { url: 'https://cdn.poehali.dev/files/62.jpg', alt: 'Декоративные беседки из металла' }
+    { url: 'https://cdn.poehali.dev/files/262eb485-abfa-466c-afc3-a7e2447ca85b.jpg', alt: 'Декоративная металлическая ферма для сцены' },
+    { url: 'https://cdn.poehali.dev/files/6c63d4ae-ac04-4653-b45c-317591bcfb11.jpg', alt: 'Декоративные арочные перголы с деревом' },
+    { url: 'https://cdn.poehali.dev/files/6810eee5-2284-487e-ab31-ff20aa6f473d.jpg', alt: 'Декоративные металлические ограждения с узором' },
+    { url: 'https://cdn.poehali.dev/files/60c64a9f-a258-430c-b2bb-de3d4504e12f.jpg', alt: 'Декоративные панели с геометрическим орнаментом' },
+    { url: 'https://cdn.poehali.dev/files/df9d90e4-6598-4821-9176-33d3e3f8b399.jpg', alt: 'Фасадный декор с ажурным узором' },
+    { url: 'https://cdn.poehali.dev/files/852987e8-0587-4106-8765-77aafd29cadc.jpg', alt: 'Декоративный мостик с коваными перилами' }
   ];
 
   return (
