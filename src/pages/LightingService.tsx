@@ -50,7 +50,7 @@ const LightingService = () => {
     { url: 'https://cdn.poehali.dev/files/44.jpg', alt: 'Сравнение обычного и LED дорожного освещения' },
     { url: 'https://cdn.poehali.dev/files/54.jpg', alt: 'Освещение скоростной автомагистрали' },
     { url: 'https://cdn.poehali.dev/files/14.jpg', alt: 'Городское дорожное освещение' },
-    { url: 'https://cdn.poehali.dev/files/7e69c3ea-4c07-4ba3-bb84-91a6a686d044.jpeg', alt: 'Опора уличного освещения с LED светильниками' },
+    { url: 'https://cdn.poehali.dev/files/6c88746a-71a2-4a76-8f48-c707410afed5.jpg', alt: 'Консольный LED светильник на опоре' },
     { url: 'https://cdn.poehali.dev/files/24.jpg', alt: 'Современное LED освещение трассы' },
     { url: 'https://cdn.poehali.dev/files/34.jpg', alt: 'Освещение пешеходной зоны' }
   ];
