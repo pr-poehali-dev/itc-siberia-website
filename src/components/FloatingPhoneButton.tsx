@@ -167,7 +167,7 @@ const FloatingPhoneButton = () => {
               <Button 
                 type="button"
                 asChild
-                className="w-full bg-secondary hover:bg-secondary/90 text-secondary-foreground"
+                className="w-full bg-secondary hover:bg-secondary/90 text-secondary-foreground md:hidden"
               >
                 <a href="tel:+79059755888">
                   <Icon name="Phone" size={16} className="mr-2" />
