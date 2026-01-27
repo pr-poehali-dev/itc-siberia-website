@@ -90,10 +90,10 @@ const Header = () => {
               asChild
               className="bg-secondary hover:bg-secondary/90 text-secondary-foreground w-full mt-2"
             >
-              <Link to="/contacts" onClick={(e) => { handleContactClick(e); setMobileMenuOpen(false); }}>
+              <a href="tel:+79059755888" onClick={() => setMobileMenuOpen(false)}>
                 <Icon name="Phone" size={16} className="mr-2" />
                 Связаться
-              </Link>
+              </a>
             </Button>
           </nav>
         </div>
