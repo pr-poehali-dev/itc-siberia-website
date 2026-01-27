@@ -154,14 +154,27 @@ const FloatingPhoneButton = () => {
               />
             </div>
 
-            <Button 
-              type="submit" 
-              className="w-full bg-primary hover:bg-primary/90"
-              disabled={isSubmitting}
-            >
-              {isSubmitting ? 'Отправка...' : 'Отправить заявку'}
-              <Icon name="Send" size={16} className="ml-2" />
-            </Button>
+            <div className="flex flex-col gap-3">
+              <Button 
+                type="submit" 
+                className="w-full bg-primary hover:bg-primary/90"
+                disabled={isSubmitting}
+              >
+                {isSubmitting ? 'Отправка...' : 'Отправить заявку'}
+                <Icon name="Send" size={16} className="ml-2" />
+              </Button>
+
+              <Button 
+                type="button"
+                asChild
+                className="w-full bg-secondary hover:bg-secondary/90 text-secondary-foreground"
+              >
+                <a href="tel:+79059755888">
+                  <Icon name="Phone" size={16} className="mr-2" />
+                  Связаться
+                </a>
+              </Button>
+            </div>
 
             <p className="text-xs text-muted-foreground text-center">
               Нажимая кнопку, вы соглашаетесь с обработкой персональных данных
