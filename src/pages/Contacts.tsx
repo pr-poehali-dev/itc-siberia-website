@@ -16,6 +16,7 @@ const Contacts = () => {
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [submitStatus, setSubmitStatus] = useState<'idle' | 'success' | 'error'>('idle');
   const [errorMessage, setErrorMessage] = useState('');
+  const [copiedContact, setCopiedContact] = useState<string | null>(null);
 
   const formatPhoneNumber = (value: string) => {
     const digits = value.replace(/\D/g, '');
@@ -104,6 +105,9 @@ const Contacts = () => {
       if (window.ym) {
         window.ym(98703835, 'reachGoal', type === 'email' ? 'copy_email' : 'copy_phone');
       }
+      // Показываем уведомление
+      setCopiedContact(text);
+      setTimeout(() => setCopiedContact(null), 2000);
     });
   };
 
@@ -163,6 +167,15 @@ const Contacts = () => {
 
       <section className="py-20">
         <div className="container mx-auto px-4">
+          {copiedContact && (
+            <div className="fixed top-24 left-1/2 -translate-x-1/2 z-50 animate-fade-in">
+              <div className="bg-green-500 text-white px-6 py-3 rounded-lg shadow-lg flex items-center gap-2">
+                <Icon name="Check" size={20} />
+                <span className="font-medium">Скопировано: {copiedContact}</span>
+              </div>
+            </div>
+          )}
+
           <div className="grid lg:grid-cols-3 gap-8 mb-16">
             {contactInfo.map((contact, index) => (
               <Card key={index} className="hover-scale">
