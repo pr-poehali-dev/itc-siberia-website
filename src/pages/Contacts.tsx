@@ -98,21 +98,33 @@ const Contacts = () => {
     }
   };
 
+  const handleCopyContact = (text: string, type: 'email' | 'phone') => {
+    navigator.clipboard.writeText(text).then(() => {
+      // Отправляем событие в Яндекс.Метрику
+      if (window.ym) {
+        window.ym(98703835, 'reachGoal', type === 'email' ? 'copy_email' : 'copy_phone');
+      }
+    });
+  };
+
   const contactInfo = [
     {
       icon: 'Mail',
       title: 'Email',
-      details: ['itc2555888@mail.ru', 'itcsibiri@yandex.ru']
+      details: ['itc2555888@mail.ru', 'itcsibiri@yandex.ru'],
+      type: 'email' as const
     },
     {
       icon: 'Phone',
       title: 'Телефон',
-      details: ['8-905-975-58-88', '8-913-532-28-88', '8-391-2-555-888', '8-391-2-502-888']
+      details: ['8-905-975-58-88', '8-913-532-28-88', '8-391-2-555-888', '8-391-2-502-888'],
+      type: 'phone' as const
     },
     {
       icon: 'MapPin',
       title: 'Адрес',
-      details: ['660020, Красноярский край, г. Красноярск,', 'ул. Дудинская, д. 5']
+      details: ['660020, Красноярский край, г. Красноярск,', 'ул. Дудинская, д. 5'],
+      type: null
     }
   ];
 
@@ -160,7 +172,14 @@ const Contacts = () => {
                   </div>
                   <h3 className="font-bold text-xl mb-3">{contact.title}</h3>
                   {contact.details.map((detail, idx) => (
-                    <p key={idx} className="text-muted-foreground">{detail}</p>
+                    <p 
+                      key={idx} 
+                      className={contact.type ? "text-muted-foreground cursor-pointer hover:text-primary transition-colors" : "text-muted-foreground"}
+                      onClick={() => contact.type && handleCopyContact(detail, contact.type)}
+                      title={contact.type ? "Нажмите, чтобы скопировать" : undefined}
+                    >
+                      {detail}
+                    </p>
                   ))}
                 </CardContent>
               </Card>
