@@ -17,6 +17,7 @@ const Contacts = () => {
   const [submitStatus, setSubmitStatus] = useState<'idle' | 'success' | 'error'>('idle');
   const [errorMessage, setErrorMessage] = useState('');
   const [copiedContact, setCopiedContact] = useState<string | null>(null);
+  const [tooltipPosition, setTooltipPosition] = useState({ x: 0, y: 0 });
 
   const formatPhoneNumber = (value: string) => {
     const digits = value.replace(/\D/g, '');
@@ -99,15 +100,17 @@ const Contacts = () => {
     }
   };
 
-  const handleCopyContact = (text: string, type: 'email' | 'phone') => {
+  const handleCopyContact = (text: string, type: 'email' | 'phone', e: React.MouseEvent) => {
     navigator.clipboard.writeText(text).then(() => {
       // Отправляем событие в Яндекс.Метрику
       if (window.ym) {
         window.ym(98703835, 'reachGoal', type === 'email' ? 'copy_email' : 'copy_phone');
       }
+      // Сохраняем позицию мыши
+      setTooltipPosition({ x: e.clientX, y: e.clientY });
       // Показываем уведомление
       setCopiedContact(text);
-      setTimeout(() => setCopiedContact(null), 2000);
+      setTimeout(() => setCopiedContact(null), 3000);
     });
   };
 
@@ -168,10 +171,17 @@ const Contacts = () => {
       <section className="py-20">
         <div className="container mx-auto px-4">
           {copiedContact && (
-            <div className="fixed top-24 left-1/2 -translate-x-1/2 z-50 animate-fade-in">
-              <div className="bg-green-500 text-white px-6 py-3 rounded-lg shadow-lg flex items-center gap-2">
-                <Icon name="Check" size={20} />
-                <span className="font-medium">Скопировано: {copiedContact}</span>
+            <div 
+              className="fixed z-50 animate-fade-in pointer-events-none"
+              style={{ 
+                left: `${tooltipPosition.x}px`, 
+                top: `${tooltipPosition.y - 60}px`,
+                transform: 'translateX(-50%)'
+              }}
+            >
+              <div className="bg-green-500 text-white px-4 py-2 rounded-lg shadow-lg flex items-center gap-2 whitespace-nowrap">
+                <Icon name="Check" size={18} />
+                <span className="font-medium text-sm">Скопировано: {copiedContact}</span>
               </div>
             </div>
           )}
@@ -188,7 +198,7 @@ const Contacts = () => {
                     <p 
                       key={idx} 
                       className={contact.type ? "text-muted-foreground cursor-pointer hover:text-primary transition-colors" : "text-muted-foreground"}
-                      onClick={() => contact.type && handleCopyContact(detail, contact.type)}
+                      onClick={(e) => contact.type && handleCopyContact(detail, contact.type, e)}
                       title={contact.type ? "Нажмите, чтобы скопировать" : undefined}
                     >
                       {detail}
