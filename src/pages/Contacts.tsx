@@ -292,25 +292,25 @@ const Contacts = () => {
               </Card>
             </div>
 
-            <div className="space-y-8">
-              <Card className="hover-scale">
-                <CardContent className="p-8">
+            <div className="flex flex-col gap-8 h-full">
+              <Card className="hover-scale flex-1">
+                <CardContent className="p-8 h-full flex flex-col">
                   <div className="flex items-center gap-3 mb-4">
                     <div className="w-12 h-12 bg-primary/10 rounded-full flex items-center justify-center">
                       <Icon name={addressInfo.icon as any} size={24} className="text-primary" />
                     </div>
                     <h3 className="text-xl font-bold">{addressInfo.title}</h3>
                   </div>
-                  <p className="text-muted-foreground">
+                  <p className="text-muted-foreground flex-1">
                     {addressInfo.details}
                   </p>
                 </CardContent>
               </Card>
 
-              <Card className="bg-muted/50">
-                <CardContent className="p-8">
+              <Card className="bg-muted/50 flex-1">
+                <CardContent className="p-8 h-full flex flex-col">
                   <h3 className="text-xl font-bold mb-6">Режим работы</h3>
-                  <div className="space-y-4 text-base">
+                  <div className="space-y-4 text-base flex-1 flex flex-col justify-center">
                     <div className="flex justify-between items-center gap-8">
                       <span className="font-medium">Понедельник - Пятница:</span>
                       <span className="font-bold text-lg">9:00 - 18:00</span>
