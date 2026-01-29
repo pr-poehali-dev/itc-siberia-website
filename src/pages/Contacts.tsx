@@ -200,11 +200,12 @@ const Contacts = () => {
           <div className="grid lg:grid-cols-3 gap-8 mb-8">
             {contactInfoTop.map((contact, index) => (
               <Card key={index} className="hover-scale">
-                <CardContent className="p-8 text-center">
+                <CardContent className="p-8 text-center min-h-[280px] lg:min-h-0 flex flex-col">
                   <div className="w-16 h-16 bg-primary/10 rounded-full flex items-center justify-center mx-auto mb-4">
                     <Icon name={contact.icon as any} size={32} className="text-primary" />
                   </div>
                   <h3 className="font-bold text-xl mb-3">{contact.title}</h3>
+                  <div className="flex-1">
                   {contact.details?.map((detail, idx) => (
                     <p 
                       key={idx} 
@@ -226,6 +227,7 @@ const Contacts = () => {
                       {link.name}
                     </a>
                   ))}
+                  </div>
                 </CardContent>
               </Card>
             ))}
@@ -233,7 +235,7 @@ const Contacts = () => {
 
           <div className="flex justify-center mb-16">
             <Card className="hover-scale w-full lg:w-1/2">
-              <CardContent className="p-6 text-center">
+              <CardContent className="p-8 text-center min-h-[280px] lg:min-h-0 flex flex-col">
                 <div className="w-14 h-14 bg-primary/10 rounded-full flex items-center justify-center mx-auto mb-3">
                   <Icon name={addressInfo.icon as any} size={28} className="text-primary" />
                 </div>
