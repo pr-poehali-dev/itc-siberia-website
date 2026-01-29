@@ -142,7 +142,7 @@ const Contacts = () => {
   const addressInfo = {
     icon: 'MapPin',
     title: 'Адрес',
-    details: ['660020, Красноярский край, г. Красноярск,', 'ул. Дудинская, д. 5'],
+    details: '660020, Красноярский край, г. Красноярск, ул. Дудинская, д. 5',
     type: null
   };
 
@@ -233,19 +233,14 @@ const Contacts = () => {
 
           <div className="flex justify-center mb-16">
             <Card className="hover-scale w-full lg:w-1/2">
-              <CardContent className="p-8 text-center">
-                <div className="w-16 h-16 bg-primary/10 rounded-full flex items-center justify-center mx-auto mb-4">
-                  <Icon name={addressInfo.icon as any} size={32} className="text-primary" />
+              <CardContent className="p-6 text-center">
+                <div className="w-14 h-14 bg-primary/10 rounded-full flex items-center justify-center mx-auto mb-3">
+                  <Icon name={addressInfo.icon as any} size={28} className="text-primary" />
                 </div>
-                <h3 className="font-bold text-xl mb-3">{addressInfo.title}</h3>
-                {addressInfo.details?.map((detail, idx) => (
-                  <p 
-                    key={idx} 
-                    className="text-muted-foreground"
-                  >
-                    {detail}
-                  </p>
-                ))}
+                <h3 className="font-bold text-xl mb-2">{addressInfo.title}</h3>
+                <p className="text-muted-foreground text-sm sm:text-base">
+                  {addressInfo.details}
+                </p>
               </CardContent>
             </Card>
           </div>
