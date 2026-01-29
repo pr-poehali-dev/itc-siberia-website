@@ -128,6 +128,16 @@ const Contacts = () => {
       type: 'phone' as const
     },
     {
+      icon: 'MessageCircle',
+      title: 'Мессенджеры',
+      links: [
+        { name: 'Telegram', url: 'https://t.me/itc_sibiri' },
+        { name: 'MAX', url: 'https://max.ru/u/f9LHodD0cOKAHGAE7Y0G1ri2SRJxylc6dJrLbQXiPFHGUVdQuyddDLO_RFc' },
+        { name: 'Вконтакте', url: 'https://vk.com/itc_sibiri' }
+      ],
+      type: null
+    },
+    {
       icon: 'MapPin',
       title: 'Адрес',
       details: ['660020, Красноярский край, г. Красноярск,', 'ул. Дудинская, д. 5'],
@@ -194,7 +204,7 @@ const Contacts = () => {
                     <Icon name={contact.icon as any} size={32} className="text-primary" />
                   </div>
                   <h3 className="font-bold text-xl mb-3">{contact.title}</h3>
-                  {contact.details.map((detail, idx) => (
+                  {contact.details?.map((detail, idx) => (
                     <p 
                       key={idx} 
                       className={contact.type ? "text-muted-foreground cursor-pointer hover:text-primary transition-colors" : "text-muted-foreground"}
@@ -203,6 +213,17 @@ const Contacts = () => {
                     >
                       {detail}
                     </p>
+                  ))}
+                  {contact.links?.map((link, idx) => (
+                    <a 
+                      key={idx}
+                      href={link.url}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="block text-muted-foreground hover:text-primary transition-colors"
+                    >
+                      {link.name}
+                    </a>
                   ))}
                 </CardContent>
               </Card>
