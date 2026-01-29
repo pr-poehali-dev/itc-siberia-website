@@ -114,7 +114,7 @@ const Contacts = () => {
     });
   };
 
-  const contactInfo = [
+  const contactInfoTop = [
     {
       icon: 'Mail',
       title: 'Email',
@@ -136,14 +136,15 @@ const Contacts = () => {
         { name: 'Вконтакте', url: 'https://vk.com/itc_sibiri' }
       ],
       type: null
-    },
-    {
-      icon: 'MapPin',
-      title: 'Адрес',
-      details: ['660020, Красноярский край, г. Красноярск,', 'ул. Дудинская, д. 5'],
-      type: null
     }
   ];
+
+  const addressInfo = {
+    icon: 'MapPin',
+    title: 'Адрес',
+    details: ['660020, Красноярский край, г. Красноярск,', 'ул. Дудинская, д. 5'],
+    type: null
+  };
 
   const companyInfo = [
     { label: 'Полное наименование', value: 'Общество с ограниченной ответственностью «Инженерно-технологический центр Сибири»' },
@@ -196,8 +197,8 @@ const Contacts = () => {
             </div>
           )}
 
-          <div className="grid lg:grid-cols-3 gap-8 mb-16">
-            {contactInfo.map((contact, index) => (
+          <div className="grid lg:grid-cols-3 gap-8 mb-8">
+            {contactInfoTop.map((contact, index) => (
               <Card key={index} className="hover-scale">
                 <CardContent className="p-8 text-center">
                   <div className="w-16 h-16 bg-primary/10 rounded-full flex items-center justify-center mx-auto mb-4">
@@ -228,6 +229,25 @@ const Contacts = () => {
                 </CardContent>
               </Card>
             ))}
+          </div>
+
+          <div className="flex justify-center mb-16">
+            <Card className="hover-scale w-full lg:w-1/2">
+              <CardContent className="p-8 text-center">
+                <div className="w-16 h-16 bg-primary/10 rounded-full flex items-center justify-center mx-auto mb-4">
+                  <Icon name={addressInfo.icon as any} size={32} className="text-primary" />
+                </div>
+                <h3 className="font-bold text-xl mb-3">{addressInfo.title}</h3>
+                {addressInfo.details?.map((detail, idx) => (
+                  <p 
+                    key={idx} 
+                    className="text-muted-foreground"
+                  >
+                    {detail}
+                  </p>
+                ))}
+              </CardContent>
+            </Card>
           </div>
 
           <div className="grid lg:grid-cols-2 gap-12 items-start">
