@@ -323,37 +323,40 @@ const Contacts = () => {
                 </CardContent>
               </Card>
 
-              <div>
-                <h3 className="text-2xl font-bold mb-6">Реквизиты компании</h3>
-                <Card>
-                  <CardContent className="p-6">
-                    <div className="space-y-3">
-                      {companyInfo.map((item, index) => (
-                        <div key={index} className="grid grid-cols-1 md:grid-cols-3 gap-2">
-                          <span className="text-sm text-muted-foreground">{item.label}:</span>
-                          <span className="text-sm font-medium md:col-span-2">{item.value}</span>
-                        </div>
-                      ))}
-                    </div>
-                  </CardContent>
-                </Card>
-              </div>
+            </div>
+          </div>
 
-              <div>
-                <h3 className="text-2xl font-bold mb-6">Банковские реквизиты</h3>
-                <Card>
-                  <CardContent className="p-6">
-                    <div className="space-y-3">
-                      {bankInfo.map((item, index) => (
-                        <div key={index} className="grid grid-cols-1 md:grid-cols-3 gap-2">
-                          <span className="text-sm text-muted-foreground">{item.label}:</span>
-                          <span className="text-sm font-medium md:col-span-2">{item.value}</span>
-                        </div>
-                      ))}
-                    </div>
-                  </CardContent>
-                </Card>
-              </div>
+          <div className="grid lg:grid-cols-2 gap-12 items-start">
+            <div>
+              <h3 className="text-2xl font-bold mb-6">Банковские реквизиты</h3>
+              <Card>
+                <CardContent className="p-6">
+                  <div className="space-y-3">
+                    {bankInfo.map((item, index) => (
+                      <div key={index} className="grid grid-cols-1 md:grid-cols-3 gap-2">
+                        <span className="text-sm text-muted-foreground">{item.label}:</span>
+                        <span className="text-sm font-medium md:col-span-2">{item.value}</span>
+                      </div>
+                    ))}
+                  </div>
+                </CardContent>
+              </Card>
+            </div>
+
+            <div>
+              <h3 className="text-2xl font-bold mb-6">Реквизиты компании</h3>
+              <Card>
+                <CardContent className="p-6">
+                  <div className="space-y-3">
+                    {companyInfo.map((item, index) => (
+                      <div key={index} className="grid grid-cols-1 md:grid-cols-3 gap-2">
+                        <span className="text-sm text-muted-foreground">{item.label}:</span>
+                        <span className="text-sm font-medium md:col-span-2">{item.value}</span>
+                      </div>
+                    ))}
+                  </div>
+                </CardContent>
+              </Card>
             </div>
           </div>
         </div>
