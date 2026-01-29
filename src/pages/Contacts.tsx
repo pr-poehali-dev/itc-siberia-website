@@ -114,6 +114,13 @@ const Contacts = () => {
     });
   };
 
+  const handleMessengerClick = (messengerName: string) => {
+    // Отправляем событие в Яндекс.Метрику
+    if (window.ym) {
+      window.ym(98703835, 'reachGoal', 'messenger_click');
+    }
+  };
+
   const contactInfoTop = [
     {
       icon: 'Mail',
@@ -223,6 +230,7 @@ const Contacts = () => {
                       target="_blank"
                       rel="noopener noreferrer"
                       className="block text-muted-foreground hover:text-primary transition-colors"
+                      onClick={() => handleMessengerClick(link.name)}
                     >
                       {link.name}
                     </a>
