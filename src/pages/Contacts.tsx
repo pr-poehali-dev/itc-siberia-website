@@ -104,7 +104,7 @@ const Contacts = () => {
     navigator.clipboard.writeText(text).then(() => {
       // Отправляем событие в Яндекс.Метрику
       if (window.ym) {
-        window.ym(98703835, 'reachGoal', type === 'email' ? 'copy_email' : 'copy_phone');
+        window.ym(106249715, 'reachGoal', type === 'email' ? 'copy_email' : 'copy_phone');
       }
       // Сохраняем позицию мыши
       setTooltipPosition({ x: e.clientX, y: e.clientY });
@@ -117,7 +117,7 @@ const Contacts = () => {
   const handleMessengerClick = (messengerName: string) => {
     // Отправляем событие в Яндекс.Метрику
     if (window.ym) {
-      window.ym(98703835, 'reachGoal', 'messenger_click');
+      window.ym(106249715, 'reachGoal', 'messenger_click');
     }
   };
 
