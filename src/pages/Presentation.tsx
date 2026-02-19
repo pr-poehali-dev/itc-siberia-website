@@ -160,15 +160,21 @@ const Presentation = () => {
           .print-hide {
             display: none !important;
           }
-          body {
+          html, body {
             -webkit-print-color-adjust: exact;
             print-color-adjust: exact;
           }
+          @page {
+            size: A4;
+            margin: 0;
+          }
           .print-break {
-            page-break-before: always;
+            page-break-before: auto;
           }
           section {
-            page-break-inside: avoid;
+            page-break-inside: auto;
+            page-break-before: auto;
+            page-break-after: auto;
           }
         }
       `}</style>
