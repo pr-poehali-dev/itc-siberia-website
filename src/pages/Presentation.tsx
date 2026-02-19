@@ -554,14 +554,8 @@ const Presentation = () => {
               </p>
             </div>
 
-            <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
+            <div className="grid md:grid-cols-3 gap-6">
               {[
-                {
-                  icon: "Phone",
-                  label: "Телефон",
-                  value: "+7 (391) 214-55-01",
-                  href: "tel:+73912145501",
-                },
                 {
                   icon: "Mail",
                   label: "Email",
