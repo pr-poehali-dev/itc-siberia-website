@@ -25,6 +25,7 @@ import MetalProcessing from "./pages/MetalProcessing";
 import Contacts from "./pages/Contacts";
 import NotFound from "./pages/NotFound";
 import Presentation from "./pages/Presentation";
+import ReferenceList from "./pages/ReferenceList";
 
 const queryClient = new QueryClient();
 
@@ -55,6 +56,7 @@ const App = () => (
           <Route path="/services/metalloobrabotka" element={<MetalProcessing />} />
           <Route path="/contacts" element={<Contacts />} />
           <Route path="/presentation" element={<Presentation />} />
+          <Route path="/reference-list" element={<ReferenceList />} />
           {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
           <Route path="*" element={<NotFound />} />
         </Routes>
