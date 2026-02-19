@@ -1,4 +1,5 @@
 import Icon from "@/components/ui/icon";
+import PptxGenJS from "pptxgenjs";
 
 const teamMembers = [
   {
@@ -77,7 +78,7 @@ const equipmentCards = [
   },
   {
     title: "Фрезерные станки ЧПУ",
-    spec: "до 2000x800x600 мм, точность \u00b10.05 мм",
+    spec: "до 2000x800x600 мм, точность ±0.05 мм",
     icon: "Cog",
     color: "bg-indigo-50 border-indigo-200",
     iconColor: "text-indigo-600",
@@ -106,7 +107,7 @@ const advantages = [
   },
   {
     icon: "Warehouse",
-    title: "Собственная база 3000+ м\u00b2",
+    title: "Собственная база 3000+ м²",
     text: "Современное оборудование для любых задач",
   },
   {
@@ -151,10 +152,307 @@ const advantages = [
   },
 ];
 
+const PRIMARY_COLOR = "1B3A5C";
+const SECONDARY_COLOR = "E8A54B";
+const DARK_COLOR = "1A1A2E";
+const LIGHT_BG = "F5F7FA";
+const WHITE = "FFFFFF";
+const MUTED = "6B7280";
+
+function generatePptx() {
+  const pptx = new PptxGenJS();
+  pptx.layout = "LAYOUT_WIDE";
+  pptx.author = "ИТЦ Сибири";
+  pptx.company = "ООО «Инженерно-технологический центр Сибири»";
+  pptx.subject = "Презентация компании";
+  pptx.title = "ИТЦ Сибири — Презентация компании";
+
+  // --- SLIDE 1: COVER ---
+  const slide1 = pptx.addSlide();
+  slide1.background = { color: PRIMARY_COLOR };
+  slide1.addShape(pptx.ShapeType.ellipse, {
+    x: 9.5, y: -1.5, w: 4.5, h: 4.5,
+    fill: { color: WHITE, transparency: 95 },
+  });
+  slide1.addShape(pptx.ShapeType.ellipse, {
+    x: -1.5, y: 4.5, w: 3.5, h: 3.5,
+    fill: { color: WHITE, transparency: 95 },
+  });
+  slide1.addText("ООО «Инженерно-технологический центр Сибири»", {
+    x: 0.5, y: 1.0, w: 12.3, h: 0.5,
+    fontSize: 12, color: "A0B8D0", align: "center",
+    charSpacing: 4, bold: true,
+  });
+  slide1.addText("ИТЦ Сибири", {
+    x: 0.5, y: 1.8, w: 12.3, h: 1.2,
+    fontSize: 48, color: WHITE, align: "center", bold: true,
+  });
+  slide1.addText("Надежный партнер в металлообработке\nи производстве металлоконструкций с 2013 года", {
+    x: 1.5, y: 3.2, w: 10.3, h: 1.0,
+    fontSize: 18, color: "C0D0E0", align: "center", lineSpacingMultiple: 1.3,
+  });
+  slide1.addText("г. Красноярск", {
+    x: 0.5, y: 4.4, w: 12.3, h: 0.4,
+    fontSize: 12, color: "8899AA", align: "center",
+  });
+  const stats = [
+    { value: "13 лет", label: "на рынке" },
+    { value: "500+", label: "проектов" },
+    { value: "60+", label: "специалистов" },
+  ];
+  stats.forEach((s, i) => {
+    const x = 3.2 + i * 2.6;
+    slide1.addShape(pptx.ShapeType.roundRect, {
+      x, y: 5.2, w: 2.2, h: 1.1, rectRadius: 0.1,
+      fill: { color: WHITE, transparency: 88 },
+      line: { color: WHITE, transparency: 80, width: 1 },
+    });
+    slide1.addText(s.value, {
+      x, y: 5.2, w: 2.2, h: 0.7,
+      fontSize: 22, color: WHITE, bold: true, align: "center", valign: "bottom",
+    });
+    slide1.addText(s.label, {
+      x, y: 5.85, w: 2.2, h: 0.4,
+      fontSize: 9, color: "8899AA", align: "center", valign: "top",
+    });
+  });
+
+  // --- SLIDE 2: ABOUT ---
+  const slide2 = pptx.addSlide();
+  slide2.background = { color: WHITE };
+  slide2.addShape(pptx.ShapeType.rect, {
+    x: 0, y: 0, w: 0.15, h: 7.5, fill: { color: PRIMARY_COLOR },
+  });
+  slide2.addText("О компании", {
+    x: 0.5, y: 0.3, w: 4, h: 0.4,
+    fontSize: 11, color: PRIMARY_COLOR, bold: true, charSpacing: 3,
+  });
+  slide2.addText("Опыт на рынке", {
+    x: 0.5, y: 0.7, w: 6, h: 0.6,
+    fontSize: 30, color: DARK_COLOR, bold: true,
+  });
+  slide2.addText(
+    "На рынке с 2013 года. Начинали как небольшая производственная мастерская, выросли в крупное предприятие с собственной производственной базой.\n\nСегодня ИТЦ Сибири — один из ведущих производителей металлоконструкций в Красноярском крае с более чем 500 выполненными проектами для промышленных предприятий Сибири.\n\nНаша миссия — обеспечивать надежными и качественными металлоконструкциями промышленные предприятия региона.",
+    {
+      x: 0.5, y: 1.5, w: 6, h: 3.5,
+      fontSize: 13, color: MUTED, lineSpacingMultiple: 1.4, valign: "top",
+    }
+  );
+  const facts = [
+    "13 лет на рынке (с 2013 года)",
+    "500+ выполненных проектов",
+    "Собственная производственная база",
+    "Работаем с предприятиями Сибири",
+  ];
+  facts.forEach((f, i) => {
+    slide2.addShape(pptx.ShapeType.roundRect, {
+      x: 7, y: 1.5 + i * 0.85, w: 5.8, h: 0.7, rectRadius: 0.08,
+      fill: { color: LIGHT_BG },
+    });
+    slide2.addText(`●  ${f}`, {
+      x: 7.2, y: 1.5 + i * 0.85, w: 5.4, h: 0.7,
+      fontSize: 12, color: DARK_COLOR, bold: true, valign: "middle",
+    });
+  });
+  slide2.addShape(pptx.ShapeType.roundRect, {
+    x: 7, y: 5.0, w: 5.8, h: 1.2, rectRadius: 0.1,
+    fill: { color: "EEF2F7" }, line: { color: "D0DAE5", width: 1 },
+  });
+  slide2.addText("Сертификация и допуски", {
+    x: 7.2, y: 5.0, w: 5.4, h: 0.5,
+    fontSize: 11, color: DARK_COLOR, bold: true, valign: "bottom",
+  });
+  slide2.addText("ISO 9001:2015  •  Лицензия МЧС  •  Допуск СРО", {
+    x: 7.2, y: 5.5, w: 5.4, h: 0.5,
+    fontSize: 11, color: PRIMARY_COLOR, bold: true, valign: "top",
+  });
+  slide2.addText("660020, Красноярский край, г. Красноярск, ул. Дудинская, д. 5", {
+    x: 0.5, y: 6.8, w: 12, h: 0.4,
+    fontSize: 10, color: MUTED, align: "left",
+  });
+
+  // --- SLIDE 3: PRODUCTION ---
+  const slide3 = pptx.addSlide();
+  slide3.background = { color: LIGHT_BG };
+  slide3.addShape(pptx.ShapeType.rect, {
+    x: 0, y: 0, w: 0.15, h: 7.5, fill: { color: PRIMARY_COLOR },
+  });
+  slide3.addText("Производство", {
+    x: 0.5, y: 0.3, w: 4, h: 0.4,
+    fontSize: 11, color: PRIMARY_COLOR, bold: true, charSpacing: 3,
+  });
+  slide3.addText("Производственные мощности", {
+    x: 0.5, y: 0.7, w: 10, h: 0.6,
+    fontSize: 30, color: DARK_COLOR, bold: true,
+  });
+  const prodStats = [
+    { value: "3000+ м²", label: "производственных площадей" },
+    { value: "8 типов", label: "технологий обработки" },
+    { value: "0.01 мм", label: "точность обработки" },
+  ];
+  prodStats.forEach((s, i) => {
+    const x = 0.5 + i * 4.2;
+    slide3.addShape(pptx.ShapeType.roundRect, {
+      x, y: 1.5, w: 3.8, h: 1.1, rectRadius: 0.1,
+      fill: { color: WHITE }, line: { color: "E0E5EA", width: 1 },
+    });
+    slide3.addText(s.value, {
+      x, y: 1.5, w: 3.8, h: 0.7,
+      fontSize: 22, color: PRIMARY_COLOR, bold: true, align: "center", valign: "bottom",
+    });
+    slide3.addText(s.label, {
+      x, y: 2.15, w: 3.8, h: 0.4,
+      fontSize: 9, color: MUTED, align: "center", valign: "top",
+    });
+  });
+  slide3.addText("Собственная производственная база с современным оборудованием. Полный цикл производства: от резки до покраски.", {
+    x: 0.5, y: 2.8, w: 12, h: 0.5,
+    fontSize: 12, color: MUTED,
+  });
+  const eqColors = ["D6E8FF", "FFEAD6", "D6F5E0", "E8D6FF", "D6F0F5", "DDD6FF", "FFD6D6", "FFF5D6"];
+  equipmentCards.forEach((eq, i) => {
+    const col = i % 2;
+    const row = Math.floor(i / 2);
+    const x = 0.5 + col * 6.3;
+    const y = 3.5 + row * 1.05;
+    slide3.addShape(pptx.ShapeType.roundRect, {
+      x, y, w: 5.9, h: 0.9, rectRadius: 0.08,
+      fill: { color: eqColors[i] },
+    });
+    slide3.addText(eq.title, {
+      x: x + 0.2, y, w: 5.5, h: 0.45,
+      fontSize: 11, color: DARK_COLOR, bold: true, valign: "bottom",
+    });
+    slide3.addText(eq.spec, {
+      x: x + 0.2, y: y + 0.4, w: 5.5, h: 0.4,
+      fontSize: 10, color: MUTED, valign: "top",
+    });
+  });
+
+  // --- SLIDE 4: TEAM ---
+  const slide4 = pptx.addSlide();
+  slide4.background = { color: WHITE };
+  slide4.addShape(pptx.ShapeType.rect, {
+    x: 0, y: 0, w: 0.15, h: 7.5, fill: { color: PRIMARY_COLOR },
+  });
+  slide4.addText("Команда", {
+    x: 0.5, y: 0.3, w: 4, h: 0.4,
+    fontSize: 11, color: PRIMARY_COLOR, bold: true, charSpacing: 3,
+  });
+  slide4.addText("Персонал и команда", {
+    x: 0.5, y: 0.7, w: 10, h: 0.6,
+    fontSize: 30, color: DARK_COLOR, bold: true,
+  });
+  slide4.addText("Более 60 квалифицированных специалистов: аттестованные сварщики с сертификацией, инженеры, конструкторы и контролеры качества.", {
+    x: 0.5, y: 1.4, w: 12, h: 0.6,
+    fontSize: 13, color: MUTED, lineSpacingMultiple: 1.3,
+  });
+  teamMembers.forEach((m, i) => {
+    const col = i % 3;
+    const row = Math.floor(i / 3);
+    const x = 0.5 + col * 4.2;
+    const y = 2.3 + row * 2.4;
+    slide4.addShape(pptx.ShapeType.roundRect, {
+      x, y, w: 3.8, h: 2.0, rectRadius: 0.1,
+      fill: { color: LIGHT_BG }, line: { color: "E0E5EA", width: 1 },
+    });
+    slide4.addShape(pptx.ShapeType.ellipse, {
+      x: x + 0.2, y: y + 0.25, w: 0.6, h: 0.6,
+      fill: { color: "DDE5F0" },
+    });
+    slide4.addText(m.name.split(" ").map(w => w[0]).join(""), {
+      x: x + 0.2, y: y + 0.25, w: 0.6, h: 0.6,
+      fontSize: 14, color: PRIMARY_COLOR, bold: true, align: "center", valign: "middle",
+    });
+    slide4.addText(m.name, {
+      x: x + 1.0, y: y + 0.25, w: 2.6, h: 0.35,
+      fontSize: 12, color: DARK_COLOR, bold: true, valign: "bottom",
+    });
+    slide4.addText(m.role, {
+      x: x + 1.0, y: y + 0.55, w: 2.6, h: 0.3,
+      fontSize: 10, color: PRIMARY_COLOR, bold: true, valign: "top",
+    });
+    slide4.addText(m.experience, {
+      x: x + 0.3, y: y + 1.1, w: 3.2, h: 0.6,
+      fontSize: 10, color: MUTED, valign: "top",
+    });
+  });
+
+  // --- SLIDE 5: WHY US ---
+  const slide5 = pptx.addSlide();
+  slide5.background = { color: PRIMARY_COLOR };
+  slide5.addText("Преимущества", {
+    x: 0.5, y: 0.3, w: 4, h: 0.4,
+    fontSize: 11, color: SECONDARY_COLOR, bold: true, charSpacing: 3,
+  });
+  slide5.addText("Почему стоит работать с нами", {
+    x: 0.5, y: 0.7, w: 12, h: 0.6,
+    fontSize: 30, color: WHITE, bold: true,
+  });
+  advantages.forEach((a, i) => {
+    const col = i % 2;
+    const row = Math.floor(i / 2);
+    const x = 0.5 + col * 6.3;
+    const y = 1.6 + row * 1.1;
+    slide5.addShape(pptx.ShapeType.roundRect, {
+      x, y, w: 5.9, h: 0.95, rectRadius: 0.08,
+      fill: { color: WHITE, transparency: 88 },
+      line: { color: WHITE, transparency: 85, width: 1 },
+    });
+    slide5.addText(a.title, {
+      x: x + 0.3, y, w: 5.3, h: 0.5,
+      fontSize: 12, color: WHITE, bold: true, valign: "bottom",
+    });
+    slide5.addText(a.text, {
+      x: x + 0.3, y: y + 0.45, w: 5.3, h: 0.4,
+      fontSize: 10, color: "A0B8D0", valign: "top",
+    });
+  });
+
+  // --- SLIDE 6: CONTACTS ---
+  const slide6 = pptx.addSlide();
+  slide6.background = { color: DARK_COLOR };
+  slide6.addText("Свяжитесь с нами", {
+    x: 0.5, y: 1.5, w: 12.3, h: 0.8,
+    fontSize: 34, color: WHITE, bold: true, align: "center",
+  });
+  slide6.addText("ООО «Инженерно-технологический центр Сибири»", {
+    x: 0.5, y: 2.3, w: 12.3, h: 0.5,
+    fontSize: 13, color: "888899", align: "center",
+  });
+  const contacts = [
+    { label: "Телефон", value: "+7 (391) 214-55-01" },
+    { label: "Email", value: "info@itc-sibiri.ru" },
+    { label: "Адрес", value: "660020, г. Красноярск,\nул. Дудинская, д. 5" },
+    { label: "Режим работы", value: "Пн-Пт 8:00-17:00" },
+  ];
+  contacts.forEach((c, i) => {
+    const x = 0.8 + i * 3.1;
+    slide6.addShape(pptx.ShapeType.roundRect, {
+      x, y: 3.3, w: 2.8, h: 1.8, rectRadius: 0.1,
+      fill: { color: WHITE, transparency: 95 },
+      line: { color: WHITE, transparency: 90, width: 1 },
+    });
+    slide6.addText(c.label, {
+      x, y: 3.4, w: 2.8, h: 0.5,
+      fontSize: 9, color: "666677", align: "center", valign: "bottom",
+    });
+    slide6.addText(c.value, {
+      x, y: 3.9, w: 2.8, h: 1.0,
+      fontSize: 12, color: WHITE, bold: true, align: "center", valign: "middle",
+    });
+  });
+  slide6.addText(`© ${new Date().getFullYear()} ООО «Инженерно-технологический центр Сибири». Все права защищены.`, {
+    x: 0.5, y: 6.5, w: 12.3, h: 0.4,
+    fontSize: 8, color: "555566", align: "center",
+  });
+
+  pptx.writeFile({ fileName: "ИТЦ_Сибири_Презентация.pptx" });
+}
+
 const Presentation = () => {
   return (
     <>
-      {/* Print styles */}
       <style>{`
         @media print {
           .print-hide {
@@ -180,24 +478,23 @@ const Presentation = () => {
       `}</style>
 
       <div className="min-h-screen bg-white text-foreground font-sans">
-        {/* Print button */}
-        <button
-          onClick={() => window.print()}
-          className="print-hide fixed top-6 right-6 z-50 flex items-center gap-2 bg-primary text-primary-foreground px-5 py-2.5 rounded-lg shadow-lg hover:opacity-90 transition-opacity text-sm font-semibold"
-        >
-          <Icon name="Printer" size={18} />
-          Печать
-        </button>
+        <div className="print-hide fixed top-6 right-6 z-50 flex gap-2">
+          <button
+            onClick={generatePptx}
+            className="flex items-center gap-2 bg-secondary text-secondary-foreground px-5 py-2.5 rounded-lg shadow-lg hover:opacity-90 transition-opacity text-sm font-semibold"
+          >
+            <Icon name="Download" size={18} />
+            Скачать PowerPoint
+          </button>
+        </div>
 
         {/* ===== SECTION 1: COVER ===== */}
         <section className="relative bg-primary text-primary-foreground overflow-hidden">
-          {/* Decorative elements */}
           <div className="absolute top-0 right-0 w-96 h-96 bg-white/5 rounded-full -translate-y-1/2 translate-x-1/2" />
           <div className="absolute bottom-0 left-0 w-72 h-72 bg-white/5 rounded-full translate-y-1/2 -translate-x-1/2" />
           <div className="absolute top-1/2 left-1/2 w-[600px] h-[600px] bg-white/[0.02] rounded-full -translate-x-1/2 -translate-y-1/2" />
 
           <div className="relative max-w-5xl mx-auto px-8 py-24 text-center">
-            {/* Logo placeholder */}
             <div className="flex justify-center mb-8">
               <div className="w-20 h-20 rounded-2xl bg-white/10 border border-white/20 flex items-center justify-center backdrop-blur-sm">
                 <Icon name="Factory" size={40} className="text-white" />
@@ -222,7 +519,6 @@ const Presentation = () => {
               <span>г. Красноярск</span>
             </div>
 
-            {/* Stats badges */}
             <div className="flex flex-wrap justify-center gap-4">
               {[
                 { value: "13 лет", label: "на рынке", icon: "Calendar" },
@@ -266,7 +562,6 @@ const Presentation = () => {
             </h2>
 
             <div className="grid md:grid-cols-2 gap-10">
-              {/* Left: narrative */}
               <div className="space-y-5 text-muted-foreground leading-relaxed">
                 <p>
                   <span className="font-semibold text-foreground">
@@ -291,7 +586,6 @@ const Presentation = () => {
                 </p>
               </div>
 
-              {/* Right: key facts */}
               <div className="space-y-4">
                 {[
                   {
@@ -326,7 +620,6 @@ const Presentation = () => {
                   </div>
                 ))}
 
-                {/* Certifications */}
                 <div className="mt-6 p-5 bg-primary/5 border border-primary/10 rounded-xl">
                   <div className="flex items-center gap-2 mb-3">
                     <Icon name="Award" size={18} className="text-primary" />
@@ -349,7 +642,6 @@ const Presentation = () => {
                   </div>
                 </div>
 
-                {/* Address */}
                 <div className="flex items-start gap-3 text-sm text-muted-foreground mt-4">
                   <Icon
                     name="MapPin"
@@ -381,12 +673,11 @@ const Presentation = () => {
               Производственные мощности
             </h2>
 
-            {/* Headline stats */}
             <div className="grid grid-cols-2 md:grid-cols-3 gap-4 mb-12">
               {[
                 {
                   value: "3000+",
-                  unit: "м\u00b2",
+                  unit: "м²",
                   label: "производственных площадей",
                 },
                 {
@@ -422,7 +713,6 @@ const Presentation = () => {
               Полный цикл производства: от резки до покраски.
             </p>
 
-            {/* Equipment cards */}
             <div className="grid md:grid-cols-2 gap-4">
               {equipmentCards.map((eq) => (
                 <div
@@ -469,7 +759,6 @@ const Presentation = () => {
               контролеры качества.
             </p>
 
-            {/* Team grid */}
             <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-5">
               {teamMembers.map((member) => (
                 <div

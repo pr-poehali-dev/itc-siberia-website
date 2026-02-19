@@ -17,7 +17,7 @@ const FloatingPhoneButton = () => {
   const [submitStatus, setSubmitStatus] = useState<'idle' | 'success' | 'error'>('idle');
   const [errorMessage, setErrorMessage] = useState('');
 
-  if (location.pathname === '/contacts') {
+  if (location.pathname === '/contacts' || location.pathname === '/presentation') {
     return null;
   }
 
