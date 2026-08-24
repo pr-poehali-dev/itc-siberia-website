@@ -22,6 +22,7 @@ import TurningService from "./pages/TurningService";
 import ContainersService from "./pages/ContainersService";
 import EngineeringService from "./pages/EngineeringService";
 import MetalProcessing from "./pages/MetalProcessing";
+import Equipment from "./pages/Equipment";
 import Contacts from "./pages/Contacts";
 import NotFound from "./pages/NotFound";
 import Presentation from "./pages/Presentation";
@@ -54,6 +55,7 @@ const App = () => (
           <Route path="/services/tokarnye" element={<TurningService />} />
           <Route path="/services/inzhiniring" element={<EngineeringService />} />
           <Route path="/services/metalloobrabotka" element={<MetalProcessing />} />
+          <Route path="/equipment" element={<Equipment />} />
           <Route path="/contacts" element={<Contacts />} />
           <Route path="/presentation" element={<Presentation />} />
           <Route path="/reference-list" element={<ReferenceList />} />
