@@ -23,6 +23,10 @@ import ContainersService from "./pages/ContainersService";
 import EngineeringService from "./pages/EngineeringService";
 import MetalProcessing from "./pages/MetalProcessing";
 import Equipment from "./pages/Equipment";
+import PrivacyPolicy from "./pages/PrivacyPolicy";
+import CookiePolicy from "./pages/CookiePolicy";
+import DataConsent from "./pages/DataConsent";
+import CookieConsent from "./components/CookieConsent";
 import Contacts from "./pages/Contacts";
 import NotFound from "./pages/NotFound";
 import Presentation from "./pages/Presentation";
@@ -38,6 +42,7 @@ const App = () => (
       <HashRouter>
         <ScrollToTop />
         <FloatingPhoneButton />
+        <CookieConsent />
         <Routes>
           <Route path="/" element={<Home />} />
           <Route path="/about" element={<About />} />
@@ -59,6 +64,9 @@ const App = () => (
           <Route path="/contacts" element={<Contacts />} />
           <Route path="/presentation" element={<Presentation />} />
           <Route path="/reference-list" element={<ReferenceList />} />
+          <Route path="/privacy-policy" element={<PrivacyPolicy />} />
+          <Route path="/cookie-policy" element={<CookiePolicy />} />
+          <Route path="/data-consent" element={<DataConsent />} />
           {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
           <Route path="*" element={<NotFound />} />
         </Routes>

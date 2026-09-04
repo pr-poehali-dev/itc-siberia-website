@@ -7,12 +7,14 @@ import { Badge } from '@/components/ui/badge';
 import Icon from '@/components/ui/icon';
 import Header from '@/components/Header';
 import Footer from '@/components/Footer';
+import ConsentCheckbox from '@/components/legal/ConsentCheckbox';
 
 const Contacts = () => {
   const [formData, setFormData] = useState({
     name: '',
     phone: '+7 '
   });
+  const [consent, setConsent] = useState(false);
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [submitStatus, setSubmitStatus] = useState<'idle' | 'success' | 'error'>('idle');
   const [errorMessage, setErrorMessage] = useState('');
@@ -71,6 +73,12 @@ const Contacts = () => {
       setErrorMessage('Введите корректный номер телефона в формате +7 XXX XXX XX XX');
       return;
     }
+
+    if (!consent) {
+      setSubmitStatus('error');
+      setErrorMessage('Необходимо дать согласие на обработку персональных данных');
+      return;
+    }
     
     setIsSubmitting(true);
     setSubmitStatus('idle');
@@ -88,6 +96,7 @@ const Contacts = () => {
       if (response.ok) {
         setSubmitStatus('success');
         setFormData({ name: '', phone: '+7 ' });
+        setConsent(false);
       } else {
         setSubmitStatus('error');
         setErrorMessage(result.error || 'Ошибка отправки заявки');
@@ -284,17 +293,15 @@ const Contacts = () => {
                         required
                       />
                     </div>
+                    <ConsentCheckbox id="consent-contacts" checked={consent} onChange={setConsent} />
                     <Button 
                       type="submit" 
                       className="w-full bg-primary hover:bg-primary/90"
-                      disabled={isSubmitting}
+                      disabled={isSubmitting || !consent}
                     >
                       {isSubmitting ? 'Отправка...' : 'Отправить заявку'}
                       <Icon name="Send" size={16} className="ml-2" />
                     </Button>
-                    <p className="text-xs text-muted-foreground text-center">
-                      Нажимая кнопку, вы соглашаетесь с политикой обработки персональных данных
-                    </p>
                   </form>
                 </CardContent>
               </Card>

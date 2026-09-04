@@ -9,11 +9,13 @@ import Icon from '@/components/ui/icon';
 import Header from '@/components/Header';
 import Footer from '@/components/Footer';
 import func2url from '../../backend/func2url.json';
+import ConsentCheckbox from '@/components/legal/ConsentCheckbox';
 
 const Home = () => {
   const [currentImage, setCurrentImage] = useState(0);
   const [isDialogOpen, setIsDialogOpen] = useState(false);
   const [formData, setFormData] = useState({ name: '', phone: '+7 ' });
+  const [consent, setConsent] = useState(false);
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [submitStatus, setSubmitStatus] = useState<'idle' | 'success' | 'error'>('idle');
   const [errorMessage, setErrorMessage] = useState('');
@@ -110,6 +112,11 @@ const Home = () => {
       setErrorMessage('Введите корректный номер телефона в формате +7 XXX XXX XX XX');
       return;
     }
+    if (!consent) {
+      setSubmitStatus('error');
+      setErrorMessage('Необходимо дать согласие на обработку персональных данных');
+      return;
+    }
     setIsSubmitting(true);
     setSubmitStatus('idle');
     setErrorMessage('');
@@ -123,6 +130,7 @@ const Home = () => {
       if (response.ok) {
         setSubmitStatus('success');
         setFormData({ name: '', phone: '+7 ' });
+        setConsent(false);
         setTimeout(() => {
           setIsDialogOpen(false);
           setSubmitStatus('idle');
@@ -326,11 +334,13 @@ const Home = () => {
               />
             </div>
 
+            <ConsentCheckbox id="consent-home" checked={consent} onChange={setConsent} />
+
             <div className="flex flex-col gap-3">
               <Button 
                 type="submit" 
                 className="w-full bg-primary hover:bg-primary/90"
-                disabled={isSubmitting}
+                disabled={isSubmitting || !consent}
               >
                 {isSubmitting ? 'Отправка...' : 'Отправить заявку'}
                 <Icon name="Send" size={16} className="ml-2" />

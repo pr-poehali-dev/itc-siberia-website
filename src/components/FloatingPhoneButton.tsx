@@ -5,6 +5,7 @@ import { Input } from '@/components/ui/input';
 import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogDescription } from '@/components/ui/dialog';
 import Icon from '@/components/ui/icon';
 import func2url from '../../backend/func2url.json';
+import ConsentCheckbox from '@/components/legal/ConsentCheckbox';
 
 const FloatingPhoneButton = () => {
   const location = useLocation();
@@ -16,6 +17,7 @@ const FloatingPhoneButton = () => {
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [submitStatus, setSubmitStatus] = useState<'idle' | 'success' | 'error'>('idle');
   const [errorMessage, setErrorMessage] = useState('');
+  const [consent, setConsent] = useState(false);
 
   if (location.pathname === '/contacts' || location.pathname === '/presentation' || location.pathname === '/reference-list') {
     return null;
@@ -64,6 +66,12 @@ const FloatingPhoneButton = () => {
       setErrorMessage('Введите корректный номер телефона в формате +7 XXX XXX XX XX');
       return;
     }
+
+    if (!consent) {
+      setSubmitStatus('error');
+      setErrorMessage('Необходимо дать согласие на обработку персональных данных');
+      return;
+    }
     
     setIsSubmitting(true);
     setSubmitStatus('idle');
@@ -81,6 +89,7 @@ const FloatingPhoneButton = () => {
       if (response.ok) {
         setSubmitStatus('success');
         setFormData({ name: '', phone: '+7 ' });
+        setConsent(false);
         setTimeout(() => {
           setIsOpen(false);
           setSubmitStatus('idle');
@@ -154,11 +163,13 @@ const FloatingPhoneButton = () => {
               />
             </div>
 
+            <ConsentCheckbox id="consent-float" checked={consent} onChange={setConsent} />
+
             <div className="flex flex-col gap-3">
               <Button 
                 type="submit" 
                 className="w-full bg-primary hover:bg-primary/90"
-                disabled={isSubmitting}
+                disabled={isSubmitting || !consent}
               >
                 {isSubmitting ? 'Отправка...' : 'Отправить заявку'}
                 <Icon name="Send" size={16} className="ml-2" />
@@ -176,9 +187,6 @@ const FloatingPhoneButton = () => {
               </Button>
             </div>
 
-            <p className="text-xs text-muted-foreground text-center">
-              Нажимая кнопку, вы соглашаетесь с обработкой персональных данных
-            </p>
           </form>
         </DialogContent>
       </Dialog>
