@@ -8,6 +8,8 @@ import Icon from '@/components/ui/icon';
 import Header from '@/components/Header';
 import Footer from '@/components/Footer';
 import ConsentCheckbox from '@/components/legal/ConsentCheckbox';
+import ConsentGatedMap from '@/components/ConsentGatedMap';
+import { trackGoal } from '@/lib/cookieConsent';
 
 const Contacts = () => {
   const [formData, setFormData] = useState({
@@ -116,9 +118,7 @@ const Contacts = () => {
   const handleCopyContact = (text: string, type: 'email' | 'phone', e: React.MouseEvent) => {
     navigator.clipboard.writeText(text).then(() => {
       // Отправляем событие в Яндекс.Метрику
-      if (window.ym) {
-        window.ym(106249715, 'reachGoal', type === 'email' ? 'copy_email' : 'copy_phone');
-      }
+      trackGoal(type === 'email' ? 'copy_email' : 'copy_phone');
       // Сохраняем позицию мыши
       setTooltipPosition({ x: e.clientX, y: e.clientY });
       // Показываем уведомление
@@ -129,9 +129,7 @@ const Contacts = () => {
 
   const handleMessengerClick = (messengerName: string) => {
     // Отправляем событие в Яндекс.Метрику
-    if (window.ym) {
-      window.ym(106249715, 'reachGoal', 'messenger_click');
-    }
+    trackGoal('messenger_click');
   };
 
   const contactInfoTop = [
@@ -385,14 +383,10 @@ const Contacts = () => {
         <div className="container mx-auto px-4">
           <h2 className="text-3xl font-bold text-center mb-8">Как нас найти</h2>
           <div className="rounded-2xl overflow-hidden shadow-xl">
-            <iframe
+            <ConsentGatedMap
               src="https://yandex.ru/map-widget/v1/?ll=92.895520%2C56.025889&z=17&pt=92.895520,56.025889,pm2rdm"
-              width="100%"
-              height="600"
-              frameBorder="0"
-              allowFullScreen
-              style={{ position: 'relative' }}
               title="Карта офиса ИТЦ Сибири"
+              height={600}
             />
           </div>
         </div>

@@ -1,4 +1,5 @@
 import { Link } from 'react-router-dom';
+import { revokeConsent } from '@/lib/cookieConsent';
 
 const Footer = () => {
   const legalLinks = [
@@ -21,6 +22,12 @@ const Footer = () => {
                 {link.label}
               </Link>
             ))}
+            <button
+              onClick={revokeConsent}
+              className="text-white/70 hover:text-white text-sm transition-colors underline-offset-4 hover:underline"
+            >
+              Настройки cookie
+            </button>
           </nav>
 
           <div className="w-full max-w-3xl border-t border-white/10 pt-5 space-y-1">

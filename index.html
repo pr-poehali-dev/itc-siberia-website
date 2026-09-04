@@ -29,18 +29,37 @@
     <meta name="pp-name" value="itc-siberia-website">
       <script src="https://cdn.poehali.dev/intertnal/js/inspector-min.js"></script>
       
-    <!-- Yandex.Metrika counter -->
+    <!-- Yandex.Metrika counter — загружается ТОЛЬКО после согласия пользователя (152-ФЗ) -->
     <script type="text/javascript">
-        (function(m,e,t,r,i,k,a){
-            m[i]=m[i]||function(){(m[i].a=m[i].a||[]).push(arguments)};
-            m[i].l=1*new Date();
-            for (var j = 0; j < document.scripts.length; j++) {if (document.scripts[j].src === r) { return; }}
-            k=e.createElement(t),a=e.getElementsByTagName(t)[0],k.async=1,k.src=r,a.parentNode.insertBefore(k,a)
-        })(window, document,'script','https://mc.yandex.ru/metrika/tag.js?id=106249715', 'ym');
+        window.ITC_METRIKA_ID = 106249715;
+        window.ym = window.ym || function(){(window.ym.a = window.ym.a || []).push(arguments)};
+        window.ym.l = 1 * new Date();
 
-        ym(106249715, 'init', {ssr:true, webvisor:true, clickmap:true, ecommerce:"dataLayer", accurateTrackBounce:true, trackLinks:true});
+        window.itcLoadMetrika = function () {
+            if (window.__itcMetrikaLoaded) return;
+            window.__itcMetrikaLoaded = true;
+            var r = 'https://mc.yandex.ru/metrika/tag.js?id=' + window.ITC_METRIKA_ID;
+            for (var j = 0; j < document.scripts.length; j++) {
+                if (document.scripts[j].src === r) { return; }
+            }
+            var k = document.createElement('script');
+            var a = document.getElementsByTagName('script')[0];
+            k.async = 1; k.src = r;
+            a.parentNode.insertBefore(k, a);
+            window.ym(window.ITC_METRIKA_ID, 'init', {
+                ssr: true, webvisor: true, clickmap: true,
+                ecommerce: "dataLayer", accurateTrackBounce: true, trackLinks: true
+            });
+        };
+
+        try {
+            var saved = localStorage.getItem('itc_cookie_consent');
+            if (saved) {
+                var parsed = saved.charAt(0) === '{' ? JSON.parse(saved) : { analytics: saved === 'accepted' };
+                if (parsed.analytics) { window.itcLoadMetrika(); }
+            }
+        } catch (e) {}
     </script>
-    <noscript><div><img src="https://mc.yandex.ru/watch/106249715" style="position:absolute; left:-9999px;" alt="" /></div></noscript>
     <!-- /Yandex.Metrika counter -->
   </head>
 

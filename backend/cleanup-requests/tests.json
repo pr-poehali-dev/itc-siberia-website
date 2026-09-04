@@ -1,0 +1,26 @@
+{
+  "tests": [
+    {
+      "name": "Dry run shows expired count",
+      "method": "GET",
+      "path": "/",
+      "expectedStatus": 200,
+      "expectedBody": {
+        "success": true,
+        "dry_run": true
+      },
+      "bodyMatcher": "partial"
+    },
+    {
+      "name": "Cleanup executes and returns stats",
+      "method": "POST",
+      "path": "/",
+      "expectedStatus": 200,
+      "expectedBody": {
+        "success": true,
+        "retention_days": 365
+      },
+      "bodyMatcher": "partial"
+    }
+  ]
+}
