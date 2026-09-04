@@ -81,7 +81,11 @@ const FloatingPhoneButton = () => {
       const response = await fetch(func2url['contact-form'], {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify(formData)
+        body: JSON.stringify({
+          ...formData,
+          consent: true,
+          consent_source: `всплывающая форма (${location.pathname})`
+        })
       });
 
       const result = await response.json();

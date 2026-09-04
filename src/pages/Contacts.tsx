@@ -88,7 +88,11 @@ const Contacts = () => {
       const response = await fetch(func2url['contact-form'], {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify(formData)
+        body: JSON.stringify({
+          ...formData,
+          consent: true,
+          consent_source: 'форма на странице «Контакты»'
+        })
       });
 
       const result = await response.json();

@@ -1,11 +1,13 @@
 {
   "tests": [
     {
-      "name": "Valid contact form submission",
+      "name": "Valid contact form submission with consent",
       "method": "POST",
       "body": {
         "name": "Иван Петров",
-        "phone": "+7 999 123 45 67"
+        "phone": "+7 999 123 45 67",
+        "consent": true,
+        "consent_source": "форма на странице Контакты"
       },
       "expectedStatus": 200,
       "expectedBody": {
@@ -14,10 +16,25 @@
       "bodyMatcher": "partial"
     },
     {
+      "name": "Submission without consent is rejected",
+      "method": "POST",
+      "body": {
+        "name": "Иван Петров",
+        "phone": "+7 999 123 45 67",
+        "consent": false
+      },
+      "expectedStatus": 400,
+      "expectedBody": {
+        "error": "string"
+      },
+      "bodyMatcher": "partial"
+    },
+    {
       "name": "Missing required name field",
       "method": "POST",
       "body": {
-        "phone": "+7 999 123 45 67"
+        "phone": "+7 999 123 45 67",
+        "consent": true
       },
       "expectedStatus": 400,
       "expectedBody": {
@@ -29,7 +46,8 @@
       "name": "Missing required phone field",
       "method": "POST",
       "body": {
-        "name": "Иван Петров"
+        "name": "Иван Петров",
+        "consent": true
       },
       "expectedStatus": 400,
       "expectedBody": {

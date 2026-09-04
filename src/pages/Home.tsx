@@ -124,7 +124,11 @@ const Home = () => {
       const response = await fetch(func2url['contact-form'], {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify(formData)
+        body: JSON.stringify({
+          ...formData,
+          consent: true,
+          consent_source: 'форма на главной странице'
+        })
       });
       const result = await response.json();
       if (response.ok) {

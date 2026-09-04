@@ -2,13 +2,17 @@ import json
 import os
 import psycopg2
 import smtplib
+from datetime import datetime, timezone, timedelta
 from email.mime.text import MIMEText
 from email.mime.multipart import MIMEMultipart
+from typing import Optional
 from pydantic import BaseModel, Field, ValidationError
 
 class ContactRequest(BaseModel):
     name: str = Field(..., min_length=1, max_length=100)
     phone: str = Field(..., min_length=10, max_length=20)
+    consent: bool = Field(default=False)
+    consent_source: Optional[str] = Field(default=None, max_length=255)
 
 def handler(event: dict, context) -> dict:
     '''Обработка заявок с формы обратной связи с отправкой на email'''
@@ -48,6 +52,19 @@ def handler(event: dict, context) -> dict:
             'body': json.dumps({'error': 'Неверный формат JSON'})
         }
 
+    if not request.consent:
+        return {
+            'statusCode': 400,
+            'headers': {'Content-Type': 'application/json', 'Access-Control-Allow-Origin': '*'},
+            'body': json.dumps({'error': 'Необходимо согласие на обработку персональных данных'})
+        }
+
+    krsk_tz = timezone(timedelta(hours=7))
+    consent_dt = datetime.now(krsk_tz)
+    consent_at_str = consent_dt.strftime('%d.%m.%Y %H:%M:%S')
+    consent_ip = event.get('requestContext', {}).get('identity', {}).get('sourceIp', 'не определён')
+    consent_source = request.consent_source or 'форма на сайте'
+
     database_url = os.environ.get('DATABASE_URL')
     smtp_host = os.environ.get('SMTP_HOST', 'smtp.mail.ru')
     smtp_port = int(os.environ.get('SMTP_PORT', '465'))
@@ -73,8 +90,8 @@ def handler(event: dict, context) -> dict:
             schema_name = os.environ.get('MAIN_DB_SCHEMA', 'public')
             
             cur.execute(
-                f"INSERT INTO {schema_name}.contact_requests (name, phone, message) VALUES (%s, %s, %s) RETURNING id",
-                (request.name, request.phone, 'Заявка с сайта')
+                f"INSERT INTO {schema_name}.contact_requests (name, phone, message, consent_given, consent_at, consent_ip, consent_source) VALUES (%s, %s, %s, %s, %s, %s, %s) RETURNING id",
+                (request.name, request.phone, 'Заявка с сайта', True, consent_dt.replace(tzinfo=None), consent_ip, consent_source)
             )
             request_id = cur.fetchone()[0]
             conn.commit()
@@ -104,8 +121,34 @@ def handler(event: dict, context) -> dict:
                 <td style="padding: 12px; border: 1px solid #e5e7eb;">{request.phone}</td>
             </tr>
         </table>
-        <p style="margin-top: 20px; color: #6b7280; font-size: 14px;">
-            Заявка получена {context.request_time if hasattr(context, 'request_time') else 'сейчас'}
+
+        <h3 style="margin-top: 28px; color: #111827; font-size: 16px;">Согласие на обработку персональных данных</h3>
+        <table style="border-collapse: collapse; width: 100%; max-width: 600px; margin-top: 8px;">
+            <tr>
+                <td style="padding: 12px; background-color: #f3f4f6; font-weight: bold; width: 150px; border: 1px solid #e5e7eb;">Статус:</td>
+                <td style="padding: 12px; border: 1px solid #e5e7eb; color: #15803d; font-weight: bold;">Получено</td>
+            </tr>
+            <tr>
+                <td style="padding: 12px; background-color: #f3f4f6; font-weight: bold; border: 1px solid #e5e7eb;">Дата и время:</td>
+                <td style="padding: 12px; border: 1px solid #e5e7eb;">{consent_at_str} (Красноярск, UTC+7)</td>
+            </tr>
+            <tr>
+                <td style="padding: 12px; background-color: #f3f4f6; font-weight: bold; border: 1px solid #e5e7eb;">IP-адрес:</td>
+                <td style="padding: 12px; border: 1px solid #e5e7eb;">{consent_ip}</td>
+            </tr>
+            <tr>
+                <td style="padding: 12px; background-color: #f3f4f6; font-weight: bold; border: 1px solid #e5e7eb;">Источник:</td>
+                <td style="padding: 12px; border: 1px solid #e5e7eb;">{consent_source}</td>
+            </tr>
+            <tr>
+                <td style="padding: 12px; background-color: #f3f4f6; font-weight: bold; border: 1px solid #e5e7eb;">Основание:</td>
+                <td style="padding: 12px; border: 1px solid #e5e7eb;">ст. 9 ФЗ № 152-ФЗ «О персональных данных»</td>
+            </tr>
+        </table>
+
+        <p style="margin-top: 20px; color: #6b7280; font-size: 13px;">
+            Пользователь подтвердил согласие отметкой в форме перед отправкой заявки.
+            Запись зафиксирована в базе данных под номером {request_id if request_id else '—'}.
         </p>
     </body>
     </html>
