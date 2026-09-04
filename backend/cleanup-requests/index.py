@@ -3,6 +3,41 @@ import os
 import psycopg2
 
 RETENTION_DAYS = 365
+MIN_HOURS_BETWEEN_RUNS = 24
+
+
+def run_retention(conn, schema_name: str, triggered_by: str = 'auto') -> dict:
+    cur = conn.cursor()
+
+    cur.execute(
+        f"SELECT run_at FROM {schema_name}.retention_log "
+        f"WHERE run_at > NOW() - INTERVAL '{MIN_HOURS_BETWEEN_RUNS} hours' "
+        f"ORDER BY run_at DESC LIMIT 1"
+    )
+    recent = cur.fetchone()
+
+    if recent and triggered_by == 'auto':
+        cur.close()
+        return {'skipped': True, 'reason': 'already_run_today', 'removed': 0}
+
+    cur.execute(
+        f"WITH removed AS ("
+        f"  DELETE FROM {schema_name}.contact_requests "
+        f"  WHERE created_at < NOW() - INTERVAL '{RETENTION_DAYS} days' RETURNING id"
+        f") SELECT COUNT(*) FROM removed"
+    )
+    removed = cur.fetchone()[0]
+
+    cur.execute(
+        f"INSERT INTO {schema_name}.retention_log (removed_count, retention_days, triggered_by) "
+        f"VALUES (%s, %s, %s)",
+        (removed, RETENTION_DAYS, triggered_by)
+    )
+    conn.commit()
+    cur.close()
+
+    return {'skipped': False, 'removed': removed}
+
 
 def handler(event: dict, context) -> dict:
     '''Удаление заявок с истёкшим сроком хранения (1 год) согласно ФЗ-152'''
@@ -27,29 +62,45 @@ def handler(event: dict, context) -> dict:
         }
 
     schema_name = os.environ.get('MAIN_DB_SCHEMA', 'public')
-    dry_run = method == 'GET'
-
     conn = psycopg2.connect(database_url)
-    cur = conn.cursor()
 
-    cur.execute(
-        f"SELECT COUNT(*) FROM {schema_name}.contact_requests "
-        f"WHERE created_at < NOW() - INTERVAL '{RETENTION_DAYS} days'"
-    )
-    expired_count = cur.fetchone()[0]
-
-    deleted = 0
-    if not dry_run and expired_count > 0:
+    if method == 'GET':
+        cur = conn.cursor()
         cur.execute(
-            f"DELETE FROM {schema_name}.contact_requests "
+            f"SELECT COUNT(*) FROM {schema_name}.contact_requests "
             f"WHERE created_at < NOW() - INTERVAL '{RETENTION_DAYS} days'"
         )
-        deleted = cur.rowcount
-        conn.commit()
+        expired = cur.fetchone()[0]
+        cur.execute(f"SELECT COUNT(*) FROM {schema_name}.contact_requests")
+        total = cur.fetchone()[0]
+        cur.execute(
+            f"SELECT run_at, removed_count, triggered_by FROM {schema_name}.retention_log "
+            f"ORDER BY run_at DESC LIMIT 5"
+        )
+        history = [
+            {'run_at': r[0].isoformat(), 'removed': r[1], 'triggered_by': r[2]}
+            for r in cur.fetchall()
+        ]
+        cur.close()
+        conn.close()
+        return {
+            'statusCode': 200,
+            'headers': cors_headers,
+            'body': json.dumps({
+                'success': True,
+                'dry_run': True,
+                'retention_days': RETENTION_DAYS,
+                'expired_found': expired,
+                'total': total,
+                'history': history
+            })
+        }
 
+    result = run_retention(conn, schema_name, triggered_by='manual')
+
+    cur = conn.cursor()
     cur.execute(f"SELECT COUNT(*) FROM {schema_name}.contact_requests")
     remaining = cur.fetchone()[0]
-
     cur.close()
     conn.close()
 
@@ -58,10 +109,9 @@ def handler(event: dict, context) -> dict:
         'headers': cors_headers,
         'body': json.dumps({
             'success': True,
-            'dry_run': dry_run,
+            'dry_run': False,
             'retention_days': RETENTION_DAYS,
-            'expired_found': expired_count,
-            'deleted': deleted,
+            'deleted': result['removed'],
             'remaining': remaining
         })
     }

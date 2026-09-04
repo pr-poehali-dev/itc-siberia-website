@@ -18,6 +18,7 @@
       "expectedStatus": 200,
       "expectedBody": {
         "success": true,
+        "dry_run": false,
         "retention_days": 365
       },
       "bodyMatcher": "partial"

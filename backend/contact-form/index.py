@@ -8,6 +8,8 @@ from email.mime.multipart import MIMEMultipart
 from typing import Optional
 from pydantic import BaseModel, Field, ValidationError
 
+RETENTION_DAYS = 365
+
 class ContactRequest(BaseModel):
     name: str = Field(..., min_length=1, max_length=100)
     phone: str = Field(..., min_length=10, max_length=20)
@@ -95,6 +97,26 @@ def handler(event: dict, context) -> dict:
             )
             request_id = cur.fetchone()[0]
             conn.commit()
+
+            cur.execute(
+                f"SELECT 1 FROM {schema_name}.retention_log "
+                f"WHERE run_at > NOW() - INTERVAL '24 hours' LIMIT 1"
+            )
+            if not cur.fetchone():
+                cur.execute(
+                    f"WITH removed AS ("
+                    f"  DELETE FROM {schema_name}.contact_requests "
+                    f"  WHERE created_at < NOW() - INTERVAL '{RETENTION_DAYS} days' RETURNING id"
+                    f") SELECT COUNT(*) FROM removed"
+                )
+                removed = cur.fetchone()[0]
+                cur.execute(
+                    f"INSERT INTO {schema_name}.retention_log "
+                    f"(removed_count, retention_days, triggered_by) VALUES (%s, %s, %s)",
+                    (removed, RETENTION_DAYS, 'auto')
+                )
+                conn.commit()
+
             cur.close()
             conn.close()
         except Exception as e:
