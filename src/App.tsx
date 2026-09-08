@@ -22,7 +22,6 @@ import TurningService from "./pages/TurningService";
 import ContainersService from "./pages/ContainersService";
 import EngineeringService from "./pages/EngineeringService";
 import MetalProcessing from "./pages/MetalProcessing";
-import Equipment from "./pages/Equipment";
 import PrivacyPolicy from "./pages/PrivacyPolicy";
 import CookiePolicy from "./pages/CookiePolicy";
 import DataConsent from "./pages/DataConsent";
@@ -60,7 +59,6 @@ const App = () => (
           <Route path="/services/tokarnye" element={<TurningService />} />
           <Route path="/services/inzhiniring" element={<EngineeringService />} />
           <Route path="/services/metalloobrabotka" element={<MetalProcessing />} />
-          <Route path="/equipment" element={<Equipment />} />
           <Route path="/contacts" element={<Contacts />} />
           <Route path="/presentation" element={<Presentation />} />
           <Route path="/reference-list" element={<ReferenceList />} />
