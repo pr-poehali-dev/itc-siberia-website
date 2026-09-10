@@ -107,7 +107,7 @@ const advantages = [
   },
   {
     icon: "Warehouse",
-    title: "Собственная база 3000+ м²",
+    title: "Собственная база 1500+ м²",
     text: "Современное оборудование для любых задач",
   },
   {
@@ -286,7 +286,7 @@ function generatePptx() {
     fontSize: 30, color: DARK_COLOR, bold: true,
   });
   const prodStats = [
-    { value: "3000+ м²", label: "производственных площадей" },
+    { value: "1500+ м²", label: "производственных площадей" },
     { value: "8 типов", label: "технологий обработки" },
     { value: "0.01 мм", label: "точность обработки" },
   ];
@@ -676,7 +676,7 @@ const Presentation = () => {
             <div className="grid grid-cols-2 md:grid-cols-3 gap-4 mb-12">
               {[
                 {
-                  value: "3000+",
+                  value: "1500+",
                   unit: "м²",
                   label: "производственных площадей",
                 },
