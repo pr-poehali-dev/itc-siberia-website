@@ -5,6 +5,7 @@ import { Badge } from '@/components/ui/badge';
 import Icon from '@/components/ui/icon';
 import Header from '@/components/Header';
 import Footer from '@/components/Footer';
+import PageHero from '@/components/PageHero';
 
 const ServiceDetail = () => {
   const advantages = [
@@ -42,34 +43,27 @@ const ServiceDetail = () => {
     <div className="min-h-screen bg-white">
       <Header />
 
-      <section className="pt-44 pb-12 bg-gradient-to-br from-primary via-primary/95 to-primary/90">
-        <div className="container mx-auto px-4">
-          <div className="max-w-4xl mx-auto text-center text-white">
-            <Button 
-              asChild 
-              variant="ghost" 
-              className="mb-6 text-white hover:bg-white/10 hover:text-white"
-            >
-              <Link to="/services">
-                <Icon name="ArrowLeft" size={20} className="mr-2" />
-                Назад к услугам
-              </Link>
-            </Button>
-            <h1 className="text-3xl md:text-5xl font-bold mb-6">
-              Закладные детали для железобетонных конструкций
-            </h1>
-            <p className="text-base md:text-xl text-white/90">
-              Надежное крепление и долговечность конструкций
-            </p>
-          </div>
-        </div>
-      </section>
+      <PageHero
+        title="Закладные детали для железобетонных конструкций"
+        subtitle="Надежное крепление и долговечность конструкций"
+      >
+        <Button 
+          asChild 
+          variant="ghost" 
+          className="mb-6 -ml-4 text-white/70 hover:bg-white/10 hover:text-white font-mono-tech text-[11px] uppercase tracking-[0.14em]"
+        >
+          <Link to="/services">
+            <Icon name="ArrowLeft" size={16} className="mr-2" />
+            Назад к услугам
+          </Link>
+        </Button>
+      </PageHero>
 
       <section className="py-12">
         <div className="container mx-auto px-4">
           <div className="grid md:grid-cols-2 gap-4">
             {images.map((img, index) => (
-              <div key={index} className="relative overflow-hidden rounded-xl aspect-video group">
+              <div key={index} className="relative overflow-hidden rounded-sm aspect-video group">
                 <img 
                   src={img} 
                   alt={`Закладные детали ${index + 1}`}
@@ -157,7 +151,7 @@ const ServiceDetail = () => {
         </div>
       </section>
 
-      <section className="py-16 bg-gradient-to-br from-primary to-primary/90">
+      <section className="py-16 bg-primary tech-grid-dark">
         <div className="container mx-auto px-4">
           <div className="max-w-3xl mx-auto text-center text-white">
             <h2 className="text-4xl font-bold mb-6">Заинтересовала услуга?</h2>

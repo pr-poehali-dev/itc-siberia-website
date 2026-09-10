@@ -77,7 +77,7 @@ const CookieConsent = () => {
   return (
     <div className="fixed bottom-0 left-0 right-0 z-[60] p-3 md:p-4 animate-fade-in">
       <div className="container mx-auto max-w-5xl">
-        <div className="bg-white rounded-xl shadow-2xl border border-border p-5 md:p-6 max-h-[85vh] overflow-y-auto">
+        <div className="bg-white rounded-sm shadow-none border border-border p-5 md:p-6 max-h-[85vh] overflow-y-auto">
           <div className="flex items-start gap-3 mb-4">
             <div className="w-10 h-10 bg-primary/10 rounded-lg flex items-center justify-center flex-shrink-0">
               <Icon name="Cookie" size={20} className="text-primary" />

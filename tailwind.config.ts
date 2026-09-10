@@ -61,7 +61,17 @@ export default {
 					'accent-foreground': 'hsl(var(--sidebar-accent-foreground))',
 					border: 'hsl(var(--sidebar-border))',
 					ring: 'hsl(var(--sidebar-ring))'
-				}
+				},
+				steel: {
+					DEFAULT: 'hsl(var(--steel))',
+					light: 'hsl(var(--steel-light))'
+				},
+				surface: 'hsl(var(--surface))',
+				ink: 'hsl(var(--ink))'
+			},
+			fontFamily: {
+				sans: ['Inter', 'sans-serif'],
+				mono: ['JetBrains Mono', 'monospace']
 			},
 			borderRadius: {
 				lg: 'var(--radius)',

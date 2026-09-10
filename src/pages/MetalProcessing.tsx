@@ -4,6 +4,7 @@ import { Card, CardContent } from '@/components/ui/card';
 import Icon from '@/components/ui/icon';
 import Header from '@/components/Header';
 import Footer from '@/components/Footer';
+import PageHero from '@/components/PageHero';
 
 const MetalProcessing = () => {
   const services = [
@@ -72,25 +73,20 @@ const MetalProcessing = () => {
     <div className="min-h-screen bg-white">
       <Header />
 
-      <section className="pt-44 pb-12 bg-gradient-to-br from-primary via-primary/95 to-primary/90">
-        <div className="container mx-auto px-4">
-          <div className="max-w-4xl mx-auto text-center text-white">
-            <Button 
-              asChild 
-              variant="ghost" 
-              className="mb-6 text-white hover:bg-white/10 hover:text-white"
-            >
-              <Link to="/services">
-                <Icon name="ArrowLeft" size={20} className="mr-2" />
-                Назад к услугам
-              </Link>
-            </Button>
-            <h1 className="text-3xl md:text-5xl font-bold mb-6">
-              Услуги по обработке металла – полный технологический цикл
-            </h1>
-          </div>
-        </div>
-      </section>
+      <PageHero
+        title="Услуги по обработке металла – полный технологический цикл"
+      >
+        <Button 
+          asChild 
+          variant="ghost" 
+          className="mb-6 -ml-4 text-white/70 hover:bg-white/10 hover:text-white font-mono-tech text-[11px] uppercase tracking-[0.14em]"
+        >
+          <Link to="/services">
+            <Icon name="ArrowLeft" size={16} className="mr-2" />
+            Назад к услугам
+          </Link>
+        </Button>
+      </PageHero>
 
       <section className="py-12">
         <div className="container mx-auto px-4">
@@ -120,7 +116,7 @@ const MetalProcessing = () => {
                         </div>
                         <div className={`p-8 ${index % 2 === 0 ? 'order-2' : 'order-1'}`}>
                           <div className="flex items-center gap-3 mb-4">
-                            <div className="w-12 h-12 bg-primary/10 rounded-xl flex items-center justify-center flex-shrink-0">
+                            <div className="w-12 h-12 bg-primary/10 rounded-sm flex items-center justify-center flex-shrink-0">
                               <Icon name={service.icon as any} size={24} className="text-primary" />
                             </div>
                             <h3 className="text-2xl font-bold">{service.title}</h3>
@@ -162,7 +158,7 @@ const MetalProcessing = () => {
               </div>
             </div>
 
-            <Card className="bg-gradient-to-br from-primary to-primary/90 border-0">
+            <Card className="bg-primary tech-grid-dark border-0">
               <CardContent className="p-12 text-center">
                 <h2 className="text-3xl font-bold text-white mb-4">
                   Готовы обсудить ваш проект?

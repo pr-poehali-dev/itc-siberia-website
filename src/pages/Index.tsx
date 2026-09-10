@@ -161,7 +161,7 @@ const Index = () => {
         )}
       </header>
 
-      <section id="home" className="pt-32 pb-20 bg-gradient-to-br from-primary via-primary/95 to-primary/90">
+      <section id="home" className="pt-32 pb-20 bg-primary tech-grid-dark">
         <div className="container mx-auto px-4">
           <div className="grid md:grid-cols-2 gap-12 items-center">
             <div className="text-white space-y-6 animate-fade-in">
@@ -206,11 +206,11 @@ const Index = () => {
               </div>
             </div>
             <div className="relative animate-fade-in">
-              <div className="absolute inset-0 bg-secondary/20 rounded-2xl blur-3xl"></div>
+              <div className="absolute inset-0 bg-secondary/20 rounded-sm blur-3xl"></div>
               <img 
                 src="https://cdn.poehali.dev/projects/e90cd5e8-153a-4589-b532-06e737a47d0d/files/799132a0-a086-466a-9c31-d66a17d47c94.jpg"
                 alt="Производство"
-                className="relative rounded-2xl shadow-2xl w-full object-cover"
+                className="relative rounded-sm shadow-none w-full object-cover"
               />
             </div>
           </div>
@@ -243,7 +243,7 @@ const Index = () => {
             ))}
           </div>
 
-          <div className="bg-muted rounded-2xl p-8">
+          <div className="bg-muted rounded-sm p-8">
             <h3 className="text-2xl font-bold mb-6 text-center">Сертификаты и лицензии</h3>
             <div className="grid md:grid-cols-4 gap-4">
               {certificates.map((cert, index) => (
@@ -273,7 +273,7 @@ const Index = () => {
             {services.map((service, index) => (
               <Card key={index} className="hover-scale">
                 <CardContent className="p-8">
-                  <div className="w-16 h-16 bg-primary rounded-xl flex items-center justify-center mb-6">
+                  <div className="w-16 h-16 bg-primary rounded-sm flex items-center justify-center mb-6">
                     <Icon name={service.icon as any} size={32} className="text-white" />
                   </div>
                   <h3 className="text-2xl font-bold mb-3">{service.title}</h3>
@@ -323,7 +323,7 @@ const Index = () => {
         </div>
       </section>
 
-      <section id="contacts" className="py-20 bg-gradient-to-br from-primary to-primary/90">
+      <section id="contacts" className="py-20 bg-primary tech-grid-dark">
         <div className="container mx-auto px-4">
           <div className="grid md:grid-cols-2 gap-12 items-start">
             <div className="text-white space-y-6">

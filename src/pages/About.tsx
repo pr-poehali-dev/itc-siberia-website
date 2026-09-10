@@ -1,8 +1,8 @@
-import { Card, CardContent } from '@/components/ui/card';
 import { Badge } from '@/components/ui/badge';
 import Icon from '@/components/ui/icon';
 import Header from '@/components/Header';
 import Footer from '@/components/Footer';
+import PageHero from '@/components/PageHero';
 
 const About = () => {
   const team = [
@@ -76,26 +76,22 @@ const About = () => {
     <div className="min-h-screen bg-white">
       <Header />
 
-      <section className="pt-44 pb-12 bg-gradient-to-br from-primary via-primary/95 to-primary/90">
-        <div className="container mx-auto px-4">
-          <div className="max-w-4xl mx-auto text-center text-white">
-            <h1 className="text-3xl md:text-6xl font-bold mb-6">
-              Профессионализм и опыт
-            </h1>
-            <p className="text-base md:text-xl text-white/90">
-              Ведущая компания в Красноярском крае в области инженерных решений 
-              и производства металлоконструкций
-            </p>
-          </div>
-        </div>
-      </section>
+      <PageHero
+        eyebrow="О компании"
+        title="Профессионализм и опыт"
+        subtitle="Ведущая компания в Красноярском крае в области инженерных решений и производства металлоконструкций"
+      />
 
-      <section className="py-20">
+      <section className="py-16 md:py-24">
         <div className="container mx-auto px-4">
-          <div className="grid md:grid-cols-2 gap-12 items-center mb-20">
+          <div className="grid md:grid-cols-2 gap-12 items-center mb-16 md:mb-20">
             <div>
-              <h2 className="text-4xl font-bold mb-6">Наша история</h2>
-              <div className="space-y-4 text-muted-foreground">
+              <div className="flex items-center gap-3 mb-4">
+                <span className="h-px w-10 bg-secondary" />
+                <span className="eyebrow-muted">История</span>
+              </div>
+              <h2 className="text-3xl md:text-[2.6rem] font-extrabold mb-6 leading-tight">Наша история</h2>
+              <div className="space-y-4 text-muted-foreground leading-relaxed">
                 <p>
                   ИТЦ-Сибири — инженерно-технологический центр с полным циклом производства металлоконструкций 
                   и услуг промышленного строительства. Компания выросла из небольшой производственной мастерской 
@@ -109,32 +105,28 @@ const About = () => {
                 </p>
               </div>
             </div>
-            <div className="relative max-w-md mx-auto">
+            <div className="relative">
               <img 
                 src="https://cdn.poehali.dev/files/AdobeStock_725429792_34-1.jpeg"
                 alt="Команда ИТЦ-Сибири"
-                className="rounded-2xl shadow-xl w-full h-[400px] object-cover"
+                className="w-full h-[400px] object-cover border border-border"
               />
             </div>
           </div>
 
-          <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8 mb-20">
+          <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-px bg-border border border-border">
             {advantages.map((advantage, index) => (
-              <Card key={index} className="hover-scale">
-                <CardContent className="p-6 text-center">
-                  <div className="w-16 h-16 bg-primary/10 rounded-full flex items-center justify-center mx-auto mb-4">
-                    <Icon name={advantage.icon as any} size={32} className="text-primary" />
-                  </div>
-                  <h3 className="font-bold text-lg mb-2">{advantage.title}</h3>
-                  <p className="text-sm text-muted-foreground">{advantage.description}</p>
-                </CardContent>
-              </Card>
+              <div key={index} className="group bg-white hover:bg-surface transition-colors p-8">
+                <div className="w-12 h-12 border border-border group-hover:border-secondary group-hover:bg-secondary flex items-center justify-center mb-6 transition-colors">
+                  <Icon name={advantage.icon as any} size={24} className="text-primary group-hover:text-secondary-foreground transition-colors" />
+                </div>
+                <h3 className="font-bold text-lg mb-2 leading-snug">{advantage.title}</h3>
+                <p className="text-sm text-muted-foreground leading-relaxed">{advantage.description}</p>
+              </div>
             ))}
           </div>
         </div>
       </section>
-
-
 
       <Footer />
     </div>

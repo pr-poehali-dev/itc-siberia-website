@@ -7,6 +7,7 @@ import { Badge } from '@/components/ui/badge';
 import Icon from '@/components/ui/icon';
 import Header from '@/components/Header';
 import Footer from '@/components/Footer';
+import PageHero from '@/components/PageHero';
 import ConsentCheckbox from '@/components/legal/ConsentCheckbox';
 import ConsentGatedMap from '@/components/ConsentGatedMap';
 import { trackGoal } from '@/lib/cookieConsent';
@@ -183,19 +184,11 @@ const Contacts = () => {
     <div className="min-h-screen bg-white">
       <Header />
 
-      <section className="pt-44 pb-12 bg-gradient-to-br from-primary via-primary/95 to-primary/90">
-        <div className="container mx-auto px-4">
-          <div className="max-w-4xl mx-auto text-center text-white">
-            <h1 className="text-3xl md:text-6xl font-bold mb-6">
-              Свяжитесь с нами
-            </h1>
-            <p className="text-base md:text-xl text-white/90">
-              Готовы обсудить ваш проект и предложить оптимальное решение. 
-              Свяжитесь с нами удобным способом
-            </p>
-          </div>
-        </div>
-      </section>
+      <PageHero
+        eyebrow="Контакты"
+        title="Свяжитесь с нами"
+        subtitle="Готовы обсудить ваш проект и предложить оптимальное решение. Свяжитесь с нами удобным способом"
+      />
 
       <section className="py-20">
         <div className="container mx-auto px-4">
@@ -382,7 +375,7 @@ const Contacts = () => {
       <section className="py-16 bg-muted/30">
         <div className="container mx-auto px-4">
           <h2 className="text-3xl font-bold text-center mb-8">Как нас найти</h2>
-          <div className="rounded-2xl overflow-hidden shadow-xl">
+          <div className="rounded-sm overflow-hidden shadow-none">
             <ConsentGatedMap
               src="https://yandex.ru/map-widget/v1/?ll=92.895520%2C56.025889&z=17&pt=92.895520,56.025889,pm2rdm"
               title="Карта офиса ИТЦ Сибири"

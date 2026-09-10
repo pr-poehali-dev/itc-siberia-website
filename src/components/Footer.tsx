@@ -9,35 +9,56 @@ const Footer = () => {
   ];
 
   return (
-    <footer className="bg-foreground text-white py-10">
-      <div className="container mx-auto px-4">
-        <div className="flex flex-col items-center gap-5 text-center">
-          <nav className="flex flex-wrap justify-center gap-x-6 gap-y-2">
-            {legalLinks.map((link) => (
-              <Link
-                key={link.path}
-                to={link.path}
-                className="text-white/70 hover:text-white text-sm transition-colors"
-              >
-                {link.label}
-              </Link>
-            ))}
-            <button
-              onClick={revokeConsent}
-              className="text-white/70 hover:text-white text-sm transition-colors underline-offset-4 hover:underline"
-            >
-              Настройки cookie
-            </button>
-          </nav>
-
-          <div className="w-full max-w-3xl border-t border-white/10 pt-5 space-y-1">
-            <p className="text-white/70 text-sm">
-              © {new Date().getFullYear()} ООО «ИТЦ Сибири». Все права защищены.
-            </p>
-            <p className="text-white/50 text-xs">
-              ИНН 2465360948 · ОГРН 1242400009378 · 660020, г. Красноярск, ул. Дудинская, д. 5
+    <footer className="bg-ink text-white tech-grid-dark">
+      <div className="container mx-auto px-4 py-12">
+        <div className="grid md:grid-cols-3 gap-10 pb-10 border-b border-white/10">
+          <div className="space-y-3">
+            <div className="eyebrow">ООО «ИТЦ Сибири»</div>
+            <p className="text-white/60 text-sm leading-relaxed max-w-xs">
+              Инженерно-технологический центр полного цикла: проектирование, производство
+              металлоконструкций и монтаж.
             </p>
           </div>
+
+          <div className="space-y-3">
+            <div className="eyebrow-muted">Контакты</div>
+            <a href="tel:+79059755888" className="block font-mono-tech text-lg text-white hover:text-secondary transition-colors">
+              +7 905 975 58 88
+            </a>
+            <p className="text-white/50 text-sm leading-relaxed">
+              660020, г. Красноярск,<br />ул. Дудинская, д. 5
+            </p>
+          </div>
+
+          <div className="space-y-3">
+            <div className="eyebrow-muted">Документы</div>
+            <nav className="flex flex-col gap-2 items-start">
+              {legalLinks.map((link) => (
+                <Link
+                  key={link.path}
+                  to={link.path}
+                  className="text-white/60 hover:text-secondary text-sm transition-colors text-left"
+                >
+                  {link.label}
+                </Link>
+              ))}
+              <button
+                onClick={revokeConsent}
+                className="text-white/60 hover:text-secondary text-sm transition-colors text-left"
+              >
+                Настройки cookie
+              </button>
+            </nav>
+          </div>
+        </div>
+
+        <div className="pt-6 flex flex-col md:flex-row md:items-center md:justify-between gap-2">
+          <p className="font-mono-tech text-[11px] uppercase tracking-[0.14em] text-white/40">
+            © {new Date().getFullYear()} ООО «ИТЦ Сибири»
+          </p>
+          <p className="font-mono-tech text-[11px] uppercase tracking-[0.14em] text-white/40">
+            ИНН 2465360948 · ОГРН 1242400009378
+          </p>
         </div>
       </div>
     </footer>

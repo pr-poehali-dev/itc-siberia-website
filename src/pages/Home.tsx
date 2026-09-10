@@ -1,8 +1,6 @@
 import { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { Button } from '@/components/ui/button';
-import { Card, CardContent } from '@/components/ui/card';
-import { Badge } from '@/components/ui/badge';
 import { Input } from '@/components/ui/input';
 import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogDescription } from '@/components/ui/dialog';
 import Icon from '@/components/ui/icon';
@@ -155,115 +153,142 @@ const Home = () => {
     <div className="min-h-screen bg-white">
       <Header />
 
-      <section className="pt-36 pb-8 md:pt-36 md:pb-10 bg-gradient-to-br from-primary via-primary/95 to-primary/90">
-        <div className="container mx-auto px-4">
-          <div className="grid md:grid-cols-2 gap-8 md:gap-12 items-center">
-            <div className="text-white space-y-4 md:space-y-6 animate-fade-in">
-              <Badge className="bg-secondary text-secondary-foreground border-0 text-sm md:text-base px-3 py-1.5 md:px-4 md:py-2 hover:bg-secondary/90">
-                Надежный партнер с 2013 года
-              </Badge>
-              <h1 className="text-2xl md:text-5xl font-bold leading-snug md:leading-tight">
-                Инженерные решения для промышленности
+      <section className="relative pt-40 md:pt-44 pb-0 bg-primary tech-grid-dark overflow-hidden">
+        <div className="container mx-auto px-4 relative">
+          <div className="grid md:grid-cols-2 gap-10 md:gap-16 items-center pb-12">
+            <div className="text-white space-y-6 animate-fade-in">
+              <div className="flex items-center gap-3">
+                <span className="h-px w-10 bg-secondary" />
+                <span className="eyebrow">Надежный партнер с 2013 года</span>
+              </div>
+              <h1 className="text-3xl md:text-5xl font-extrabold leading-[1.1] tracking-tight">
+                Инженерные решения<br />
+                <span className="text-secondary">для промышленности</span>
               </h1>
-              <p className="text-sm md:text-xl text-white/90 leading-relaxed">
+              <p className="text-sm md:text-lg text-white/65 leading-relaxed max-w-xl">
                 Полный цикл проектирования, производства металлоконструкций и решение инженерных технологический задач. 
                 От идеи до реализации под ключ.
               </p>
-              <div className="flex gap-4 justify-start pt-2 md:pt-4">
+              <div className="flex flex-wrap gap-3 pt-2">
                 <Button 
                   asChild
                   size="lg" 
-                  className="bg-secondary hover:bg-secondary/90 text-secondary-foreground px-8 md:px-12 text-sm md:text-base"
+                  className="bg-secondary hover:bg-secondary/85 text-secondary-foreground px-8"
                 >
                   <Link to="/services">
                     Наши услуги
+                    <Icon name="ArrowRight" size={18} className="ml-2" />
                   </Link>
                 </Button>
                 <Button 
                   onClick={() => setIsDialogOpen(true)}
                   size="lg" 
-                  className="bg-secondary hover:bg-secondary/90 text-secondary-foreground px-8 md:px-12 text-sm md:text-base"
+                  variant="outline"
+                  className="border-white/25 text-white hover:bg-white hover:text-primary hover:border-white px-8"
                 >
                   Оставить заявку
                 </Button>
               </div>
-              <div className="grid grid-cols-2 gap-4 md:flex md:flex-nowrap md:justify-start md:items-start md:gap-x-10 pt-6 md:pt-8">
-                {stats.map((stat, index) => (
-                  <div key={index} className="flex flex-col items-center md:items-start">
-                    <div className="text-xl md:text-4xl font-bold text-secondary whitespace-nowrap">{stat.value}</div>
-                    <div className="text-white/80 text-[9px] md:text-sm mt-1 text-center md:text-left leading-tight">{stat.label.replace('\n', ' ')}</div>
-                  </div>
-                ))}
-              </div>
             </div>
-            <div className="relative animate-fade-in group max-w-lg mx-auto">
-              <div className="absolute inset-0 bg-secondary/20 rounded-2xl blur-3xl"></div>
-              <div className="relative rounded-2xl shadow-2xl overflow-hidden h-[350px] md:h-[440px]">
+
+            <div className="relative animate-fade-in group">
+              <div className="relative overflow-hidden h-[320px] md:h-[440px] border border-white/15">
                 <img 
                   src={images[currentImage].url}
                   alt={images[currentImage].alt}
                   className="w-full h-full object-cover"
                 />
+                <div className="absolute inset-0 bg-gradient-to-t from-primary/70 via-transparent to-transparent" />
                 <button
                   onClick={prevImage}
-                  className="absolute left-4 top-1/2 -translate-y-1/2 w-12 h-12 bg-white/90 hover:bg-white rounded-full flex items-center justify-center shadow-lg opacity-0 group-hover:opacity-100 transition-opacity"
+                  className="absolute left-0 top-1/2 -translate-y-1/2 w-11 h-11 bg-primary/80 hover:bg-secondary hover:text-secondary-foreground text-white flex items-center justify-center opacity-0 group-hover:opacity-100 transition-all"
                   aria-label="Предыдущее изображение"
                 >
-                  <Icon name="ChevronLeft" size={24} className="text-primary" />
+                  <Icon name="ChevronLeft" size={22} />
                 </button>
                 <button
                   onClick={nextImage}
-                  className="absolute right-4 top-1/2 -translate-y-1/2 w-12 h-12 bg-white/90 hover:bg-white rounded-full flex items-center justify-center shadow-lg opacity-0 group-hover:opacity-100 transition-opacity"
+                  className="absolute right-0 top-1/2 -translate-y-1/2 w-11 h-11 bg-primary/80 hover:bg-secondary hover:text-secondary-foreground text-white flex items-center justify-center opacity-0 group-hover:opacity-100 transition-all"
                   aria-label="Следующее изображение"
                 >
-                  <Icon name="ChevronRight" size={24} className="text-primary" />
+                  <Icon name="ChevronRight" size={22} />
                 </button>
-                <div className="absolute bottom-4 left-1/2 -translate-x-1/2 flex gap-2">
-                  {images.map((_, index) => (
-                    <button
-                      key={index}
-                      onClick={() => setCurrentImage(index)}
-                      className={`w-2 h-2 rounded-full transition-all ${
-                        index === currentImage ? 'bg-white w-8' : 'bg-white/50'
-                      }`}
-                      aria-label={`Перейти к изображению ${index + 1}`}
-                    />
-                  ))}
+                <div className="absolute bottom-4 left-4 right-4 flex items-center justify-between">
+                  <span className="font-mono-tech text-[11px] uppercase tracking-[0.14em] text-white/80">
+                    {String(currentImage + 1).padStart(2, '0')} / {String(images.length).padStart(2, '0')}
+                  </span>
+                  <div className="flex gap-1.5">
+                    {images.map((_, index) => (
+                      <button
+                        key={index}
+                        onClick={() => setCurrentImage(index)}
+                        className={`h-0.5 transition-all ${
+                          index === currentImage ? 'bg-secondary w-6' : 'bg-white/40 w-3'
+                        }`}
+                        aria-label={`Перейти к изображению ${index + 1}`}
+                      />
+                    ))}
+                  </div>
                 </div>
               </div>
             </div>
           </div>
+
+          <div className="grid grid-cols-2 md:grid-cols-4 border-t border-white/12">
+            {stats.map((stat, index) => (
+              <div 
+                key={index} 
+                className={`py-6 md:py-8 px-2 md:px-6 ${index !== 0 ? 'md:border-l border-white/12' : ''} ${index % 2 !== 0 ? 'border-l border-white/12 md:border-l' : ''} ${index > 1 ? 'border-t border-white/12 md:border-t-0' : ''}`}
+              >
+                <div className="font-mono-tech text-2xl md:text-4xl font-semibold text-secondary whitespace-nowrap">
+                  {stat.value}
+                </div>
+                <div className="text-white/50 text-[10px] md:text-xs mt-2 uppercase tracking-[0.1em] leading-tight">
+                  {stat.label.replace('\n', ' ')}
+                </div>
+              </div>
+            ))}
+          </div>
         </div>
       </section>
 
-      <section className="py-20">
+      <section className="py-16 md:py-24">
         <div className="container mx-auto px-4">
-          <div className="max-w-3xl mx-auto text-center mb-16">
-            <h2 className="text-4xl font-bold mb-4">Комплексные решения для бизнеса</h2>
-            <p className="text-muted-foreground text-lg">
+          <div className="max-w-3xl mb-12">
+            <div className="flex items-center gap-3 mb-4">
+              <span className="h-px w-10 bg-secondary" />
+              <span className="eyebrow-muted">Направления</span>
+            </div>
+            <h2 className="text-3xl md:text-[2.6rem] font-extrabold leading-tight mb-4">
+              Комплексные решения для бизнеса
+            </h2>
+            <p className="text-muted-foreground text-base md:text-lg">
               Предоставляем полный спектр услуг от проектирования до монтажа
             </p>
           </div>
 
-          <div className="grid md:grid-cols-3 gap-8">
+          <div className="grid md:grid-cols-3 gap-px bg-border border border-border">
             {services.map((service, index) => {
               const serviceUrl = index === 0 ? "/services/inzhiniring" : "/services";
               
               return (
-                <Link key={index} to={serviceUrl}>
-                  <Card className="hover-scale flex flex-col h-full cursor-pointer transition-shadow hover:shadow-xl">
-                    <CardContent className="p-8 flex flex-col flex-grow">
-                      <div className="w-16 h-16 bg-primary rounded-xl flex items-center justify-center mb-6">
-                        <Icon name={service.icon as any} size={32} className="text-white" />
+                <Link key={index} to={serviceUrl} className="group bg-white hover:bg-surface transition-colors">
+                  <div className="p-8 flex flex-col h-full">
+                    <div className="flex items-center justify-between mb-8">
+                      <div className="w-12 h-12 border border-border group-hover:border-secondary group-hover:bg-secondary flex items-center justify-center transition-colors">
+                        <Icon name={service.icon as any} size={24} className="text-primary group-hover:text-secondary-foreground transition-colors" />
                       </div>
-                      <h3 className="text-2xl font-bold mb-3">{service.title}</h3>
-                      <p className="text-muted-foreground mb-4 flex-grow min-h-[3rem]">{service.description}</p>
-                      <div className="text-primary self-start flex items-center font-medium">
-                        Подробнее
-                        <Icon name="ArrowRight" size={16} className="ml-2" />
-                      </div>
-                    </CardContent>
-                  </Card>
+                      <span className="font-mono-tech text-xs text-muted-foreground">
+                        {String(index + 1).padStart(2, '0')}
+                      </span>
+                    </div>
+                    <h3 className="text-xl font-bold mb-3 leading-snug">{service.title}</h3>
+                    <p className="text-muted-foreground text-sm leading-relaxed mb-6 flex-grow">{service.description}</p>
+                    <div className="text-primary flex items-center text-sm font-semibold uppercase tracking-wide">
+                      Подробнее
+                      <Icon name="ArrowRight" size={16} className="ml-2 group-hover:translate-x-1 transition-transform" />
+                    </div>
+                  </div>
                 </Link>
               );
             })}
@@ -271,19 +296,25 @@ const Home = () => {
         </div>
       </section>
 
-      <section className="py-20 bg-muted/50">
+      <section className="py-16 md:py-20 bg-surface border-y border-border">
         <div className="container mx-auto px-4">
-          <div className="max-w-3xl mx-auto text-center">
-            <h2 className="text-4xl font-bold mb-6">Готовы начать проект?</h2>
-            <p className="text-muted-foreground text-lg mb-8">
-              Свяжитесь с нами для консультации и расчета стоимости работ
-            </p>
-            <div className="flex justify-center">
-              <Button asChild size="lg" className="bg-secondary hover:bg-secondary/90 text-secondary-foreground">
+          <div className="flex flex-col md:flex-row md:items-center md:justify-between gap-8">
+            <div className="max-w-xl">
+              <div className="eyebrow-muted mb-4">Начнем работу</div>
+              <h2 className="text-2xl md:text-4xl font-extrabold mb-3 leading-tight">Готовы начать проект?</h2>
+              <p className="text-muted-foreground">
+                Свяжитесь с нами для консультации и расчета стоимости работ
+              </p>
+            </div>
+            <div className="flex flex-wrap gap-3">
+              <Button asChild size="lg" className="bg-secondary hover:bg-secondary/85 text-secondary-foreground">
                 <Link to="/contacts">
-                  <Icon name="Phone" size={20} className="mr-2" />
+                  <Icon name="Phone" size={18} className="mr-2" />
                   Связаться с нами
                 </Link>
+              </Button>
+              <Button asChild size="lg" variant="outline">
+                <Link to="/services">Все услуги</Link>
               </Button>
             </div>
           </div>

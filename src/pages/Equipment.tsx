@@ -6,6 +6,7 @@ import { Badge } from '@/components/ui/badge';
 import Icon from '@/components/ui/icon';
 import Header from '@/components/Header';
 import Footer from '@/components/Footer';
+import PageHero from '@/components/PageHero';
 import { equipmentCategories } from '@/data/equipment';
 
 const Equipment = () => {
@@ -22,19 +23,11 @@ const Equipment = () => {
     <div className="min-h-screen bg-white">
       <Header />
 
-      <section className="pt-44 pb-12 bg-gradient-to-br from-primary via-primary/95 to-primary/90">
-        <div className="container mx-auto px-4">
-          <div className="max-w-4xl mx-auto text-center text-white">
-            <h1 className="text-3xl md:text-5xl font-bold leading-snug md:leading-tight mb-4">
-              Оборудование
-            </h1>
-            <p className="text-base md:text-xl text-white/90">
-              Каталог промышленного оборудования и роботизированных решений: {totalItems} позиций
-              в {equipmentCategories.length} направлениях
-            </p>
-          </div>
-        </div>
-      </section>
+      <PageHero
+        eyebrow="Каталог"
+        title="Оборудование"
+        subtitle={`Каталог промышленного оборудования и роботизированных решений: ${totalItems} позиций в ${equipmentCategories.length} направлениях`}
+      />
 
       <section className="sticky top-[88px] md:top-[112px] z-40 bg-white/95 backdrop-blur-sm border-b border-border">
         <div className="container mx-auto px-4 py-4">
@@ -74,7 +67,7 @@ const Equipment = () => {
         >
           <div className="container mx-auto px-4">
             <div className="flex items-start gap-4 mb-10">
-              <div className="w-14 h-14 bg-primary rounded-xl flex items-center justify-center flex-shrink-0">
+              <div className="w-14 h-14 bg-primary rounded-sm flex items-center justify-center flex-shrink-0">
                 <Icon name={category.icon as any} size={28} className="text-white" />
               </div>
               <div>
@@ -90,7 +83,7 @@ const Equipment = () => {
               {category.items.map((item) => (
                 <Card
                   key={item.id}
-                  className="flex flex-col h-full overflow-hidden transition-shadow hover:shadow-xl"
+                  className="flex flex-col h-full overflow-hidden transition-shadow hover:shadow-none"
                 >
                   <div className="aspect-[4/3] overflow-hidden bg-muted">
                     <img
@@ -128,7 +121,7 @@ const Equipment = () => {
         </section>
       ))}
 
-      <section className="py-20 bg-gradient-to-br from-primary to-primary/90">
+      <section className="py-20 bg-primary tech-grid-dark">
         <div className="container mx-auto px-4">
           <div className="max-w-3xl mx-auto text-center text-white">
             <h2 className="text-3xl md:text-4xl font-bold mb-4">

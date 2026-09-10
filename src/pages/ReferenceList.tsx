@@ -290,7 +290,7 @@ const ReferenceList = () => {
             ].map((stat) => (
               <div
                 key={stat.label}
-                className="bg-white/10 border border-white/20 rounded-xl px-5 py-3 flex items-center gap-3"
+                className="bg-white/10 border border-white/20 rounded-sm px-5 py-3 flex items-center gap-3"
               >
                 <div className="text-xl font-bold">{stat.value}</div>
                 <div className="text-white/60 text-xs uppercase tracking-wider">
@@ -313,7 +313,7 @@ const ReferenceList = () => {
             </h2>
           </div>
 
-          <div className="overflow-x-auto rounded-xl border border-border">
+          <div className="overflow-x-auto rounded-sm border border-border">
             <table className="w-full text-sm">
               <thead>
                 <tr className="bg-primary text-primary-foreground">
@@ -374,7 +374,7 @@ const ReferenceList = () => {
               .map(([category, count]) => (
                 <div
                   key={category}
-                  className="bg-white rounded-xl p-5 border border-border flex items-center gap-4"
+                  className="bg-white rounded-sm p-5 border border-border flex items-center gap-4"
                 >
                   <div className="text-3xl font-bold text-primary">{count}</div>
                   <div className="text-sm font-medium text-foreground leading-tight">{category}</div>

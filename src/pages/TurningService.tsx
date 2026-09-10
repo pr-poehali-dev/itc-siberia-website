@@ -5,6 +5,7 @@ import { Badge } from '@/components/ui/badge';
 import Icon from '@/components/ui/icon';
 import Header from '@/components/Header';
 import Footer from '@/components/Footer';
+import PageHero from '@/components/PageHero';
 
 const TurningService = () => {
   const advantages = [
@@ -59,32 +60,27 @@ const TurningService = () => {
     <div className="min-h-screen bg-white">
       <Header />
 
-      <section className="pt-44 pb-12 bg-gradient-to-br from-primary via-primary/95 to-primary/90">
-        <div className="container mx-auto px-4">
-          <div className="max-w-4xl mx-auto text-center text-white">
-            <Button 
-              asChild 
-              variant="ghost" 
-              className="mb-6 text-white hover:bg-white/10 hover:text-white"
-            >
-              <Link to="/services">
-                <Icon name="ArrowLeft" size={20} className="mr-2" />
-                Назад к услугам
-              </Link>
-            </Button>
-            <h1 className="text-3xl md:text-5xl font-bold mb-6">
-              Токарные работы – точность и надежность для деталей любой сложности
-            </h1>
-          </div>
-        </div>
-      </section>
+      <PageHero
+        title="Токарные работы – точность и надежность для деталей любой сложности"
+      >
+        <Button 
+          asChild 
+          variant="ghost" 
+          className="mb-6 -ml-4 text-white/70 hover:bg-white/10 hover:text-white font-mono-tech text-[11px] uppercase tracking-[0.14em]"
+        >
+          <Link to="/services">
+            <Icon name="ArrowLeft" size={16} className="mr-2" />
+            Назад к услугам
+          </Link>
+        </Button>
+      </PageHero>
 
       <section className="py-12">
         <div className="container mx-auto px-4">
           <div className="max-w-5xl mx-auto">
             <div className="grid md:grid-cols-3 gap-6 mb-12">
               {images.map((image, index) => (
-                <div key={index} className="rounded-xl overflow-hidden shadow-lg hover-scale">
+                <div key={index} className="rounded-sm overflow-hidden shadow-lg hover-scale">
                   <img 
                     src={image.url} 
                     alt={image.alt}
@@ -111,7 +107,7 @@ const TurningService = () => {
                   <Card key={index} className="hover-scale">
                     <CardContent className="p-6">
                       <div className="flex items-start gap-4">
-                        <div className="w-12 h-12 bg-primary/10 rounded-xl flex items-center justify-center flex-shrink-0">
+                        <div className="w-12 h-12 bg-primary/10 rounded-sm flex items-center justify-center flex-shrink-0">
                           <Icon name={app.icon as any} size={24} className="text-primary" />
                         </div>
                         <p className="text-foreground leading-relaxed pt-2">{app.text}</p>
@@ -156,7 +152,7 @@ const TurningService = () => {
               </Card>
             </div>
 
-            <Card className="bg-gradient-to-br from-primary to-primary/90 border-0">
+            <Card className="bg-primary tech-grid-dark border-0">
               <CardContent className="p-12 text-center">
                 <h2 className="text-3xl font-bold text-white mb-4">
                   Готовы обсудить ваш проект?

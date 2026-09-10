@@ -496,7 +496,7 @@ const Presentation = () => {
 
           <div className="relative max-w-5xl mx-auto px-8 py-24 text-center">
             <div className="flex justify-center mb-8">
-              <div className="w-20 h-20 rounded-2xl bg-white/10 border border-white/20 flex items-center justify-center backdrop-blur-sm">
+              <div className="w-20 h-20 rounded-sm bg-white/10 border border-white/20 flex items-center justify-center backdrop-blur-sm">
                 <Icon name="Factory" size={40} className="text-white" />
               </div>
             </div>
@@ -527,7 +527,7 @@ const Presentation = () => {
               ].map((stat) => (
                 <div
                   key={stat.label}
-                  className="bg-white/10 backdrop-blur-sm border border-white/20 rounded-xl px-6 py-4 flex items-center gap-3"
+                  className="bg-white/10 backdrop-blur-sm border border-white/20 rounded-sm px-6 py-4 flex items-center gap-3"
                 >
                   <Icon
                     name={stat.icon}
@@ -607,7 +607,7 @@ const Presentation = () => {
                 ].map((item) => (
                   <div
                     key={item.text}
-                    className="flex items-start gap-4 p-4 bg-muted/50 rounded-xl"
+                    className="flex items-start gap-4 p-4 bg-muted/50 rounded-sm"
                   >
                     <div className="w-10 h-10 rounded-lg bg-primary/10 flex items-center justify-center shrink-0 mt-0.5">
                       <Icon
@@ -620,7 +620,7 @@ const Presentation = () => {
                   </div>
                 ))}
 
-                <div className="mt-6 p-5 bg-primary/5 border border-primary/10 rounded-xl">
+                <div className="mt-6 p-5 bg-primary/5 border border-primary/10 rounded-sm">
                   <div className="flex items-center gap-2 mb-3">
                     <Icon name="Award" size={18} className="text-primary" />
                     <span className="font-semibold text-foreground text-sm">
@@ -693,7 +693,7 @@ const Presentation = () => {
               ].map((stat) => (
                 <div
                   key={stat.label}
-                  className="bg-white rounded-xl p-5 border border-border text-center"
+                  className="bg-white rounded-sm p-5 border border-border text-center"
                 >
                   <div className="text-3xl font-bold text-primary">
                     {stat.value}
@@ -717,7 +717,7 @@ const Presentation = () => {
               {equipmentCards.map((eq) => (
                 <div
                   key={eq.title}
-                  className={`${eq.color} border rounded-xl p-5 flex items-start gap-4`}
+                  className={`${eq.color} border rounded-sm p-5 flex items-start gap-4`}
                 >
                   <div
                     className={`w-11 h-11 rounded-lg bg-white flex items-center justify-center shrink-0 ${eq.iconColor}`}
@@ -763,7 +763,7 @@ const Presentation = () => {
               {teamMembers.map((member) => (
                 <div
                   key={member.name}
-                  className="border border-border rounded-xl p-5 bg-muted/30 hover:shadow-md transition-shadow"
+                  className="border border-border rounded-sm p-5 bg-muted/30 hover:shadow-md transition-shadow"
                 >
                   <div className="flex items-center gap-3 mb-3">
                     <div className="w-12 h-12 rounded-full bg-primary/10 flex items-center justify-center">
@@ -810,7 +810,7 @@ const Presentation = () => {
               {advantages.map((adv) => (
                 <div
                   key={adv.title}
-                  className="bg-white/10 backdrop-blur-sm border border-white/10 rounded-xl p-5 flex items-start gap-4"
+                  className="bg-white/10 backdrop-blur-sm border border-white/10 rounded-sm p-5 flex items-start gap-4"
                 >
                   <div className="w-11 h-11 rounded-lg bg-white/10 flex items-center justify-center shrink-0">
                     <Icon
@@ -870,7 +870,7 @@ const Presentation = () => {
               ].map((contact) => (
                 <div
                   key={contact.label}
-                  className="bg-white/5 border border-white/10 rounded-xl p-5 text-center"
+                  className="bg-white/5 border border-white/10 rounded-sm p-5 text-center"
                 >
                   <div className="w-10 h-10 rounded-lg bg-white/10 flex items-center justify-center mx-auto mb-3">
                     <Icon

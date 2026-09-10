@@ -5,34 +5,39 @@
 @layer base {
   :root {
     --background: 0 0% 100%;
-    --foreground: 210 60% 15%;
+    --foreground: 215 40% 12%;
 
     --card: 0 0% 100%;
-    --card-foreground: 210 60% 15%;
+    --card-foreground: 215 40% 12%;
 
     --popover: 0 0% 100%;
-    --popover-foreground: 210 60% 15%;
+    --popover-foreground: 215 40% 12%;
 
-    --primary: 214 100% 35%;
+    --primary: 215 55% 20%;
     --primary-foreground: 0 0% 100%;
 
-    --secondary: 38 100% 50%;
-    --secondary-foreground: 214 100% 20%;
+    --secondary: 36 92% 52%;
+    --secondary-foreground: 215 55% 14%;
 
-    --muted: 210 20% 96%;
-    --muted-foreground: 210 10% 45%;
+    --muted: 215 25% 96%;
+    --muted-foreground: 215 14% 42%;
 
-    --accent: 38 100% 50%;
-    --accent-foreground: 214 100% 20%;
+    --accent: 36 92% 52%;
+    --accent-foreground: 215 55% 14%;
 
-    --destructive: 0 84.2% 60.2%;
+    --destructive: 0 72% 48%;
     --destructive-foreground: 0 0% 100%;
 
-    --border: 210 20% 88%;
-    --input: 210 20% 88%;
-    --ring: 214 100% 35%;
+    --border: 215 20% 88%;
+    --input: 215 20% 86%;
+    --ring: 215 55% 20%;
 
-    --radius: 0.5rem;
+    --steel: 213 27% 32%;
+    --steel-light: 214 20% 62%;
+    --surface: 215 30% 97%;
+    --ink: 215 45% 10%;
+
+    --radius: 0.25rem;
 
     --sidebar-background: 0 0% 98%;
 
@@ -97,7 +102,8 @@
 
   body {
     @apply bg-background text-foreground;
-    font-family: "Open Sans", sans-serif;
+    font-family: "Inter", sans-serif;
+    font-feature-settings: "ss01", "cv11";
   }
 
   h1,
@@ -106,7 +112,8 @@
   h4,
   h5,
   h6 {
-    font-family: "Montserrat", sans-serif;
+    font-family: "Inter", sans-serif;
+    letter-spacing: -0.025em;
   }
 }
 
@@ -119,6 +126,45 @@
   .scrollbar-hide::-webkit-scrollbar {
     display: none;
   }
+
+  .font-mono-tech {
+    font-family: "JetBrains Mono", monospace;
+    font-feature-settings: "tnum";
+  }
+
+  .eyebrow {
+    @apply font-mono-tech text-[11px] uppercase tracking-[0.18em] text-secondary;
+  }
+
+  .eyebrow-muted {
+    @apply font-mono-tech text-[11px] uppercase tracking-[0.18em] text-muted-foreground;
+  }
+
+  .rule {
+    @apply h-px w-full bg-border;
+  }
+
+  .tech-grid {
+    background-image:
+      linear-gradient(hsl(var(--border) / 0.55) 1px, transparent 1px),
+      linear-gradient(90deg, hsl(var(--border) / 0.55) 1px, transparent 1px);
+    background-size: 64px 64px;
+  }
+
+  .tech-grid-dark {
+    background-image:
+      linear-gradient(rgba(255, 255, 255, 0.06) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(255, 255, 255, 0.06) 1px, transparent 1px);
+    background-size: 64px 64px;
+  }
+
+  .card-tech {
+    @apply border border-border bg-white transition-colors duration-200;
+  }
+
+  .card-tech:hover {
+    @apply border-secondary;
+  }
 }
 
-@import url("https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700;800&family=Open+Sans:wght@300;400;600;700&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&display=swap");

@@ -5,6 +5,7 @@ import { Badge } from '@/components/ui/badge';
 import Icon from '@/components/ui/icon';
 import Header from '@/components/Header';
 import Footer from '@/components/Footer';
+import PageHero from '@/components/PageHero';
 
 const EngineeringService = () => {
   const solutions = [
@@ -104,19 +105,10 @@ const EngineeringService = () => {
     <div className="min-h-screen bg-white">
       <Header />
 
-      <section className="pt-44 pb-12 bg-gradient-to-br from-primary via-primary/95 to-primary/90">
-        <div className="container mx-auto px-4">
-          <div className="max-w-4xl mx-auto text-center text-white">
-            <h1 className="text-3xl md:text-6xl font-bold mb-6">
-              Решение инжиниринговых задач
-            </h1>
-            <p className="text-base md:text-xl text-white/90">
-              Комплексный подход к решению технологических задач вашего производства. 
-              От анализа и проектирования до внедрения и запуска
-            </p>
-          </div>
-        </div>
-      </section>
+      <PageHero
+        title="Решение инжиниринговых задач"
+        subtitle="Комплексный подход к решению технологических задач вашего производства. От анализа и проектирования до внедрения и запуска"
+      />
 
       <section className="py-20">
         <div className="container mx-auto px-4">
@@ -131,7 +123,7 @@ const EngineeringService = () => {
             {solutions.map((solution, index) => (
               <Card key={index} className="hover-scale">
                 <CardContent className="p-8">
-                  <div className="w-16 h-16 bg-primary rounded-xl flex items-center justify-center mb-6">
+                  <div className="w-16 h-16 bg-primary rounded-sm flex items-center justify-center mb-6">
                     <Icon name={solution.icon as any} size={32} className="text-white" />
                   </div>
                   <h3 className="text-2xl font-bold mb-3">{solution.title}</h3>
@@ -149,7 +141,7 @@ const EngineeringService = () => {
             ))}
           </div>
 
-          <div className="bg-muted/50 rounded-2xl p-8 md:p-12">
+          <div className="bg-muted/50 rounded-sm p-8 md:p-12">
             <h3 className="text-3xl font-bold mb-8 text-center">Этапы работы</h3>
             <div className="grid md:grid-cols-4 gap-6">
               {process.map((item, index) => (
@@ -191,7 +183,7 @@ const EngineeringService = () => {
 
       <section className="py-20">
         <div className="container mx-auto px-4">
-          <Card className="bg-gradient-to-br from-primary to-primary/90 text-white border-0">
+          <Card className="bg-primary tech-grid-dark text-white border-0">
             <CardContent className="p-12 text-center">
               <h2 className="text-4xl font-bold mb-4">Готовы обсудить ваш проект?</h2>
               <p className="text-xl text-white/90 mb-8 max-w-2xl mx-auto">

@@ -5,6 +5,7 @@ import { Badge } from '@/components/ui/badge';
 import Icon from '@/components/ui/icon';
 import Header from '@/components/Header';
 import Footer from '@/components/Footer';
+import PageHero from '@/components/PageHero';
 
 const Services = () => {
   const services = [
@@ -158,16 +159,11 @@ const Services = () => {
     <div className="min-h-screen bg-white">
       <Header />
 
-      <section className="pt-44 pb-12 bg-gradient-to-br from-primary via-primary/95 to-primary/90">
-        <div className="container mx-auto px-4">
-          <div className="max-w-4xl mx-auto text-center text-white">
-            <h1 className="text-2xl md:text-5xl font-bold leading-snug md:leading-tight">
-              Предоставляем полный спектр услуг от проектирования до монтажа. 
-              Работаем с объектами любой сложности
-            </h1>
-          </div>
-        </div>
-      </section>
+      <PageHero
+        eyebrow="Услуги"
+        title="Предоставляем полный спектр услуг от проектирования до монтажа"
+        subtitle="Работаем с объектами любой сложности"
+      />
 
       <section className="py-20">
         <div className="container mx-auto px-4">
@@ -190,9 +186,9 @@ const Services = () => {
 
               return (
                 <Link key={index} to={serviceUrl}>
-                  <Card className="hover-scale flex flex-col h-full cursor-pointer transition-shadow hover:shadow-xl">
+                  <Card className="hover-scale flex flex-col h-full cursor-pointer transition-shadow hover:shadow-none">
                     <CardContent className="p-8 flex flex-col flex-grow">
-                      <div className="w-16 h-16 bg-primary rounded-xl flex items-center justify-center mb-6">
+                      <div className="w-16 h-16 bg-primary rounded-sm flex items-center justify-center mb-6">
                         <Icon name={service.icon as any} size={32} className="text-white" />
                       </div>
                       <h3 className="text-2xl font-bold mb-3">{service.title}</h3>
@@ -220,7 +216,7 @@ const Services = () => {
         </div>
       </section>
 
-      <section className="py-20 bg-gradient-to-br from-primary to-primary/90">
+      <section className="py-20 bg-primary tech-grid-dark">
         <div className="container mx-auto px-4">
           <div className="max-w-3xl mx-auto text-center text-white">
             <h2 className="text-4xl font-bold mb-6">Этапы работы</h2>
@@ -235,7 +231,7 @@ const Services = () => {
                 { num: '03', title: 'Производство', desc: 'Изготовление и контроль качества' },
                 { num: '04', title: 'Монтаж', desc: 'Доставка и монтаж на объекте' }
               ].map((step, index) => (
-                <div key={index} className="bg-white/10 backdrop-blur-sm rounded-xl p-6 flex flex-col items-center">
+                <div key={index} className="bg-white/10 backdrop-blur-sm rounded-sm p-6 flex flex-col items-center">
                   <div className="text-5xl font-bold text-secondary mb-4">{step.num}</div>
                   <h4 className="text-xl font-bold mb-2">{step.title}</h4>
                   <p className="text-white/80 text-sm text-center">{step.desc}</p>
