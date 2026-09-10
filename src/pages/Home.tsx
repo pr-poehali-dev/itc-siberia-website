@@ -155,7 +155,7 @@ const Home = () => {
     <div className="min-h-screen bg-white">
       <Header />
 
-      <section className="pt-32 pb-8 md:pt-32 md:pb-10 bg-gradient-to-br from-primary via-primary/95 to-primary/90">
+      <section className="pt-36 pb-12 md:pt-36 md:pb-20 bg-gradient-to-br from-primary via-primary/95 to-primary/90">
         <div className="container mx-auto px-4">
           <div className="grid md:grid-cols-2 gap-8 md:gap-12 items-center">
             <div className="text-white space-y-4 md:space-y-6 animate-fade-in">
@@ -187,7 +187,7 @@ const Home = () => {
                   Оставить заявку
                 </Button>
               </div>
-              <div className="grid grid-cols-2 gap-4 md:flex md:flex-nowrap md:justify-start md:items-start md:gap-x-10 pt-6 md:pt-6">
+              <div className="grid grid-cols-2 gap-4 md:flex md:flex-nowrap md:justify-start md:items-start md:gap-x-10 pt-6 md:pt-8">
                 {stats.map((stat, index) => (
                   <div key={index} className="flex flex-col items-center md:items-start">
                     <div className="text-xl md:text-4xl font-bold text-secondary whitespace-nowrap">{stat.value}</div>
@@ -198,7 +198,7 @@ const Home = () => {
             </div>
             <div className="relative animate-fade-in group max-w-lg mx-auto">
               <div className="absolute inset-0 bg-secondary/20 rounded-2xl blur-3xl"></div>
-              <div className="relative rounded-2xl shadow-2xl overflow-hidden h-[350px] md:h-[500px]">
+              <div className="relative rounded-2xl shadow-2xl overflow-hidden h-[350px] md:h-[440px]">
                 <img 
                   src={images[currentImage].url}
                   alt={images[currentImage].alt}
