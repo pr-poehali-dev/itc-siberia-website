@@ -193,8 +193,8 @@ const Services = () => {
                         {String(index + 1).padStart(2, '0')}
                       </span>
                     </div>
-                    <h3 className="text-xl font-bold mb-3 leading-snug">{service.title}</h3>
-                    <p className="text-muted-foreground text-sm leading-relaxed mb-6">{service.description}</p>
+                    <h3 className="text-xl font-bold mb-3 leading-snug md:min-h-[3.5rem]">{service.title}</h3>
+                    <p className="text-muted-foreground text-sm leading-relaxed mb-6 md:min-h-[4rem]">{service.description}</p>
                     <div className="space-y-2.5 mb-6 flex-grow border-t border-border pt-5">
                       {service.details.map((detail, idx) => (
                         <div key={idx} className="flex items-start gap-2.5">
