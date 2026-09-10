@@ -95,7 +95,7 @@ const ServiceDetail = () => {
         </div>
       </section>
 
-      <section className="py-20">
+      <section className="py-12">
         <div className="container mx-auto px-4">
           <div className="max-w-4xl mx-auto">
             <h2 className="text-3xl font-bold mb-8">Область применения</h2>
@@ -115,7 +115,7 @@ const ServiceDetail = () => {
         </div>
       </section>
 
-      <section className="py-20 bg-muted/30">
+      <section className="py-12 bg-muted/30">
         <div className="container mx-auto px-4">
           <div className="max-w-4xl mx-auto">
             <h2 className="text-3xl font-bold mb-8">Преимущества наших закладных деталей</h2>
@@ -137,7 +137,7 @@ const ServiceDetail = () => {
         </div>
       </section>
 
-      <section className="py-20">
+      <section className="py-12">
         <div className="container mx-auto px-4">
           <div className="max-w-4xl mx-auto">
             <h2 className="text-3xl font-bold mb-8">Технические характеристики</h2>
@@ -157,7 +157,7 @@ const ServiceDetail = () => {
         </div>
       </section>
 
-      <section className="py-20 bg-gradient-to-br from-primary to-primary/90">
+      <section className="py-16 bg-gradient-to-br from-primary to-primary/90">
         <div className="container mx-auto px-4">
           <div className="max-w-3xl mx-auto text-center text-white">
             <h2 className="text-4xl font-bold mb-6">Заинтересовала услуга?</h2>
