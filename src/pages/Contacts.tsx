@@ -141,8 +141,7 @@ const Contacts = () => {
       title: 'Мессенджеры',
       links: [
         { name: 'Telegram', url: 'https://t.me/itc_sibiri' },
-        { name: 'MAX', url: 'https://max.ru/u/f9LHodD0cOKAHGAE7Y0G1ri2SRJxylc6dJrLbQXiPFHGUVdQuyddDLO_RFc' },
-        { name: 'Вконтакте', url: 'https://vk.com/itc_sibiri' }
+        { name: 'MAX', url: 'https://max.ru/u/f9LHodD0cOKAHGAE7Y0G1ri2SRJxylc6dJrLbQXiPFHGUVdQuyddDLO_RFc' }
       ],
       type: null
     }
