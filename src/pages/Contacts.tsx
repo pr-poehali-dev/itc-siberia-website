@@ -140,8 +140,8 @@ const Contacts = () => {
       icon: 'MessageCircle',
       title: 'Мессенджеры',
       links: [
-        { name: 'Telegram', url: 'https://t.me/itc_sibiri' },
-        { name: 'MAX', url: 'https://max.ru/u/f9LHodD0cOKAHGAE7Y0G1ri2SRJxylc6dJrLbQXiPFHGUVdQuyddDLO_RFc' }
+        { name: 'Telegram', url: 'https://t.me/itc_sibiri', icon: 'Send', color: '#229ED9' },
+        { name: 'MAX', url: 'https://max.ru/u/f9LHodD0cOKAHGAE7Y0G1ri2SRJxylc6dJrLbQXiPFHGUVdQuyddDLO_RFc', icon: 'MessageCircle', color: '#7B61FF' }
       ],
       type: null
     }
@@ -221,11 +221,17 @@ const Contacts = () => {
                       href={link.url}
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="flex items-center gap-2 text-sm text-muted-foreground hover:text-secondary transition-colors"
+                      className="flex items-center gap-2.5 text-sm text-muted-foreground hover:text-primary transition-colors py-1"
                       onClick={handleMessengerClick}
                     >
-                      <Icon name="ExternalLink" size={14} />
-                      {link.name}
+                      <span
+                        className="w-7 h-7 flex items-center justify-center flex-shrink-0 text-white"
+                        style={{ backgroundColor: link.color }}
+                      >
+                        <Icon name={link.icon as any} size={15} />
+                      </span>
+                      <span className="font-medium">{link.name}</span>
+                      <Icon name="ArrowUpRight" size={14} className="opacity-40" />
                     </a>
                   ))}
                 </div>
