@@ -1,7 +1,6 @@
 import { Link } from 'react-router-dom';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent } from '@/components/ui/card';
-import { Badge } from '@/components/ui/badge';
 import Icon from '@/components/ui/icon';
 import Header from '@/components/Header';
 import Footer from '@/components/Footer';
@@ -84,6 +83,8 @@ const MillingService = () => {
                   <img 
                     src={image.url} 
                     alt={image.alt}
+                    loading="lazy"
+                    decoding="async"
                     className="w-full h-[250px] md:h-72 object-cover"
                   />
                 </div>

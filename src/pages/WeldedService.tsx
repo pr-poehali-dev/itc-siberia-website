@@ -1,7 +1,6 @@
 import { Link } from 'react-router-dom';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent } from '@/components/ui/card';
-import { Badge } from '@/components/ui/badge';
 import Icon from '@/components/ui/icon';
 import Header from '@/components/Header';
 import Footer from '@/components/Footer';
@@ -18,9 +17,9 @@ const WeldedService = () => {
 
   const applications = [
     { icon: 'Factory', text: 'Промышленные здания (цеха, склады, ангары)' },
-    { icon: 'Bridge', text: 'Мосты, эстакады, путепроводы и железнодорожные конструкции' },
+    { icon: 'Waypoints', text: 'Мосты, эстакады, путепроводы и железнодорожные конструкции' },
     { icon: 'Settings', text: 'Опорные каркасы для оборудования (дробилки, насосы, резервуары)' },
-    { icon: 'Stairs', text: 'Лестницы, платформы, ограждения и пожарные выходы' },
+    { icon: 'StretchVertical', text: 'Лестницы, платформы, ограждения и пожарные выходы' },
     { icon: 'Sprout', text: 'Сельскохозяйственные объекты (зерносушилки, теплицы, фермы)' }
   ];
 
@@ -84,6 +83,8 @@ const WeldedService = () => {
                   <img 
                     src={image.url} 
                     alt={image.alt}
+                    loading="lazy"
+                    decoding="async"
                     className="w-full h-[250px] md:h-72 object-cover"
                   />
                 </div>

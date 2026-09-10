@@ -3,7 +3,6 @@ import func2url from '../../backend/func2url.json';
 import { Card, CardContent } from '@/components/ui/card';
 import { Input } from '@/components/ui/input';
 import { Button } from '@/components/ui/button';
-import { Badge } from '@/components/ui/badge';
 import Icon from '@/components/ui/icon';
 import Header from '@/components/Header';
 import Footer from '@/components/Footer';
@@ -57,15 +56,6 @@ const Contacts = () => {
   const validatePhone = () => {
     const digits = formData.phone.replace(/\D/g, '');
     return digits.length === 11;
-  };
-
-  const handleMailtoFallback = () => {
-    const subject = encodeURIComponent(`Заявка с сайта от ${formData.name}`);
-    const body = encodeURIComponent(
-      `Имя: ${formData.name}\n` +
-      `Телефон: ${formData.phone}`
-    );
-    window.location.href = `mailto:itc2555888@mail.ru?subject=${subject}&body=${body}`;
   };
 
   const handleSubmit = async (e: React.FormEvent) => {
@@ -128,7 +118,7 @@ const Contacts = () => {
     });
   };
 
-  const handleMessengerClick = (messengerName: string) => {
+  const handleMessengerClick = () => {
     // Отправляем событие в Яндекс.Метрику
     trackGoal('messenger_click');
   };
@@ -208,19 +198,18 @@ const Contacts = () => {
             </div>
           )}
 
-          <div className="grid lg:grid-cols-3 gap-8 mb-8">
+          <div className="grid lg:grid-cols-3 gap-px bg-border border border-border mb-12">
             {contactInfoTop.map((contact, index) => (
-              <Card key={index} className="hover-scale">
-                <CardContent className="p-8 text-center min-h-[280px] lg:min-h-0 flex flex-col">
-                  <div className="w-16 h-16 bg-primary/10 rounded-full flex items-center justify-center mx-auto mb-4">
-                    <Icon name={contact.icon as any} size={32} className="text-primary" />
-                  </div>
-                  <h3 className="font-bold text-xl mb-3">{contact.title}</h3>
-                  <div className="flex-1">
+              <div key={index} className="group bg-white hover:bg-surface transition-colors p-8 flex flex-col">
+                <div className="w-12 h-12 border border-border group-hover:border-secondary group-hover:bg-secondary flex items-center justify-center mb-6 transition-colors">
+                  <Icon name={contact.icon as any} size={24} className="text-primary group-hover:text-secondary-foreground transition-colors" />
+                </div>
+                <div className="eyebrow-muted mb-4">{contact.title}</div>
+                <div className="flex-1 space-y-1.5">
                   {contact.details?.map((detail, idx) => (
                     <p 
                       key={idx} 
-                      className={contact.type ? "text-muted-foreground cursor-pointer hover:text-primary transition-colors" : "text-muted-foreground"}
+                      className={contact.type ? "font-mono-tech text-sm cursor-pointer hover:text-secondary transition-colors" : "font-mono-tech text-sm"}
                       onClick={(e) => contact.type && handleCopyContact(detail, contact.type, e)}
                       title={contact.type ? "Нажмите, чтобы скопировать" : undefined}
                     >
@@ -233,21 +222,25 @@ const Contacts = () => {
                       href={link.url}
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="block text-muted-foreground hover:text-primary transition-colors"
-                      onClick={() => handleMessengerClick(link.name)}
+                      className="flex items-center gap-2 text-sm text-muted-foreground hover:text-secondary transition-colors"
+                      onClick={handleMessengerClick}
                     >
+                      <Icon name="ExternalLink" size={14} />
                       {link.name}
                     </a>
                   ))}
-                  </div>
-                </CardContent>
-              </Card>
+                </div>
+              </div>
             ))}
           </div>
 
           <div className="grid lg:grid-cols-2 gap-12 items-start mb-16">
             <div>
-              <h2 className="text-3xl font-bold mb-6">Оставьте заявку</h2>
+              <div className="flex items-center gap-3 mb-4">
+                <span className="h-px w-10 bg-secondary" />
+                <span className="eyebrow-muted">Заявка</span>
+              </div>
+              <h2 className="text-2xl md:text-3xl font-extrabold mb-3 leading-tight">Оставьте заявку</h2>
               <p className="text-muted-foreground mb-8">
                 Оставьте свои контакты, и наш специалист свяжется с вами в ближайшее время
               </p>
@@ -302,80 +295,71 @@ const Contacts = () => {
               </Card>
             </div>
 
-            <div className="flex flex-col gap-8 h-full">
-              <Card className="hover-scale flex-1">
-                <CardContent className="p-8 h-full flex flex-col">
-                  <div className="flex items-center gap-3 mb-4">
-                    <div className="w-12 h-12 bg-primary/10 rounded-full flex items-center justify-center">
-                      <Icon name={addressInfo.icon as any} size={24} className="text-primary" />
-                    </div>
-                    <h3 className="text-xl font-bold">{addressInfo.title}</h3>
+            <div className="flex flex-col gap-6 h-full">
+              <div className="border border-border p-8 flex-1">
+                <div className="flex items-center gap-4 mb-4">
+                  <div className="w-12 h-12 border border-border flex items-center justify-center flex-shrink-0">
+                    <Icon name={addressInfo.icon as any} size={24} className="text-primary" />
                   </div>
-                  <p className="text-muted-foreground flex-1">
-                    {addressInfo.details}
-                  </p>
-                </CardContent>
-              </Card>
+                  <div className="eyebrow-muted">{addressInfo.title}</div>
+                </div>
+                <p className="text-muted-foreground leading-relaxed">
+                  {addressInfo.details}
+                </p>
+              </div>
 
-              <Card className="bg-muted/50 flex-1">
-                <CardContent className="p-8 h-full flex flex-col">
-                  <h3 className="text-xl font-bold mb-6">Режим работы</h3>
-                  <div className="space-y-4 text-base flex-1 flex flex-col justify-center">
-                    <div className="flex justify-between items-center gap-8">
-                      <span className="font-medium">Понедельник - Пятница:</span>
-                      <span className="font-bold text-lg">9:00 - 18:00</span>
-                    </div>
-                    <div className="flex justify-between items-center gap-8">
-                      <span className="font-medium">Суббота - Воскресенье:</span>
-                      <span className="font-bold text-lg">Выходной</span>
-                    </div>
+              <div className="border border-border bg-surface p-8 flex-1">
+                <div className="eyebrow-muted mb-6">Режим работы</div>
+                <div className="space-y-4">
+                  <div className="flex justify-between items-center gap-6 pb-4 border-b border-border">
+                    <span className="text-sm text-muted-foreground">Понедельник — Пятница</span>
+                    <span className="font-mono-tech font-semibold">9:00—18:00</span>
                   </div>
-                </CardContent>
-              </Card>
-
+                  <div className="flex justify-between items-center gap-6">
+                    <span className="text-sm text-muted-foreground">Суббота — Воскресенье</span>
+                    <span className="font-mono-tech font-semibold">Выходной</span>
+                  </div>
+                </div>
+              </div>
             </div>
           </div>
 
-          <div className="grid lg:grid-cols-2 gap-12 items-start">
+          <div className="grid lg:grid-cols-2 gap-8 items-start">
             <div>
-              <h3 className="text-2xl font-bold mb-6">Банковские реквизиты</h3>
-              <Card>
-                <CardContent className="p-6">
-                  <div className="space-y-3">
-                    {bankInfo.map((item, index) => (
-                      <div key={index} className="grid grid-cols-1 md:grid-cols-3 gap-2">
-                        <span className="text-sm text-muted-foreground">{item.label}:</span>
-                        <span className="text-sm font-medium md:col-span-2">{item.value}</span>
-                      </div>
-                    ))}
+              <div className="eyebrow-muted mb-4">Банковские реквизиты</div>
+              <div className="border border-border p-6 space-y-3">
+                {bankInfo.map((item, index) => (
+                  <div key={index} className="grid grid-cols-1 md:grid-cols-3 gap-2 pb-3 border-b border-border last:border-0 last:pb-0">
+                    <span className="text-xs uppercase tracking-wide text-muted-foreground">{item.label}</span>
+                    <span className="text-sm font-mono-tech md:col-span-2">{item.value}</span>
                   </div>
-                </CardContent>
-              </Card>
+                ))}
+              </div>
             </div>
 
             <div>
-              <h3 className="text-2xl font-bold mb-6">Реквизиты компании</h3>
-              <Card>
-                <CardContent className="p-6">
-                  <div className="space-y-3">
-                    {companyInfo.map((item, index) => (
-                      <div key={index} className="grid grid-cols-1 md:grid-cols-3 gap-2">
-                        <span className="text-sm text-muted-foreground">{item.label}:</span>
-                        <span className="text-sm font-medium md:col-span-2">{item.value}</span>
-                      </div>
-                    ))}
+              <div className="eyebrow-muted mb-4">Реквизиты компании</div>
+              <div className="border border-border p-6 space-y-3">
+                {companyInfo.map((item, index) => (
+                  <div key={index} className="grid grid-cols-1 md:grid-cols-3 gap-2 pb-3 border-b border-border last:border-0 last:pb-0">
+                    <span className="text-xs uppercase tracking-wide text-muted-foreground">{item.label}</span>
+                    <span className="text-sm md:col-span-2">{item.value}</span>
                   </div>
-                </CardContent>
-              </Card>
+                ))}
+              </div>
             </div>
           </div>
         </div>
       </section>
 
-      <section className="py-16 bg-muted/30">
+      <section className="py-16 bg-surface border-t border-border">
         <div className="container mx-auto px-4">
-          <h2 className="text-3xl font-bold text-center mb-8">Как нас найти</h2>
-          <div className="rounded-sm overflow-hidden shadow-none">
+          <div className="flex items-center gap-3 mb-4">
+            <span className="h-px w-10 bg-secondary" />
+            <span className="eyebrow-muted">На карте</span>
+          </div>
+          <h2 className="text-2xl md:text-3xl font-extrabold mb-8">Как нас найти</h2>
+          <div className="border border-border overflow-hidden">
             <ConsentGatedMap
               src="https://yandex.ru/map-widget/v1/?ll=92.895520%2C56.025889&z=17&pt=92.895520,56.025889,pm2rdm"
               title="Карта офиса ИТЦ Сибири"

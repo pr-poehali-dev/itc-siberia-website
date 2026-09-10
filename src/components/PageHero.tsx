@@ -9,7 +9,7 @@ interface PageHeroProps {
 
 const PageHero = ({ eyebrow, title, subtitle, children }: PageHeroProps) => {
   return (
-    <section className="pt-36 md:pt-44 pb-12 md:pb-16 bg-primary tech-grid-dark">
+    <section className="pt-28 md:pt-44 pb-10 md:pb-16 bg-primary tech-grid-dark">
       <div className="container mx-auto px-4">
         <div className="max-w-4xl">
           {children}
@@ -19,7 +19,7 @@ const PageHero = ({ eyebrow, title, subtitle, children }: PageHeroProps) => {
               <span className="eyebrow">{eyebrow}</span>
             </div>
           )}
-          <h1 className="text-white text-3xl md:text-5xl font-extrabold leading-[1.12] tracking-tight">
+          <h1 className="text-white text-2xl sm:text-3xl md:text-5xl font-extrabold leading-[1.15] md:leading-[1.12] tracking-tight break-words">
             {title}
           </h1>
           {subtitle && (

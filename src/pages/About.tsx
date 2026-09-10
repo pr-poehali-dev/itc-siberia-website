@@ -1,54 +1,9 @@
-import { Badge } from '@/components/ui/badge';
 import Icon from '@/components/ui/icon';
 import Header from '@/components/Header';
 import Footer from '@/components/Footer';
 import PageHero from '@/components/PageHero';
 
 const About = () => {
-  const team = [
-    {
-      name: 'Александр Иванов',
-      position: 'Главный инженер',
-      experience: '15 лет опыта в промышленном строительстве'
-    },
-    {
-      name: 'Михаил Петров',
-      position: 'Руководитель отдела производства',
-      experience: '12 лет в металлообработке'
-    },
-    {
-      name: 'Елена Сидорова',
-      position: 'Технический директор',
-      experience: '18 лет в инженерном проектировании'
-    },
-    {
-      name: 'Дмитрий Козлов',
-      position: 'Главный конструктор',
-      experience: '10 лет проектирования металлоконструкций'
-    },
-    {
-      name: 'Ольга Новикова',
-      position: 'Начальник отдела качества',
-      experience: '8 лет контроля качества'
-    },
-    {
-      name: 'Сергей Волков',
-      position: 'Начальник монтажного отдела',
-      experience: '14 лет монтажных работ'
-    }
-  ];
-
-  const certificates = [
-    'ISO 9001:2015',
-    'Лицензия МЧС',
-    'СРО на строительство',
-    'Допуск к опасным работам',
-    'Сертификат соответствия ГОСТ',
-    'Лицензия на проектирование',
-    'Аттестация сварщиков',
-    'Экологический сертификат'
-  ];
-
   const advantages = [
     {
       icon: 'Award',
@@ -110,6 +65,8 @@ const About = () => {
                 src="https://cdn.poehali.dev/files/AdobeStock_725429792_34-1.jpeg"
                 alt="Команда ИТЦ-Сибири"
                 className="w-full h-[400px] object-cover border border-border"
+                loading="lazy"
+                decoding="async"
               />
             </div>
           </div>

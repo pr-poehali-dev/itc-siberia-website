@@ -1,7 +1,6 @@
 import { Link } from 'react-router-dom';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent } from '@/components/ui/card';
-import { Badge } from '@/components/ui/badge';
 import Icon from '@/components/ui/icon';
 import Header from '@/components/Header';
 import Footer from '@/components/Footer';
@@ -19,7 +18,7 @@ const ConstructionService = () => {
   const applications = [
     { icon: 'Factory', text: 'Промышленные здания (цеха, склады, ангары)' },
     { icon: 'Building2', text: 'Торгово-развлекательные комплексы и офисные центры' },
-    { icon: 'Bridge', text: 'Мосты, эстакады, путепроводы' },
+    { icon: 'Waypoints', text: 'Мосты, эстакады, путепроводы' },
     { icon: 'Trophy', text: 'Спортивные сооружения (стадионы, бассейны)' },
     { icon: 'Sprout', text: 'Сельскохозяйственные объекты (фермы, теплицы, зернохранилища)' }
   ];
@@ -84,6 +83,8 @@ const ConstructionService = () => {
                   <img 
                     src={image.url} 
                     alt={image.alt}
+                    loading="lazy"
+                    decoding="async"
                     className="w-full h-[250px] md:h-72 object-cover"
                   />
                 </div>

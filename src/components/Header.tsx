@@ -46,6 +46,8 @@ const Header = () => {
             <img 
               src="https://cdn.poehali.dev/files/2(без фона).png" 
               alt="ИТЦ Инженерно-технологический центр Сибири"
+              width="260"
+              height="72"
               className="h-16 md:h-[72px] w-auto object-contain"
             />
           </Link>

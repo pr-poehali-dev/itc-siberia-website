@@ -34,10 +34,10 @@ const Equipment = () => {
           <div className="flex flex-wrap gap-2 justify-center">
             <button
               onClick={() => setActiveCategory('all')}
-              className={`px-4 py-2 text-sm font-semibold rounded-lg transition-all ${
+              className={`px-4 py-2 text-xs font-semibold uppercase tracking-wide border transition-colors ${
                 activeCategory === 'all'
-                  ? 'bg-primary text-white shadow-md'
-                  : 'bg-muted text-foreground hover:bg-primary/10 hover:text-primary'
+                  ? 'bg-primary text-white border-primary'
+                  : 'bg-white text-muted-foreground border-border hover:border-primary hover:text-primary'
               }`}
             >
               Все категории
@@ -46,10 +46,10 @@ const Equipment = () => {
               <button
                 key={cat.id}
                 onClick={() => setActiveCategory(cat.id)}
-                className={`px-4 py-2 text-sm font-semibold rounded-lg transition-all flex items-center gap-2 ${
+                className={`px-4 py-2 text-xs font-semibold uppercase tracking-wide border transition-colors flex items-center gap-2 ${
                   activeCategory === cat.id
-                    ? 'bg-primary text-white shadow-md'
-                    : 'bg-muted text-foreground hover:bg-primary/10 hover:text-primary'
+                    ? 'bg-primary text-white border-primary'
+                    : 'bg-white text-muted-foreground border-border hover:border-primary hover:text-primary'
                 }`}
               >
                 <Icon name={cat.icon as any} size={16} />

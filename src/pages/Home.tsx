@@ -43,11 +43,11 @@ const Home = () => {
 
   useEffect(() => {
     const interval = setInterval(() => {
-      nextImage();
-    }, 4000);
+      setCurrentImage((prev) => (prev + 1) % images.length);
+    }, 5000);
 
     return () => clearInterval(interval);
-  }, [currentImage]);
+  }, [images.length]);
 
   const services = [
     {
@@ -196,19 +196,22 @@ const Home = () => {
                 <img 
                   src={images[currentImage].url}
                   alt={images[currentImage].alt}
+                  width="640"
+                  height="440"
+                  decoding="async"
                   className="w-full h-full object-cover"
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-primary/70 via-transparent to-transparent" />
                 <button
                   onClick={prevImage}
-                  className="absolute left-0 top-1/2 -translate-y-1/2 w-11 h-11 bg-primary/80 hover:bg-secondary hover:text-secondary-foreground text-white flex items-center justify-center opacity-0 group-hover:opacity-100 transition-all"
+                  className="absolute left-0 top-1/2 -translate-y-1/2 w-11 h-11 bg-primary/80 hover:bg-secondary hover:text-secondary-foreground text-white flex items-center justify-center opacity-100 md:opacity-0 md:group-hover:opacity-100 transition-all"
                   aria-label="Предыдущее изображение"
                 >
                   <Icon name="ChevronLeft" size={22} />
                 </button>
                 <button
                   onClick={nextImage}
-                  className="absolute right-0 top-1/2 -translate-y-1/2 w-11 h-11 bg-primary/80 hover:bg-secondary hover:text-secondary-foreground text-white flex items-center justify-center opacity-0 group-hover:opacity-100 transition-all"
+                  className="absolute right-0 top-1/2 -translate-y-1/2 w-11 h-11 bg-primary/80 hover:bg-secondary hover:text-secondary-foreground text-white flex items-center justify-center opacity-100 md:opacity-0 md:group-hover:opacity-100 transition-all"
                   aria-label="Следующее изображение"
                 >
                   <Icon name="ChevronRight" size={22} />

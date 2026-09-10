@@ -1,7 +1,6 @@
 import { Link } from 'react-router-dom';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent } from '@/components/ui/card';
-import { Badge } from '@/components/ui/badge';
 import Icon from '@/components/ui/icon';
 import Header from '@/components/Header';
 import Footer from '@/components/Footer';
@@ -17,10 +16,10 @@ const LightingService = () => {
   ];
 
   const applications = [
-    { icon: 'Highway', text: 'Автомагистрали и региональные дороги' },
+    { icon: 'Route', text: 'Автомагистрали и региональные дороги' },
     { icon: 'Building', text: 'Городские улицы, площади и пешеходные переходы' },
     { icon: 'ParkingCircle', text: 'Парковки торговых центров, АЗС, логистических комплексов' },
-    { icon: 'Bridge', text: 'Освещение тоннелей, мостов и эстакад' },
+    { icon: 'Waypoints', text: 'Освещение тоннелей, мостов и эстакад' },
     { icon: 'Home', text: 'Придомовые территории и объекты благоустройства' }
   ];
 
@@ -84,6 +83,8 @@ const LightingService = () => {
                   <img 
                     src={image.url} 
                     alt={image.alt}
+                    loading="lazy"
+                    decoding="async"
                     className="w-full h-[250px] md:h-72 object-cover"
                   />
                 </div>
