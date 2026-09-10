@@ -165,7 +165,7 @@ const Services = () => {
 
       <section className="py-16 md:py-24">
         <div className="container mx-auto px-4">
-          <div className="grid md:grid-cols-2 gap-px bg-border border border-border">
+          <div className="grid md:grid-cols-2 gap-6 lg:gap-8">
             {services.map((service, index) => {
               const serviceUrl = 
                 index === 0 ? "/services/zakladnye-zbi" : 
@@ -183,9 +183,14 @@ const Services = () => {
                 "/contacts";
 
               return (
-                <Link key={index} to={serviceUrl} className="group bg-white hover:bg-surface transition-colors">
+                <Link
+                  key={index}
+                  to={serviceUrl}
+                  className="group relative bg-white border border-border hover:border-primary hover:shadow-[0_14px_40px_-18px_rgba(15,32,64,0.45)] transition-all duration-300"
+                >
+                  <span className="absolute left-0 top-0 h-1 w-full bg-secondary scale-x-0 group-hover:scale-x-100 origin-left transition-transform duration-300" />
                   <div className="p-8 flex flex-col h-full">
-                    <div className="flex items-center justify-between mb-6">
+                    <div className="flex items-center justify-between mb-6 pb-6 border-b border-border">
                       <div className="w-12 h-12 border border-border group-hover:border-secondary group-hover:bg-secondary flex items-center justify-center transition-colors">
                         <Icon name={service.icon as any} size={24} className="text-primary group-hover:text-secondary-foreground transition-colors" />
                       </div>
@@ -195,7 +200,7 @@ const Services = () => {
                     </div>
                     <h3 className="text-xl font-bold mb-3 leading-snug md:min-h-[3.5rem]">{service.title}</h3>
                     <p className="text-muted-foreground text-sm leading-relaxed mb-6 md:min-h-[4rem]">{service.description}</p>
-                    <div className="space-y-2.5 mb-6 flex-grow border-t border-border pt-5">
+                    <div className="space-y-2.5 mb-6 flex-grow">
                       {service.details.map((detail, idx) => (
                         <div key={idx} className="flex items-start gap-2.5">
                           <Icon name="Check" size={16} className="text-secondary mt-0.5 flex-shrink-0" />
@@ -203,7 +208,7 @@ const Services = () => {
                         </div>
                       ))}
                     </div>
-                    <div className="text-primary flex items-center text-sm font-semibold uppercase tracking-wide mt-auto">
+                    <div className="text-primary flex items-center text-sm font-semibold uppercase tracking-wide mt-auto pt-5 border-t border-border group-hover:text-secondary transition-colors">
                       {(index >= 0 && index <= 11) ? 'Подробнее' : 'Заказать услугу'}
                       <Icon name="ArrowRight" size={16} className="ml-2 group-hover:translate-x-1 transition-transform" />
                     </div>
