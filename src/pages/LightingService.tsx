@@ -59,7 +59,7 @@ const LightingService = () => {
     <div className="min-h-screen bg-white">
       <Header />
 
-      <section className="pt-32 pb-12 bg-gradient-to-br from-primary via-primary/95 to-primary/90">
+      <section className="pt-44 pb-12 bg-gradient-to-br from-primary via-primary/95 to-primary/90">
         <div className="container mx-auto px-4">
           <div className="max-w-4xl mx-auto text-center text-white">
             <Button 
