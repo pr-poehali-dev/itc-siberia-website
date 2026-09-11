@@ -5,6 +5,7 @@ import Icon from '@/components/ui/icon';
 import Header from '@/components/Header';
 import Footer from '@/components/Footer';
 import PageHero from '@/components/PageHero';
+import BackLink from '@/components/BackLink';
 
 const EngineeringService = () => {
   const solutions = [
@@ -108,6 +109,8 @@ const EngineeringService = () => {
         title="Решение инжиниринговых задач"
         subtitle="Комплексный подход к решению технологических задач вашего производства. От анализа и проектирования до внедрения и запуска"
       />
+
+      <BackLink currentLabel="Инжиниринг" />
 
       <section className="py-20">
         <div className="container mx-auto px-4">

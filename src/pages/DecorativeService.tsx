@@ -5,6 +5,7 @@ import Icon from '@/components/ui/icon';
 import Header from '@/components/Header';
 import Footer from '@/components/Footer';
 import PageHero from '@/components/PageHero';
+import BackLink from '@/components/BackLink';
 
 const DecorativeService = () => {
   const advantages = [
@@ -57,18 +58,9 @@ const DecorativeService = () => {
 
       <PageHero
         title="Декоративные металлоконструкции – эстетика, прочность и индивидуальность"
-      >
-        <Button 
-          asChild 
-          variant="ghost" 
-          className="mb-6 -ml-4 text-white/70 hover:bg-white/10 hover:text-white font-mono-tech text-[11px] uppercase tracking-[0.14em]"
-        >
-          <Link to="/services">
-            <Icon name="ArrowLeft" size={16} className="mr-2" />
-            Назад к услугам
-          </Link>
-        </Button>
-      </PageHero>
+      />
+
+      <BackLink currentLabel="Декоративные металлоконструкции" />
 
       <section className="py-12">
         <div className="container mx-auto px-4">

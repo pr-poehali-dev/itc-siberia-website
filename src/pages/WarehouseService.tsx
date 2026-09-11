@@ -5,6 +5,7 @@ import Icon from '@/components/ui/icon';
 import Header from '@/components/Header';
 import Footer from '@/components/Footer';
 import PageHero from '@/components/PageHero';
+import BackLink from '@/components/BackLink';
 
 const WarehouseService = () => {
   const advantages = [
@@ -55,18 +56,9 @@ const WarehouseService = () => {
 
       <PageHero
         title="Строительство складских помещений – быстро, надежно и под ключ"
-      >
-        <Button 
-          asChild 
-          variant="ghost" 
-          className="mb-6 -ml-4 text-white/70 hover:bg-white/10 hover:text-white font-mono-tech text-[11px] uppercase tracking-[0.14em]"
-        >
-          <Link to="/services">
-            <Icon name="ArrowLeft" size={16} className="mr-2" />
-            Назад к услугам
-          </Link>
-        </Button>
-      </PageHero>
+      />
+
+      <BackLink currentLabel="Складские помещения" />
 
       <section className="py-12">
         <div className="container mx-auto px-4">
