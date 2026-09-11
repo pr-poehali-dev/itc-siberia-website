@@ -25,6 +25,7 @@ const ContainersService = lazy(() => import("./pages/ContainersService"));
 const EngineeringService = lazy(() => import("./pages/EngineeringService"));
 const MetalProcessing = lazy(() => import("./pages/MetalProcessing"));
 const Equipment = lazy(() => import("./pages/Equipment"));
+const EquipmentDetail = lazy(() => import("./pages/EquipmentDetail"));
 const PrivacyPolicy = lazy(() => import("./pages/PrivacyPolicy"));
 const CookiePolicy = lazy(() => import("./pages/CookiePolicy"));
 const DataConsent = lazy(() => import("./pages/DataConsent"));
@@ -69,6 +70,7 @@ const App = () => (
             <Route path="/services/inzhiniring" element={<EngineeringService />} />
             <Route path="/services/metalloobrabotka" element={<MetalProcessing />} />
             <Route path="/equipment" element={<Equipment />} />
+            <Route path="/equipment/:itemId" element={<EquipmentDetail />} />
             <Route path="/contacts" element={<Contacts />} />
             <Route path="/presentation" element={<Presentation />} />
             <Route path="/reference-list" element={<ReferenceList />} />

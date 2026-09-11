@@ -4,6 +4,8 @@ export interface EquipmentItem {
   description: string;
   specs: { label: string; value: string }[];
   image: string;
+  shortDescription?: string;
+  priceFrom?: string;
   gallery?: { src: string; caption: string }[];
   features?: { title: string; text: string }[];
   prices?: { label: string; value: string }[];
@@ -254,6 +256,9 @@ export const equipmentCategories: EquipmentCategory[] = [
           { label: 'Нет вашей модели?', value: '3D-сканирование и проектирование' }
         ],
         image: '/zashita/p93.jpg',
+        shortDescription:
+          'Защита картера, топливного бака, воздушного фильтра и датчиков из стали до 8 мм для Shacman X3000 и другой спецтехники',
+        priceFrom: 'от 15 000 ₽',
         gallery: [
           { src: '/zashita/p93.jpg', caption: 'Защита картера' },
           { src: '/zashita/p94.jpg', caption: 'Защита топливного бака' },
@@ -284,3 +289,11 @@ export const equipmentCategories: EquipmentCategory[] = [
     ]
   }
 ];
+
+export const findEquipmentItem = (itemId: string) => {
+  for (const category of equipmentCategories) {
+    const item = category.items.find((i) => i.id === itemId);
+    if (item) return { category, item };
+  }
+  return null;
+};
