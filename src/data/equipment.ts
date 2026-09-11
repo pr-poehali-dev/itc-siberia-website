@@ -240,7 +240,7 @@ export const equipmentCategories: EquipmentCategory[] = [
     shortTitle: 'Спецтехника',
     icon: 'Truck',
     description:
-      'Производим защиту картера, топливного бака, воздушного фильтра и датчиков для грузовиков Shacman X3000 и другой спецтехники',
+      'Производим дополнительное оборудование для спецтехники',
     items: [
       {
         id: 'truck-protection',

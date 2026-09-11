@@ -17,8 +17,6 @@ const Equipment = () => {
       ? equipmentCategories
       : equipmentCategories.filter((c) => c.id === activeCategory);
 
-  const totalItems = equipmentCategories.reduce((sum, c) => sum + c.items.length, 0);
-
   return (
     <div className="min-h-screen bg-white">
       <Header />
@@ -26,7 +24,7 @@ const Equipment = () => {
       <PageHero
         eyebrow="Каталог"
         title="Оборудование"
-        subtitle={`Каталог промышленного оборудования и роботизированных решений: ${totalItems} позиций в ${equipmentCategories.length} направлениях`}
+        subtitle="Каталог промышленного оборудования и роботизированных решений"
       />
 
       <section className="sticky top-[88px] md:top-[112px] z-40 bg-white/95 backdrop-blur-sm border-b border-border">
