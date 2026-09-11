@@ -39,17 +39,30 @@ const EquipmentDetail = () => {
       />
 
       <section className="border-b border-border bg-muted/30">
-        <div className="container mx-auto px-4 py-4">
-          <div className="flex items-center gap-2 text-sm text-muted-foreground flex-wrap">
-            <Link to="/equipment" className="hover:text-primary transition-colors">
-              Оборудование
+        <div className="container mx-auto px-4 py-3">
+          <div className="flex items-center justify-between gap-4 flex-wrap">
+            <Link
+              to="/equipment"
+              className="group inline-flex items-center gap-2 px-4 py-2 border border-border bg-white text-sm font-semibold hover:border-primary hover:text-primary transition-colors"
+            >
+              <Icon
+                name="ArrowLeft"
+                size={16}
+                className="group-hover:-translate-x-1 transition-transform"
+              />
+              Назад в каталог
             </Link>
-            <Icon name="ChevronRight" size={14} />
-            <Link to="/equipment" className="hover:text-primary transition-colors">
-              {category.shortTitle}
-            </Link>
-            <Icon name="ChevronRight" size={14} />
-            <span className="text-primary font-medium">{item.title}</span>
+            <div className="hidden sm:flex items-center gap-2 text-sm text-muted-foreground flex-wrap">
+              <Link to="/equipment" className="hover:text-primary transition-colors">
+                Оборудование
+              </Link>
+              <Icon name="ChevronRight" size={14} />
+              <Link to="/equipment" className="hover:text-primary transition-colors">
+                {category.shortTitle}
+              </Link>
+              <Icon name="ChevronRight" size={14} />
+              <span className="text-primary font-medium">{item.title}</span>
+            </div>
           </div>
         </div>
       </section>
@@ -194,6 +207,22 @@ const EquipmentDetail = () => {
               </Link>
             </Button>
           </div>
+        </div>
+      </section>
+
+      <section className="py-8 border-b border-border">
+        <div className="container mx-auto px-4">
+          <Link
+            to="/equipment"
+            className="group inline-flex items-center gap-2 text-sm font-semibold uppercase tracking-wide text-primary hover:text-secondary transition-colors"
+          >
+            <Icon
+              name="ArrowLeft"
+              size={18}
+              className="group-hover:-translate-x-1 transition-transform"
+            />
+            Вернуться в каталог оборудования
+          </Link>
         </div>
       </section>
 

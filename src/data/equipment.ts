@@ -258,7 +258,7 @@ export const equipmentCategories: EquipmentCategory[] = [
         image: '/zashita/p93.jpg',
         shortDescription:
           'Защита картера, топливного бака, воздушного фильтра и датчиков из стали до 8 мм для Shacman X3000 и другой спецтехники',
-        priceFrom: 'от 15 000 ₽',
+        priceFrom: 'от 35 000 ₽',
         gallery: [
           { src: '/zashita/p93.jpg', caption: 'Защита картера' },
           { src: '/zashita/p94.jpg', caption: 'Защита топливного бака' },
