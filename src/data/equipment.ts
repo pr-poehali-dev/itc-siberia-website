@@ -214,7 +214,7 @@ export const equipmentCategories: EquipmentCategory[] = [
           {
             title: 'Станция очистки сварочной горелки',
             subtitle: 'Автоматическое обслуживание без участия оператора',
-            image: '/rtk/cleaner.jpg',
+            image: 'https://cdn.poehali.dev/projects/e90cd5e8-153a-4589-b532-06e737a47d0d/bucket/700a6ae9-ab4f-4eac-862d-c3f57163b409.png',
             list: [
               {
                 title: 'Что делает станция',

@@ -180,12 +180,12 @@ const EquipmentDetail = () => {
                 <div key={idx} className="bg-white border border-border p-6 md:p-8">
                   <div className="grid lg:grid-cols-3 gap-8">
                     {m.image && (
-                      <div className="aspect-[4/3] bg-muted overflow-hidden">
+                      <div className="aspect-[4/3] bg-muted/50 border border-border/60 overflow-hidden flex items-center justify-center p-4">
                         <img
                           src={m.image}
                           alt={m.title}
                           loading="lazy"
-                          className="w-full h-full object-contain"
+                          className="max-w-full max-h-full object-contain"
                         />
                       </div>
                     )}
@@ -213,11 +213,23 @@ const EquipmentDetail = () => {
                         </div>
                       )}
                       {m.list && (
-                        <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6 mt-6">
+                        <div
+                          className={
+                            m.list.length === 1
+                              ? 'mt-6'
+                              : 'grid sm:grid-cols-2 lg:grid-cols-3 gap-6 mt-6'
+                          }
+                        >
                           {m.list.map((l, i) => (
                             <div key={i}>
                               <div className="font-bold text-sm mb-2">{l.title}</div>
-                              <ul className="space-y-1.5">
+                              <ul
+                                className={
+                                  m.list!.length === 1
+                                    ? 'grid sm:grid-cols-2 gap-x-8 gap-y-2'
+                                    : 'space-y-1.5'
+                                }
+                              >
                                 {l.items.map((li, k) => (
                                   <li
                                     key={k}
