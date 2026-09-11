@@ -126,6 +126,125 @@ const EquipmentDetail = () => {
         </section>
       )}
 
+      {item.components && (
+        <section className="py-14">
+          <div className="container mx-auto px-4">
+            <div className="grid lg:grid-cols-2 gap-10">
+              <div>
+                <div className="eyebrow-muted mb-6">Состав комплекса</div>
+                <div className="border border-border">
+                  {item.components.map((c, idx) => (
+                    <div
+                      key={idx}
+                      className="flex justify-between items-center gap-4 px-4 py-3 border-b border-border last:border-0 odd:bg-muted/30"
+                    >
+                      <span className="text-sm">{c.name}</span>
+                      <span className="font-mono-tech text-sm text-muted-foreground whitespace-nowrap">
+                        {c.qty} шт
+                      </span>
+                    </div>
+                  ))}
+                </div>
+              </div>
+              {item.terms && (
+                <div>
+                  <div className="eyebrow-muted mb-6">Условия поставки</div>
+                  <div className="bg-primary text-white p-7">
+                    {item.terms.map((t, idx) => (
+                      <div
+                        key={idx}
+                        className="flex justify-between items-baseline gap-4 py-2.5 border-b border-white/15 last:border-0"
+                      >
+                        <span className="text-sm text-white/75">{t.label || '\u00A0'}</span>
+                        <span className="font-mono-tech font-bold text-right">{t.value}</span>
+                      </div>
+                    ))}
+                  </div>
+                  <p className="text-sm text-muted-foreground mt-4">
+                    Состав комплектации меняется в зависимости от технического задания —
+                    пришлите ТЗ, и мы подготовим расчёт под ваше изделие.
+                  </p>
+                </div>
+              )}
+            </div>
+          </div>
+        </section>
+      )}
+
+      {item.modules && (
+        <section className="py-14 bg-muted/40 border-y border-border">
+          <div className="container mx-auto px-4">
+            <div className="eyebrow-muted mb-10">Оборудование в составе комплекса</div>
+            <div className="space-y-10">
+              {item.modules.map((m, idx) => (
+                <div key={idx} className="bg-white border border-border p-6 md:p-8">
+                  <div className="grid lg:grid-cols-3 gap-8">
+                    {m.image && (
+                      <div className="aspect-[4/3] bg-muted overflow-hidden">
+                        <img
+                          src={m.image}
+                          alt={m.title}
+                          loading="lazy"
+                          className="w-full h-full object-contain"
+                        />
+                      </div>
+                    )}
+                    <div className={m.image ? 'lg:col-span-2' : 'lg:col-span-3'}>
+                      <h3 className="text-xl font-bold mb-1">{m.title}</h3>
+                      {m.subtitle && (
+                        <p className="text-sm text-muted-foreground mb-5">{m.subtitle}</p>
+                      )}
+                      {m.text && (
+                        <p className="text-sm leading-relaxed text-muted-foreground mb-5">
+                          {m.text}
+                        </p>
+                      )}
+                      {m.specs && (
+                        <div className="grid sm:grid-cols-2 gap-x-8">
+                          {m.specs.map((s, i) => (
+                            <div
+                              key={i}
+                              className="flex justify-between gap-3 text-sm border-b border-border/60 py-1.5"
+                            >
+                              <span className="text-muted-foreground">{s.label}</span>
+                              <span className="font-medium text-right">{s.value}</span>
+                            </div>
+                          ))}
+                        </div>
+                      )}
+                      {m.list && (
+                        <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6 mt-6">
+                          {m.list.map((l, i) => (
+                            <div key={i}>
+                              <div className="font-bold text-sm mb-2">{l.title}</div>
+                              <ul className="space-y-1.5">
+                                {l.items.map((li, k) => (
+                                  <li
+                                    key={k}
+                                    className="flex gap-2 text-sm text-muted-foreground leading-snug"
+                                  >
+                                    <Icon
+                                      name="Check"
+                                      size={14}
+                                      className="text-secondary flex-shrink-0 mt-0.5"
+                                    />
+                                    {li}
+                                  </li>
+                                ))}
+                              </ul>
+                            </div>
+                          ))}
+                        </div>
+                      )}
+                    </div>
+                  </div>
+                </div>
+              ))}
+            </div>
+          </div>
+        </section>
+      )}
+
       {item.prices && (
         <section className="py-14">
           <div className="container mx-auto px-4">
@@ -192,9 +311,10 @@ const EquipmentDetail = () => {
       <section className="py-20 bg-primary tech-grid-dark">
         <div className="container mx-auto px-4">
           <div className="max-w-3xl mx-auto text-center text-white">
-            <h2 className="text-3xl md:text-4xl font-bold mb-4">Готовы защитить вашу технику</h2>
+            <h2 className="text-3xl md:text-4xl font-bold mb-4">Обсудим вашу задачу</h2>
             <p className="text-lg text-white/90 mb-8">
-              Рассчитаем стоимость под вашу модель, изготовим и установим
+              Пришлите техническое задание — рассчитаем решение под ваше изделие,
+              изготовим, смонтируем и запустим
             </p>
             <Button
               asChild
