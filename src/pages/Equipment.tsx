@@ -79,8 +79,100 @@ const Equipment = () => {
               </div>
             </div>
 
-            <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
-              {category.items.map((item) => (
+            <div className={category.items.length === 1 ? 'grid grid-cols-1 gap-6' : 'grid sm:grid-cols-2 lg:grid-cols-3 gap-6'}>
+              {category.items.map((item) => item.features ? (
+                <div key={item.id} className="border border-border bg-white">
+                  <div className="grid lg:grid-cols-2">
+                    <div className="aspect-[4/3] lg:aspect-auto lg:min-h-[420px] overflow-hidden bg-muted">
+                      <img src={item.image} alt={item.title} className="w-full h-full object-cover" />
+                    </div>
+                    <div className="p-8 lg:p-10 flex flex-col">
+                      <h3 className="text-2xl lg:text-3xl font-bold mb-4 leading-tight">{item.title}</h3>
+                      <p className="text-muted-foreground mb-6 leading-relaxed">{item.description}</p>
+                      <div className="space-y-2 mb-8">
+                        {item.specs.map((spec, idx) => (
+                          <div key={idx} className="flex justify-between gap-3 text-sm border-b border-border/60 pb-1.5">
+                            <span className="text-muted-foreground">{spec.label}</span>
+                            <span className="font-medium text-right">{spec.value}</span>
+                          </div>
+                        ))}
+                      </div>
+                      <Button asChild className="bg-secondary hover:bg-secondary/90 text-secondary-foreground mt-auto w-full sm:w-auto sm:self-start px-8">
+                        <Link to="/contacts">
+                          Запросить расчёт
+                          <Icon name="ArrowRight" size={16} className="ml-2" />
+                        </Link>
+                      </Button>
+                    </div>
+                  </div>
+
+                  <div className="border-t border-border p-8 lg:p-10">
+                    <div className="eyebrow-muted mb-6">Преимущества</div>
+                    <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
+                      {item.features.map((f, idx) => (
+                        <div key={idx} className="flex gap-4">
+                          <span className="font-mono-tech text-sm text-secondary pt-0.5">
+                            {String(idx + 1).padStart(2, '0')}
+                          </span>
+                          <div>
+                            <div className="font-bold mb-1">{f.title}</div>
+                            <p className="text-sm text-muted-foreground leading-relaxed">{f.text}</p>
+                          </div>
+                        </div>
+                      ))}
+                    </div>
+                  </div>
+
+                  {item.prices && item.bundle && (
+                    <div className="border-t border-border p-8 lg:p-10">
+                      <div className="eyebrow-muted mb-6">Стоимость</div>
+                      <div className="grid lg:grid-cols-2 gap-8">
+                        <div className="space-y-3">
+                          {item.prices.map((p, idx) => (
+                            <div key={idx} className="flex justify-between items-baseline gap-4 border-b border-border pb-2">
+                              <span className="text-sm">{p.label}</span>
+                              <span className="font-mono-tech font-bold whitespace-nowrap">{p.value}</span>
+                            </div>
+                          ))}
+                        </div>
+                        <div className="bg-primary text-white p-7">
+                          <div className="flex items-center justify-between mb-5">
+                            <span className="eyebrow-muted text-white/70">{item.bundle.title}</span>
+                            <Badge className="bg-secondary text-secondary-foreground hover:bg-secondary">
+                              {item.bundle.note}
+                            </Badge>
+                          </div>
+                          <div className="text-3xl font-extrabold mb-5">{item.bundle.price}</div>
+                          <div className="space-y-2">
+                            {item.bundle.items.map((b, idx) => (
+                              <div key={idx} className="flex items-center gap-2.5 text-sm text-white/85">
+                                <Icon name="Check" size={16} className="text-secondary flex-shrink-0" />
+                                {b}
+                              </div>
+                            ))}
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  )}
+
+                  {item.gallery && (
+                    <div className="border-t border-border p-8 lg:p-10">
+                      <div className="eyebrow-muted mb-6">Примеры установленных защит</div>
+                      <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-4">
+                        {item.gallery.map((g, idx) => (
+                          <div key={idx}>
+                            <div className="aspect-[4/3] overflow-hidden bg-muted mb-2">
+                              <img src={g.src} alt={g.caption} loading="lazy" className="w-full h-full object-cover hover:scale-105 transition-transform duration-300" />
+                            </div>
+                            <div className="text-sm text-muted-foreground">{g.caption}</div>
+                          </div>
+                        ))}
+                      </div>
+                    </div>
+                  )}
+                </div>
+              ) : (
                 <Card
                   key={item.id}
                   className="flex flex-col h-full overflow-hidden transition-shadow hover:shadow-none"
