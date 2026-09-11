@@ -14,6 +14,7 @@ const Header = () => {
     { path: '/about', label: 'О компании' },
     { path: '/services', label: 'Услуги' },
     { path: '/services/inzhiniring', label: 'Инжиниринг' },
+    { path: '/equipment', label: 'Оборудование' },
     { path: '/contacts', label: 'Контакты' }
   ];
 
