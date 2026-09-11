@@ -126,26 +126,28 @@ const EquipmentDetail = () => {
         </section>
       )}
 
-      {item.components && (
+      {(item.components || item.terms) && (
         <section className="py-14">
           <div className="container mx-auto px-4">
-            <div className="grid lg:grid-cols-2 gap-10">
-              <div>
-                <div className="eyebrow-muted mb-6">Состав комплекса</div>
-                <div className="border border-border">
-                  {item.components.map((c, idx) => (
-                    <div
-                      key={idx}
-                      className="flex justify-between items-center gap-4 px-4 py-3 border-b border-border last:border-0 odd:bg-muted/30"
-                    >
-                      <span className="text-sm">{c.name}</span>
-                      <span className="font-mono-tech text-sm text-muted-foreground whitespace-nowrap">
-                        {c.qty} шт
-                      </span>
-                    </div>
-                  ))}
+            <div className={item.components && item.terms ? 'grid lg:grid-cols-2 gap-10' : 'max-w-2xl'}>
+              {item.components && (
+                <div>
+                  <div className="eyebrow-muted mb-6">Состав комплекса</div>
+                  <div className="border border-border">
+                    {item.components.map((c, idx) => (
+                      <div
+                        key={idx}
+                        className="flex justify-between items-center gap-4 px-4 py-3 border-b border-border last:border-0 odd:bg-muted/30"
+                      >
+                        <span className="text-sm">{c.name}</span>
+                        <span className="font-mono-tech text-sm text-muted-foreground whitespace-nowrap">
+                          {c.qty} шт
+                        </span>
+                      </div>
+                    ))}
+                  </div>
                 </div>
-              </div>
+              )}
               {item.terms && (
                 <div>
                   <div className="eyebrow-muted mb-6">Условия поставки</div>
